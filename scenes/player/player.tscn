@@ -1,26 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://cplw1ycrgq07u"]
+[gd_scene load_steps=26 format=3 uid="uid://cplw1ycrgq07u"]
 
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_2dgcp"]
 [ext_resource type="Texture2D" uid="uid://d3a04qijp10nm" path="res://assets/player.png" id="1_d7ix2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1k1y5"]
 size = Vector2(8, 14)
-
-[sub_resource type="Animation" id="Animation_p1wdt"]
-resource_name = "walk"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [7, 8, 9, 10]
-}
 
 [sub_resource type="Animation" id="Animation_rt7jp"]
 length = 0.001
@@ -35,6 +19,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_2l10c"]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [42, 43, 42, 43]
 }
 
 [sub_resource type="Animation" id="Animation_f6j7w"]
@@ -54,22 +54,6 @@ tracks/0/keys = {
 "values": [14, 15]
 }
 
-[sub_resource type="Animation" id="Animation_x6yqo"]
-resource_name = "shoot"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [21, 22, 21]
-}
-
 [sub_resource type="Animation" id="Animation_l056o"]
 resource_name = "jump"
 length = 0.1
@@ -87,9 +71,9 @@ tracks/0/keys = {
 "values": [29]
 }
 
-[sub_resource type="Animation" id="Animation_2l10c"]
-resource_name = "hit"
-length = 0.4
+[sub_resource type="Animation" id="Animation_x6yqo"]
+resource_name = "shoot"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,10 +81,27 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [21, 22, 21]
+}
+
+[sub_resource type="Animation" id="Animation_p1wdt"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [42, 43, 42, 43]
+"values": [7, 8, 9, 10]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uo8k5"]
@@ -165,6 +166,7 @@ transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_
 graph_offset = Vector2(0, -22.7418)
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_2dgcp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
@@ -185,3 +187,6 @@ libraries = {
 deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_aqser")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
