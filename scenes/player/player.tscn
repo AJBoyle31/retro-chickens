@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2dgcp"]
 [ext_resource type="Texture2D" uid="uid://d3a04qijp10nm" path="res://assets/player.png" id="1_d7ix2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k1y5"]
-size = Vector2(8, 14)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vtn8k"]
+radius = 3.0
+height = 12.0
 
 [sub_resource type="Animation" id="Animation_rt7jp"]
 length = 0.001
@@ -89,7 +90,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_p1wdt"]
 resource_name = "walk"
-length = 0.8
+length = 0.55
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -98,7 +99,7 @@ tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [7, 8, 9, 10]
@@ -163,14 +164,15 @@ states/shoot/position = Vector2(570, -33.1148)
 states/walk/node = SubResource("AnimationNodeAnimation_wjsfk")
 states/walk/position = Vector2(296, -12)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_opsyu"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_brrmw"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_5x4ub"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_wees2"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_dobcg"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_thet4"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_7cmuh"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_fk3io"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_dknfk")]
-graph_offset = Vector2(0, -22.7418)
+graph_offset = Vector2(-130, -134.742)
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -8)
 script = ExtResource("1_2dgcp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_1k1y5")
+position = Vector2(-1, 2)
+shape = SubResource("CapsuleShape2D_vtn8k")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_d7ix2")
@@ -189,4 +191,6 @@ tree_root = SubResource("AnimationNodeStateMachine_aqser")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+position = Vector2(-1, 0)
+zoom = Vector2(3, 3)
+limit_bottom = 200
