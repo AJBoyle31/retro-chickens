@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://bvhj5uylcv3pa"]
+[gd_scene load_steps=6 format=4 uid="uid://bvhj5uylcv3pa"]
 
 [ext_resource type="PackedScene" uid="uid://o4x25sqrm5wy" path="res://scenes/world/tile_map.tscn" id="1_0w2uq"]
 [ext_resource type="PackedScene" uid="uid://cplw1ycrgq07u" path="res://scenes/player/player.tscn" id="2_j3qki"]
 [ext_resource type="PackedScene" uid="uid://dfte4f7t7fkrn" path="res://scenes/world/killzone.tscn" id="3_qvv40"]
+[ext_resource type="PackedScene" uid="uid://0gyf228iuxd8" path="res://scenes/npcs/chicken.tscn" id="4_fjino"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mak5r"]
 
@@ -24,6 +25,9 @@ position = Vector2(85, 35)
 [node name="CollisionShape2D" parent="Killzone" index="0"]
 position = Vector2(83, 256)
 shape = SubResource("WorldBoundaryShape2D_mak5r")
+
+[node name="Chicken" parent="." instance=ExtResource("4_fjino")]
+position = Vector2(131, 22)
 
 [editable path="Tilemaps"]
 [editable path="Killzone"]

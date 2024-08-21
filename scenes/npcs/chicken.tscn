@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://0gyf228iuxd8"]
+
+[ext_resource type="Script" path="res://scripts/chicken.gd" id="1_hu0ld"]
+[ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="1_s8msv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r4n6a"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miaw1"]
+atlas = ExtResource("1_s8msv")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa8yj"]
+atlas = ExtResource("1_s8msv")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jmts"]
+atlas = ExtResource("1_s8msv")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d81ft"]
+atlas = ExtResource("1_s8msv")
+region = Rect2(64, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io8mi"]
+atlas = ExtResource("1_s8msv")
+region = Rect2(80, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0hwa"]
+atlas = ExtResource("1_s8msv")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_06rnd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miaw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa8yj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jmts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d81ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io8mi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0hwa")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[node name="Chicken" type="CharacterBody2D"]
+position = Vector2(0, -8)
+collision_layer = 4
+script = ExtResource("1_hu0ld")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_r4n6a")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_06rnd")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.375324
