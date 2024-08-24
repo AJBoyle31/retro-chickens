@@ -8,4 +8,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_body_entered(_body: Node2D) -> void:
-	timer.start()
+	if _body.name == "Player":
+		timer.start()
+	if _body.name.contains("Chicken"):
+		_body.kill_npc()

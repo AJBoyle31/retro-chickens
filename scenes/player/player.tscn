@@ -168,6 +168,7 @@ graph_offset = Vector2(-130, -134.742)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -8)
+collision_layer = 2
 script = ExtResource("1_2dgcp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
