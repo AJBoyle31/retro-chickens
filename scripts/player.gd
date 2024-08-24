@@ -1,5 +1,7 @@
 extends CharacterBody2D
+class_name Player
 
+const BULLET = preload("res://scenes/player/bullet.tscn")
 
 @export var speed: int = 100
 @export var jump_velocity: int = -225
@@ -14,6 +16,7 @@ var player_state: States = States.IDLE
 @onready var animation_player = $AnimationPlayer
 @onready var animation_tree = $AnimationTree
 @onready var animation_state_machine = animation_tree["parameters/playback"]
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -40,7 +43,8 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("shoot"):
 			if !direction:
 				animation_state_machine.travel("shoot")
-			shoot_gun()
+			else: 
+				shoot_gun()
 		elif direction:
 			animation_state_machine.travel("walk")
 		else:
@@ -51,7 +55,15 @@ func _physics_process(delta):
 	move_and_slide()
 
 func shoot_gun() -> void:
-	pass
+	var bullet_instance = BULLET.instantiate()
+	get_parent().add_child(bullet_instance)
+	bullet_instance.global_position = global_position
+	if !player_sprite.flip_h:
+		bullet_instance.direction = 1
+		bullet_instance.global_position.x += 10
+	else:
+		bullet_instance.direction = -1
+		bullet_instance.global_position.x -= 2
 
 func handle_facing_direction(_direction) -> void: 
 	if _direction > 0:

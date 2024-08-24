@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Chicken
 
 @export_enum("idle", "walk") var state: String = "idle"
 @export var speed: int = 30

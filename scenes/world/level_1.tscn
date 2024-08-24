@@ -20,11 +20,25 @@ tile_map_data = PackedByteArray("AAAUAAUAAAAHAAIAAAAUAAMAAAAMAAIAAAAUAAAAAAAPAAE
 [node name="Player" parent="." instance=ExtResource("2_j3qki")]
 position = Vector2(85, 35)
 
-[node name="Killzone" parent="." instance=ExtResource("3_qvv40")]
-collision_mask = 6
+[node name="BottomKillzone" parent="." instance=ExtResource("3_qvv40")]
+position = Vector2(97, 256)
 
-[node name="CollisionShape2D" parent="Killzone" index="0"]
-position = Vector2(83, 256)
+[node name="CollisionShape2D" parent="BottomKillzone" index="0"]
+position = Vector2(1, 1)
+shape = SubResource("WorldBoundaryShape2D_mak5r")
+
+[node name="LeftKillzone" parent="." instance=ExtResource("3_qvv40")]
+position = Vector2(464, 53)
+
+[node name="CollisionShape2D" parent="LeftKillzone" index="0"]
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_mak5r")
+
+[node name="RightKillzone" parent="." instance=ExtResource("3_qvv40")]
+position = Vector2(-219, 80)
+rotation = 1.5708
+
+[node name="CollisionShape2D" parent="RightKillzone" index="0"]
 shape = SubResource("WorldBoundaryShape2D_mak5r")
 
 [node name="Chicken" parent="." instance=ExtResource("4_fjino")]
@@ -32,4 +46,6 @@ position = Vector2(131, 22)
 state = "walk"
 
 [editable path="Tilemaps"]
-[editable path="Killzone"]
+[editable path="BottomKillzone"]
+[editable path="LeftKillzone"]
+[editable path="RightKillzone"]
