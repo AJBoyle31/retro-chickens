@@ -40,13 +40,19 @@ func _process(delta: float) -> void:
 		
 		if ray_cast_right.is_colliding():
 			direction = -1
-		
+	
+	handle_facing_direction(direction)
 	move_and_slide()
 
 
 func kill_npc() -> void:
 	queue_free()
 
+func handle_facing_direction(_direction) -> void: 
+	if _direction > 0:
+		animated_sprite.flip_h = false
+	elif _direction < 0:
+		animated_sprite.flip_h = true
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.has_method("destroy_bullet"):
