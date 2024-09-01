@@ -5,6 +5,7 @@ const BULLET = preload("res://scenes/player/bullet.tscn")
 
 @export var speed: int = 100
 @export var jump_velocity: int = -225
+@export var bullet_count: int = 5
 
 enum States {IDLE, WALK, JUMP, HIT, SHOOT, DEAD}
 
@@ -29,8 +30,6 @@ func _physics_process(delta):
 		velocity.y = jump_velocity
 		player_state = States.JUMP
 	
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * speed
@@ -40,7 +39,8 @@ func _physics_process(delta):
 	
 	#Animations
 	if is_on_floor():
-		if Input.is_action_just_pressed("shoot"):
+		#Can't shoot if you are not on the ground
+		if Input.is_action_just_pressed("shoot") and bullet_count > 0:
 			if !direction:
 				animation_state_machine.travel("shoot")
 			else: 
@@ -55,6 +55,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func shoot_gun() -> void:
+	bullet_count -= 1
 	var bullet_instance = BULLET.instantiate()
 	get_parent().add_child(bullet_instance)
 	bullet_instance.global_position = global_position

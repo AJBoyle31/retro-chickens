@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://bvhj5uylcv3pa"]
+[gd_scene load_steps=7 format=4 uid="uid://bvhj5uylcv3pa"]
 
 [ext_resource type="PackedScene" uid="uid://o4x25sqrm5wy" path="res://scenes/world/tile_map.tscn" id="1_0w2uq"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_nraf0"]
 [ext_resource type="PackedScene" uid="uid://cplw1ycrgq07u" path="res://scenes/player/player.tscn" id="2_j3qki"]
 [ext_resource type="PackedScene" uid="uid://dfte4f7t7fkrn" path="res://scenes/world/killzone.tscn" id="3_qvv40"]
 [ext_resource type="PackedScene" uid="uid://0gyf228iuxd8" path="res://scenes/npcs/chicken.tscn" id="4_fjino"]
@@ -8,6 +9,30 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mak5r"]
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_nraf0")
+
+[node name="Killzones" type="Node" parent="."]
+
+[node name="BottomKillzone" parent="Killzones" instance=ExtResource("3_qvv40")]
+position = Vector2(97, 256)
+
+[node name="CollisionShape2D" parent="Killzones/BottomKillzone" index="0"]
+position = Vector2(1, 1)
+shape = SubResource("WorldBoundaryShape2D_mak5r")
+
+[node name="LeftKillzone" parent="Killzones" instance=ExtResource("3_qvv40")]
+position = Vector2(464, 53)
+
+[node name="CollisionShape2D" parent="Killzones/LeftKillzone" index="0"]
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_mak5r")
+
+[node name="RightKillzone" parent="Killzones" instance=ExtResource("3_qvv40")]
+position = Vector2(-219, 80)
+rotation = 1.5708
+
+[node name="CollisionShape2D" parent="Killzones/RightKillzone" index="0"]
+shape = SubResource("WorldBoundaryShape2D_mak5r")
 
 [node name="Tilemaps" parent="." instance=ExtResource("1_0w2uq")]
 
@@ -20,32 +45,17 @@ tile_map_data = PackedByteArray("AAAUAAUAAAAHAAIAAAAUAAMAAAAMAAIAAAAUAAAAAAAPAAE
 [node name="Player" parent="." instance=ExtResource("2_j3qki")]
 position = Vector2(85, 35)
 
-[node name="BottomKillzone" parent="." instance=ExtResource("3_qvv40")]
-position = Vector2(97, 256)
+[node name="Chickens" type="Node" parent="."]
 
-[node name="CollisionShape2D" parent="BottomKillzone" index="0"]
-position = Vector2(1, 1)
-shape = SubResource("WorldBoundaryShape2D_mak5r")
-
-[node name="LeftKillzone" parent="." instance=ExtResource("3_qvv40")]
-position = Vector2(464, 53)
-
-[node name="CollisionShape2D" parent="LeftKillzone" index="0"]
-rotation = -1.5708
-shape = SubResource("WorldBoundaryShape2D_mak5r")
-
-[node name="RightKillzone" parent="." instance=ExtResource("3_qvv40")]
-position = Vector2(-219, 80)
-rotation = 1.5708
-
-[node name="CollisionShape2D" parent="RightKillzone" index="0"]
-shape = SubResource("WorldBoundaryShape2D_mak5r")
-
-[node name="Chicken" parent="." instance=ExtResource("4_fjino")]
+[node name="Chicken" parent="Chickens" instance=ExtResource("4_fjino")]
 position = Vector2(131, 22)
 state = "walk"
 
+[node name="Chicken2" parent="Chickens" instance=ExtResource("4_fjino")]
+position = Vector2(-128, 86)
+state = "walk"
+
+[editable path="Killzones/BottomKillzone"]
+[editable path="Killzones/LeftKillzone"]
+[editable path="Killzones/RightKillzone"]
 [editable path="Tilemaps"]
-[editable path="BottomKillzone"]
-[editable path="LeftKillzone"]
-[editable path="RightKillzone"]

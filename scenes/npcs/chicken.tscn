@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://0gyf228iuxd8"]
+[gd_scene load_steps=14 format=3 uid="uid://0gyf228iuxd8"]
 
 [ext_resource type="Script" path="res://scripts/chicken.gd" id="1_hu0ld"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="1_s8msv"]
@@ -6,6 +6,10 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r4n6a"]
 radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6byvw"]
+atlas = ExtResource("1_s8msv")
+region = Rect2(208, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_miaw1"]
 atlas = ExtResource("1_s8msv")
@@ -33,6 +37,14 @@ region = Rect2(96, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_06rnd"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6byvw")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_miaw1")
@@ -65,7 +77,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iiwdo"]
 size = Vector2(10, 9)
 
-[node name="Chicken" type="CharacterBody2D"]
+[node name="Chicken" type="CharacterBody2D" groups=["chickens"]]
 position = Vector2(0, -8)
 collision_layer = 4
 script = ExtResource("1_hu0ld")
@@ -92,5 +104,7 @@ collision_mask = 8
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_iiwdo")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 
 [editable path="HurtBox"]
