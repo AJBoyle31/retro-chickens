@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/npc.gd" id="1_ypn2j"]
 [ext_resource type="PackedScene" uid="uid://72rkbcdhsyob" path="res://scenes/overlap/hitbox.tscn" id="2_c34wn"]
 
-[node name="NPC" type="Node"]
+[node name="NPC" type="Node2D"]
 script = ExtResource("1_ypn2j")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
@@ -14,6 +14,6 @@ target_position = Vector2(8, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-8, 0)
 
-[node name="Hitbox" parent="." instance=ExtResource("2_c34wn")]
+[node name="NPCHitbox" parent="." instance=ExtResource("2_c34wn")]
 collision_layer = 32
 collision_mask = 64

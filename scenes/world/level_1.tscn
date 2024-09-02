@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://bvhj5uylcv3pa"]
+[gd_scene load_steps=8 format=4 uid="uid://bvhj5uylcv3pa"]
 
 [ext_resource type="PackedScene" uid="uid://o4x25sqrm5wy" path="res://scenes/world/tile_map.tscn" id="1_0w2uq"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_nraf0"]
 [ext_resource type="PackedScene" uid="uid://cplw1ycrgq07u" path="res://scenes/player/player.tscn" id="2_j3qki"]
 [ext_resource type="PackedScene" uid="uid://dfte4f7t7fkrn" path="res://scenes/world/killzone.tscn" id="3_qvv40"]
 [ext_resource type="PackedScene" uid="uid://0gyf228iuxd8" path="res://scenes/npcs/chicken.tscn" id="4_fjino"]
+[ext_resource type="PackedScene" uid="uid://bjaoimfoh8iu4" path="res://scenes/npcs/snake_npc.tscn" id="6_kki2l"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mak5r"]
 
@@ -53,6 +54,10 @@ state = "walk"
 
 [node name="Chicken2" parent="Chickens" instance=ExtResource("4_fjino")]
 position = Vector2(-128, 86)
+state = "walk"
+
+[node name="SnakeNPC" parent="." instance=ExtResource("6_kki2l")]
+position = Vector2(144, 164)
 state = "walk"
 
 [editable path="Killzones/BottomKillzone"]

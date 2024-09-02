@@ -77,3 +77,9 @@ func handle_facing_direction(_direction) -> void:
 		player_sprite.flip_h = true
 		player_hitbox.position.x = 2
 		player_world_collision_shape.position.x = 1
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	print(area.name)
+	if area.name.contains("NPC"):
+		print("You've been snake bit")
