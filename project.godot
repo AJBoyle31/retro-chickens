@@ -45,6 +45,8 @@ shoot={
 2d_physics/layer_3="NPC"
 2d_physics/layer_4="Bullet"
 2d_physics/layer_5="NPCHurtBox"
+2d_physics/layer_6="NPCHitbox"
+2d_physics/layer_7="PlayerHurtbox"
 
 [rendering]
 

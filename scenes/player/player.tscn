@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://cplw1ycrgq07u"]
+[gd_scene load_steps=28 format=3 uid="uid://cplw1ycrgq07u"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2dgcp"]
 [ext_resource type="Texture2D" uid="uid://d3a04qijp10nm" path="res://assets/player.png" id="1_d7ix2"]
+[ext_resource type="PackedScene" uid="uid://dfl6ylmcd8v13" path="res://scenes/overlap/hurt_box.tscn" id="3_0e54p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vtn8k"]
 radius = 3.0
@@ -178,14 +179,17 @@ states/shoot/position = Vector2(570, -33.1148)
 states/walk/node = SubResource("AnimationNodeAnimation_wjsfk")
 states/walk/position = Vector2(296, -12)
 transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_opsyu"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_brrmw"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_5x4ub"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_wees2"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_dobcg"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_thet4"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_7cmuh"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_fk3io"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_dknfk")]
-graph_offset = Vector2(-130, -134.742)
+graph_offset = Vector2(-81, -10.742)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4rqr"]
+size = Vector2(8, 13)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -8)
 collision_layer = 2
 script = ExtResource("1_2dgcp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="WorldCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 2)
 shape = SubResource("CapsuleShape2D_vtn8k")
 
@@ -209,3 +213,13 @@ anim_player = NodePath("../AnimationPlayer")
 position = Vector2(-1, 0)
 zoom = Vector2(4, 4)
 limit_bottom = 200
+
+[node name="HurtBox" parent="." instance=ExtResource("3_0e54p")]
+collision_layer = 64
+collision_mask = 32
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-1, 1.5)
+shape = SubResource("RectangleShape2D_v4rqr")
+
+[editable path="HurtBox"]

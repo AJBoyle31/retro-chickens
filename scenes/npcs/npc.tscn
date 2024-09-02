@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://pgxlur2fj14b"]
 
-[ext_resource type="PackedScene" uid="uid://dfl6ylmcd8v13" path="res://scenes/overlap/hurt_box.tscn" id="1_suj2e"]
 [ext_resource type="Script" path="res://scripts/npc.gd" id="1_ypn2j"]
+[ext_resource type="PackedScene" uid="uid://72rkbcdhsyob" path="res://scenes/overlap/hitbox.tscn" id="2_c34wn"]
 
 [node name="NPC" type="Node"]
 script = ExtResource("1_ypn2j")
@@ -14,4 +14,6 @@ target_position = Vector2(8, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 target_position = Vector2(-8, 0)
 
-[node name="HurtBox" parent="." instance=ExtResource("1_suj2e")]
+[node name="Hitbox" parent="." instance=ExtResource("2_c34wn")]
+collision_layer = 32
+collision_mask = 64

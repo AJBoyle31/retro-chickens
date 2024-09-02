@@ -13,9 +13,11 @@ enum States {IDLE, WALK, JUMP, HIT, SHOOT, DEAD}
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player_state: States = States.IDLE
 
-@onready var player_sprite = $PlayerSprite
-@onready var animation_player = $AnimationPlayer
-@onready var animation_tree = $AnimationTree
+@onready var player_sprite: = $PlayerSprite
+@onready var player_world_collision_shape: = $WorldCollisionShape
+@onready var player_hitbox: = $HurtBox
+@onready var animation_player: = $AnimationPlayer
+@onready var animation_tree: = $AnimationTree
 @onready var animation_state_machine = animation_tree["parameters/playback"]
 
 
@@ -69,5 +71,9 @@ func shoot_gun() -> void:
 func handle_facing_direction(_direction) -> void: 
 	if _direction > 0:
 		player_sprite.flip_h = false
+		player_hitbox.position.x = 0
+		player_world_collision_shape.position.x = -1
 	elif _direction < 0:
 		player_sprite.flip_h = true
+		player_hitbox.position.x = 2
+		player_world_collision_shape.position.x = 1

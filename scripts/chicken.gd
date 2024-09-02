@@ -9,7 +9,8 @@ var gravity := 100
 var direction := 1
 var is_hit: bool = false
 # Called when the node enters the scene tree for the first time.
-@onready var animated_sprite = $AnimatedSprite
+@onready var animated_sprite := $AnimatedSprite
+@onready var chicken_hurtbox := $HurtBox
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 
@@ -51,8 +52,10 @@ func kill_npc() -> void:
 func handle_facing_direction(_direction) -> void: 
 	if _direction > 0:
 		animated_sprite.flip_h = false
+		chicken_hurtbox.position.x = 0
 	elif _direction < 0:
 		animated_sprite.flip_h = true
+		chicken_hurtbox.position.x = 2
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.has_method("destroy_bullet"):
