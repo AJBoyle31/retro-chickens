@@ -60,6 +60,11 @@ state = "walk"
 position = Vector2(144, 164)
 state = "walk"
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1, 0)
+zoom = Vector2(4, 4)
+limit_bottom = 200
+
 [editable path="Killzones/BottomKillzone"]
 [editable path="Killzones/LeftKillzone"]
 [editable path="Killzones/RightKillzone"]
