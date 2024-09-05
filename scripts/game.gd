@@ -2,6 +2,10 @@ extends Node2D
 class_name Game
 
 
+@onready var hud: Control = $UI/HUD
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Use this for UI

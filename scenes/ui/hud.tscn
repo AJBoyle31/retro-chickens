@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://byasfjf41fav5"]
+[gd_scene load_steps=2 format=3 uid="uid://byasfjf41fav5"]
+
+[ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="1_mdypo"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_mdypo")
 metadata/_edit_vertical_guides_ = [1080.0, 72.0]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -19,21 +22,22 @@ offset_right = 504.0
 offset_bottom = 50.0
 grow_horizontal = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(400, 0)
+[node name="BulletLabel" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(336, 0)
 layout_mode = 2
 text = "Bullets Left: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(400, 0)
+[node name="TimeLabel" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(336, 0)
 layout_mode = 2
-text = "Time Remaining: 30 seconds"
+text = "Time Remaining: 30"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="HBoxContainer"]
+[node name="ChickensLabel" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(336, 0)
 layout_mode = 2
 text = "Chickens Left: 3"
 horizontal_alignment = 1
@@ -55,6 +59,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 
-[node name="Label4" type="Label" parent="CenterContainer"]
+[node name="StartLabel" type="Label" parent="CenterContainer"]
 layout_mode = 2
-text = "Start"
+text = "Start	"
