@@ -1,17 +1,20 @@
 extends CharacterBody2D
 class_name Player
 
+signal shoot(bullet)
+
 const BULLET = preload("res://scenes/player/bullet.tscn")
 
 @export var speed: int = 100
 @export var jump_velocity: int = -225
-@export var bullet_count: int = 5
+
 
 enum States {IDLE, WALK, JUMP, HIT, SHOOT, DEAD}
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var player_state: States = States.IDLE
+var bullet_count: int
 
 @onready var player_sprite: = $PlayerSprite
 @onready var player_world_collision_shape: = $WorldCollisionShape
@@ -57,18 +60,10 @@ func _physics_process(delta):
 	move_and_slide()
 
 func shoot_gun() -> void:
-	bullet_count -= 1
-	var bullet_instance = BULLET.instantiate()
-	get_parent().add_child(bullet_instance)
-	bullet_instance.global_position = global_position
-	if !player_sprite.flip_h:
-		bullet_instance.direction = 1
-		bullet_instance.global_position.x += 10
-	else:
-		bullet_instance.direction = -1
-		bullet_instance.global_position.x -= 2
+	shoot.emit(BULLET)
 
-func handle_facing_direction(_direction) -> void: 
+
+func handle_facing_direction(_direction: int) -> void: 
 	if _direction > 0:
 		player_sprite.flip_h = false
 		player_hitbox.position.x = 0
@@ -78,6 +73,8 @@ func handle_facing_direction(_direction) -> void:
 		player_hitbox.position.x = 2
 		player_world_collision_shape.position.x = 1
 
+func set_bullet_count(_bullet_count: int) -> void:
+	bullet_count = _bullet_count
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	print(area.name)

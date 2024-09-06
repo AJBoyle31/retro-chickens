@@ -1,5 +1,5 @@
 extends Area2D
-class_name Bullet
+class_name Bullets
 
 
 var direction: int = 1
