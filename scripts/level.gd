@@ -1,30 +1,40 @@
 extends Node2D
 class_name Level
 
-signal update_bullets_remaining(bullets_remaining)
-
+@export var time_to_complete: float = 30.0
 @export var bullet_count: int = 5
+
+var chickens_left: int
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player: Player = $Player
+@onready var hud = $UI/HUD
+@onready var time_left_to_complete: Timer = $TimeLeftToComplete
 
 
 func _ready() -> void:
+	#Player Updates
 	player.set_bullet_count(bullet_count)
 	player.connect("shoot", _on_player_shoot)
-	var parent = get_parent()
-	#This isn't working :(
-	parent.connect("update_bullets_remaining", parent._on_bullet_update)
-
+	hud.update_bullet_count(bullet_count)
+	#Chicken Updates
+	var chickens = get_tree().get_nodes_in_group("chickens")
+	chickens_left = chickens.size()
+	hud.update_chickens_remaining(chickens_left)
+	connect_chicken_signals(chickens)
+	#Time Updates
+	hud.update_time_label(time_to_complete)
+	time_left_to_complete.start(time_to_complete)
 
 func _process(_delta: float) -> void:
 	camera_2d.global_position = player.global_position
+	hud.update_time_label(time_left_to_complete.time_left)
 
+#Player shot the gun, handles bullets
 func _on_player_shoot(Bullet):
 	if bullet_count > 0: 
 		bullet_count -= 1
-		update_bullets_remaining.emit(bullet_count)
-		player.set_bullet_count(bullet_count)
+		update_bullet_counts()
 		var bullet_instance = Bullet.instantiate()
 		add_child(bullet_instance)
 		bullet_instance.global_position = player.global_position
@@ -34,3 +44,17 @@ func _on_player_shoot(Bullet):
 		else:
 			bullet_instance.direction = -1
 			bullet_instance.global_position.x -= 2
+
+#Chicken Signals
+func connect_chicken_signals(_chickens) -> void:
+	for chicken in _chickens:
+		chicken.connect("chicken_hit", _update_chicken_count)
+
+#HUD Updates
+func update_bullet_counts() -> void:
+		hud.update_bullet_count(bullet_count)
+		player.set_bullet_count(bullet_count)
+
+func _update_chicken_count() -> void:
+	chickens_left -= 1
+	hud.update_chickens_remaining(chickens_left)

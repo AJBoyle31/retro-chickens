@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://byasfjf41fav5"]
+[gd_scene load_steps=3 format=3 uid="uid://byasfjf41fav5"]
 
 [ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="1_mdypo"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="2_vfhu0"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_mdypo")
+script = ExtResource("2_vfhu0")
 metadata/_edit_vertical_guides_ = [1080.0, 72.0]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

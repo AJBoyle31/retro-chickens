@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Chicken
 
+signal chicken_hit
+
 @export_enum("idle", "walk") var state: String = "idle"
 @export var speed: int = 30
 
@@ -8,7 +10,9 @@ class_name Chicken
 var gravity := 100
 var direction := 1
 var is_hit: bool = false
-# Called when the node enters the scene tree for the first time.
+var signal_emitted: bool = false
+
+
 @onready var animated_sprite := $AnimatedSprite
 @onready var chicken_hurtbox := $HurtBox
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
@@ -23,6 +27,9 @@ func _process(delta: float) -> void:
 	if is_hit:
 		animated_sprite.play("hit")
 		velocity.x = 0
+		if !signal_emitted:
+			emit_signal("chicken_hit")
+			signal_emitted = true
 	else:
 		if not is_on_floor():
 			velocity.y += gravity * delta
