@@ -1,46 +1,95 @@
-[gd_scene load_steps=4 format=4 uid="uid://btkbx5vynagj8"]
+[gd_scene load_steps=7 format=4 uid="uid://btkbx5vynagj8"]
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_f3rvo"]
 [ext_resource type="PackedScene" uid="uid://0gyf228iuxd8" path="res://scenes/npcs/chicken.tscn" id="2_ey86d"]
 [ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="3_jpt3s"]
+[ext_resource type="Script" path="res://scripts/intro_tips.gd" id="3_r2wgk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qlbem"]
+radius = 22.0
+height = 94.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qpbw0"]
+radius = 41.0
+height = 218.0
 
 [node name="Level01" instance=ExtResource("1_f3rvo")]
 
 [node name="RightKillzone" parent="Killzones" index="1"]
-position = Vector2(816, 109)
+position = Vector2(939, 103)
 
 [node name="World" parent="Tilemaps" index="0"]
-tile_map_data = PackedByteArray("AAAKAAoAAAABAAAAAAAMAAoAAAADAAAAAAAOAAoAAAABAAAAAAAQAAoAAAADAAAAAAASAAoAAAABAAAAAAAUAAoAAAADAAAAAAAWAAoAAAABAAAAAAAYAAoAAAADAAAAAAAIAAoAAAAAAAAAAAAaAAoAAAAEAAAAAAAaAAwAAAAEAAEAAAAIAAwAAAAAAAEAAAAIAA4AAAAAAAMAAAAIABAAAAAAAAEAAAAIABIAAAAAAAMAAAAIABQAAAAAAAQAAAAKABQAAAABAAQAAAAMABQAAAADAAQAAAAOABQAAAABAAQAAAAQABQAAAADAAQAAAASABQAAAABAAQAAAAUABQAAAADAAQAAAAWABQAAAABAAQAAAAYABQAAAADAAQAAAAaABQAAAABAAQAAAAcABQAAAADAAQAAAAaAA4AAAAFAAEAAAAcAA4AAAABAAAAAAAeAA4AAAADAAAAAAAgAA4AAAABAAAAAAAiAA4AAAADAAAAAAAkAA4AAAABAAAAAAAmAA4AAAADAAAAAAAoAA4AAAABAAAAAAAqAA4AAAADAAAAAAAsAA4AAAAGAAEAAAAwAAoAAAACAAAAAAAyAAoAAAAEAAAAAAAyAAwAAAAEAAEAAAAyAA4AAAAEAAMAAAAyABAAAAAEAAEAAAAyABIAAAAEAAMAAAAyABQAAAAEAAQAAAAeABQAAAABAAQAAAAgABQAAAADAAQAAAAiABQAAAABAAQAAAAkABQAAAABAAQAAAAmABQAAAADAAQAAAAoABQAAAABAAQAAAAqABQAAAADAAQAAAAsABQAAAABAAQAAAAuABQAAAADAAQAAAAwABQAAAACAAQAAAAsAAwAAAAAAAAAAAAuAAwAAAAGAAEAAAAuAAoAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAKAAoAAAABAAAAAAAMAAoAAAADAAAAAAAOAAoAAAABAAAAAAAQAAoAAAADAAAAAAASAAoAAAABAAAAAAAUAAoAAAADAAAAAAAWAAoAAAABAAAAAAAYAAoAAAADAAAAAAAIAAoAAAAAAAAAAAAaAAoAAAAEAAAAAAAaAAwAAAAEAAEAAAAIAAwAAAAAAAEAAAAIAA4AAAAAAAMAAAAIABAAAAAAAAEAAAAIABIAAAAAAAMAAAAIABQAAAAAAAQAAAAKABQAAAABAAQAAAAMABQAAAADAAQAAAAOABQAAAABAAQAAAAQABQAAAADAAQAAAASABQAAAABAAQAAAAUABQAAAADAAQAAAAWABQAAAABAAQAAAAYABQAAAADAAQAAAAaABQAAAABAAQAAAAcABQAAAADAAQAAAAaAA4AAAAFAAEAAAAcAA4AAAABAAAAAAAeAA4AAAADAAAAAAAgAA4AAAABAAAAAAAiAA4AAAADAAAAAAAkAA4AAAABAAAAAAAmAA4AAAADAAAAAAAoAA4AAAABAAAAAAAqAA4AAAADAAAAAAAsAA4AAAAGAAEAAAAwAAoAAAACAAAAAAAeABQAAAABAAQAAAAgABQAAAADAAQAAAAiABQAAAABAAQAAAAkABQAAAABAAQAAAAmABQAAAADAAQAAAAoABQAAAABAAQAAAAqABQAAAADAAQAAAAsABQAAAABAAQAAAAuABQAAAADAAQAAAAwABQAAAACAAQAAAAsAAwAAAAAAAAAAAAuAAwAAAAGAAEAAAAuAAoAAAAAAAAAAAAyAAoAAAABAAAAAAA0AAoAAAABAAAAAAA2AAoAAAAEAAAAAAA2AAwAAAAEAAIAAAA2AA4AAAAFAAEAAAA4AA4AAAACAAAAAAA8AA4AAAABAAAAAAA8ABQAAAADAAQAAAA+AA4AAAADAAAAAAA+ABQAAAABAAQAAABAAA4AAAABAAAAAABAABQAAAABAAQAAABCAA4AAAADAAAAAABCABQAAAADAAQAAABEAA4AAAABAAAAAABEABQAAAABAAQAAAA6AA4AAAADAAAAAAAyABQAAAACAAQAAAA0ABQAAAACAAQAAAA2ABQAAAACAAQAAAA4ABQAAAACAAQAAAA6ABQAAAACAAQAAABGAA4AAAABAAAAAABIAA4AAAADAAAAAABKAA4AAAABAAAAAABMAA4AAAADAAAAAABOAA4AAAABAAAAAABQAA4AAAADAAAAAABUAA4AAAADAAAAAABUABQAAAADAAQAAABWAAwAAAAAAAAAAABWAA4AAAAGAAEAAABWABQAAAABAAQAAABYAAoAAAAAAAAAAABYAAwAAAAGAAEAAABYABQAAAADAAQAAABaAAoAAAACAAAAAABaABQAAAACAAQAAABcAAoAAAAEAAAAAABcAAwAAAAEAAEAAABcAA4AAAAEAAMAAABcABAAAAAEAAEAAABcABIAAAAEAAMAAABcABQAAAAEAAQAAABSAA4AAAABAAAAAABGABQAAAABAAQAAABIABQAAAADAAQAAABKABQAAAABAAQAAABMABQAAAADAAQAAABOABQAAAABAAQAAABQABQAAAADAAQAAABSABQAAAACAAQAAAA=")
 
 [node name="Decorations" parent="Tilemaps" index="1"]
-tile_map_data = PackedByteArray("AAAlAAwAAAAGAAIAAAAlAAoAAAAMAAIAAAAlAAcAAAAJAAEAAAAnAAwAAAAGAAcAAAAjAAwAAAAFAAcAAAAXAAgAAAAHAAAAAAARAAcAAAAUAA8AAAA=")
+tile_map_data = PackedByteArray("AAAlAAwAAAAGAAIAAAAlAAoAAAAMAAIAAAAlAAcAAAAJAAEAAAAnAAwAAAAGAAcAAAAjAAwAAAAFAAcAAAARAAcAAAAUAA8AAAA=")
 
 [node name="Chicken" parent="Chickens" index="0" instance=ExtResource("2_ey86d")]
-position = Vector2(265, 98)
+position = Vector2(588, 97)
 state = "walk"
 
-[node name="Tips" type="CanvasLayer" parent="." index="8"]
-follow_viewport_enabled = true
-follow_viewport_scale = 0.5
-
-[node name="MovementLabel" type="Label" parent="Tips" index="0"]
-offset_left = -158.0
-offset_top = -2.0
-offset_right = 2.0
-offset_bottom = 73.0
+[node name="IntroTips" type="Control" parent="." index="8"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2.0
+offset_top = 30.0
+offset_right = 42.0
+offset_bottom = 70.0
+scale = Vector2(0.25, 0.25)
 theme = ExtResource("3_jpt3s")
-theme_override_font_sizes/font_size = 16
-text = "Use A and D to 
-move left and right."
+script = ExtResource("3_r2wgk")
 
-[node name="JumpLabel" type="Label" parent="Tips" index="1"]
-offset_left = 394.0
-offset_top = -20.0
-offset_right = 554.0
-offset_bottom = 55.0
+[node name="MovementLabel" type="Label" parent="IntroTips" index="0"]
+offset_left = 96.0
+offset_right = 435.0
+offset_bottom = 75.0
 theme = ExtResource("3_jpt3s")
-theme_override_font_sizes/font_size = 16
+text = "Use \"A\" and \"D\" 
+to move."
+horizontal_alignment = 1
+
+[node name="JumpLabel" type="Label" parent="IntroTips" index="1"]
+offset_left = 1300.0
+offset_top = 76.0
+offset_right = 1527.0
+offset_bottom = 151.0
+theme = ExtResource("3_jpt3s")
 text = "Use W to Jump"
+
+[node name="ShootLabel" type="Label" parent="IntroTips" index="2"]
+layout_mode = 0
+offset_left = 1992.0
+offset_top = 92.0
+offset_right = 2377.0
+offset_bottom = 179.0
+text = "Press \"Space\" to shoot 
+a bubble to capture 
+the chicken."
+horizontal_alignment = 1
+
+[node name="TipAreaDetections" type="Node" parent="." index="9"]
+
+[node name="MovementTip" type="Area2D" parent="TipAreaDetections" index="0"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TipAreaDetections/MovementTip" index="0"]
+position = Vector2(110, 53)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qlbem")
+
+[node name="JumpTip" type="Area2D" parent="TipAreaDetections" index="1"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TipAreaDetections/JumpTip" index="0"]
+position = Vector2(253, 68)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qpbw0")
+
+[connection signal="body_exited" from="TipAreaDetections/MovementTip" to="IntroTips" method="_on_movement_tip_body_exited"]
+[connection signal="body_entered" from="TipAreaDetections/JumpTip" to="IntroTips" method="_on_jump_tip_body_entered"]
+[connection signal="body_exited" from="TipAreaDetections/JumpTip" to="IntroTips" method="_on_jump_tip_body_exited"]
 
 [editable path="Killzones/BottomKillzone"]
 [editable path="Killzones/RightKillzone"]
