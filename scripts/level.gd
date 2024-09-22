@@ -4,6 +4,7 @@ class_name Level
 @export var time_to_complete: float = 30.0
 @export var bullet_count: int = 5
 
+var total_chickens: int
 var chickens_left: int
 
 @onready var camera_2d: Camera2D = $Camera2D
@@ -19,8 +20,9 @@ func _ready() -> void:
 	hud.update_bullet_count(bullet_count)
 	#Chicken Updates
 	var chickens = get_tree().get_nodes_in_group("chickens")
+	total_chickens = chickens.size()
 	chickens_left = chickens.size()
-	hud.update_chickens_remaining(chickens_left)
+	hud.update_chickens_remaining(total_chickens)
 	connect_chicken_signals(chickens)
 	#Time Updates
 	hud.update_time_label(time_to_complete)
@@ -49,6 +51,7 @@ func _on_player_shoot(Bullet):
 func connect_chicken_signals(_chickens) -> void:
 	for chicken in _chickens:
 		chicken.connect("chicken_hit", _update_chicken_count)
+		chicken.connect("chicken_died", _update_chicken_count)
 
 #HUD Updates
 func update_bullet_counts() -> void:

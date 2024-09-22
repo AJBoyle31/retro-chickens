@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://brsabiffrg5t8"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_68vpv"]
-[ext_resource type="PackedScene" uid="uid://bvhj5uylcv3pa" path="res://scenes/world/level_1.tscn" id="1_iy3rt"]
+[ext_resource type="PackedScene" uid="uid://btkbx5vynagj8" path="res://scenes/world/level_01.tscn" id="2_h1qnb"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_68vpv")
 
-[node name="Level1" parent="." instance=ExtResource("1_iy3rt")]
+[node name="Level01" parent="." instance=ExtResource("2_h1qnb")]

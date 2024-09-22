@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Chicken
 
 signal chicken_hit
+signal chicken_died
 
 @export_enum("idle", "walk") var state: String = "idle"
 @export var speed: int = 30
@@ -54,6 +55,7 @@ func _process(delta: float) -> void:
 
 
 func kill_npc() -> void:
+	emit_signal("chicken_died")
 	queue_free()
 
 func handle_facing_direction(_direction) -> void: 
