@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://0gyf228iuxd8"]
+[gd_scene load_steps=15 format=3 uid="uid://0gyf228iuxd8"]
 
 [ext_resource type="Script" path="res://scripts/chicken.gd" id="1_hu0ld"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="1_s8msv"]
 [ext_resource type="PackedScene" uid="uid://dfl6ylmcd8v13" path="res://scenes/overlap/hurt_box.tscn" id="3_bhcaw"]
+[ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="4_3d5i1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r4n6a"]
 radius = 6.0
@@ -99,12 +100,32 @@ target_position = Vector2(-8, 0)
 
 [node name="HurtBox" parent="." instance=ExtResource("3_bhcaw")]
 collision_layer = 16
-collision_mask = 8
+collision_mask = 10
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-1, 1.5)
 shape = SubResource("RectangleShape2D_iiwdo")
 
+[node name="LabelContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 17.0
+offset_bottom = 17.0
+scale = Vector2(0.25, 0.25)
+
+[node name="CollectLabel" type="Label" parent="LabelContainer"]
+offset_right = 185.0
+offset_bottom = 57.0
+theme = ExtResource("4_3d5i1")
+text = "Press \"S\" 
+to collect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
+[connection signal="body_exited" from="HurtBox" to="." method="_on_hurt_box_body_exited"]
 
 [editable path="HurtBox"]

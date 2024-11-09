@@ -12,16 +12,18 @@ var gravity := 100
 var direction := 1
 var is_hit: bool = false
 var signal_emitted: bool = false
+var showing_collection_label: bool = false
 
 
 @onready var animated_sprite := $AnimatedSprite
 @onready var chicken_hurtbox := $HurtBox
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
+@onready var collect_label: Label = $LabelContainer/CollectLabel
 
 
 func _ready() -> void:
-	pass
+	collect_label.hide()
 
 func _process(delta: float) -> void:
 	
@@ -55,7 +57,7 @@ func _process(delta: float) -> void:
 
 
 func kill_npc() -> void:
-	emit_signal("chicken_died")
+	#emit_signal("chicken_died")
 	queue_free()
 
 func handle_facing_direction(_direction) -> void: 
@@ -68,6 +70,19 @@ func handle_facing_direction(_direction) -> void:
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.has_method("destroy_bullet"):
-		print("bullet hit")
 		area.destroy_bullet()
 		is_hit = true
+
+func _on_hurt_box_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		collect_label.show()
+
+
+func _on_hurt_box_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		collect_label.hide()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("collect_chicken"):
+		kill_npc()
