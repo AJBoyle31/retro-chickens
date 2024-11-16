@@ -37,15 +37,18 @@ tile_map_data = PackedByteArray("AAAlAAwAAAAGAAIAAAAlAAoAAAAMAAIAAAAlAAcAAAAJAAE
 position = Vector2(588, 97)
 state = "walk"
 
-[node name="Chicken2" parent="Chickens" index="1" instance=ExtResource("2_ey86d")]
-position = Vector2(868, 99)
+[node name="Chicken3" parent="Chickens" index="1" instance=ExtResource("2_ey86d")]
+position = Vector2(773, 97)
+
+[node name="Chicken2" parent="Chickens" index="2" instance=ExtResource("2_ey86d")]
+position = Vector2(867, 98)
 
 [node name="ChickenStartMoving" type="Area2D" parent="Chickens/Chicken2" index="5"]
+position = Vector2(-130, -39)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chickens/Chicken2/ChickenStartMoving" index="0"]
-position = Vector2(-124, -38.5)
 shape = SubResource("RectangleShape2D_qjpcr")
 
 [node name="IntroTips" type="Control" parent="." index="8"]
@@ -114,29 +117,29 @@ horizontal_alignment = 1
 [node name="TipAreaDetections" type="Node" parent="." index="9"]
 
 [node name="MovementTip" type="Area2D" parent="TipAreaDetections" index="0"]
+position = Vector2(100, 59)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TipAreaDetections/MovementTip" index="0"]
-position = Vector2(110, 53)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qlbem")
 
 [node name="JumpTip" type="Area2D" parent="TipAreaDetections" index="1"]
+position = Vector2(251, 75)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TipAreaDetections/JumpTip" index="0"]
-position = Vector2(253, 68)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qpbw0")
 
 [node name="ShootTip" type="Area2D" parent="TipAreaDetections" index="2"]
+position = Vector2(706, 60)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TipAreaDetections/ShootTip" index="0"]
-position = Vector2(711, 61)
 shape = SubResource("RectangleShape2D_byxua")
 
 [connection signal="body_entered" from="Chickens/Chicken2/ChickenStartMoving" to="." method="_on_chicken_start_moving_body_entered"]

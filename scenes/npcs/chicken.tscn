@@ -116,6 +116,7 @@ offset_bottom = 17.0
 scale = Vector2(0.25, 0.25)
 
 [node name="CollectLabel" type="Label" parent="LabelContainer"]
+layout_mode = 0
 offset_right = 185.0
 offset_bottom = 57.0
 theme = ExtResource("4_3d5i1")

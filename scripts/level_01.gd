@@ -9,4 +9,5 @@ extends Level
 
 
 func _on_chicken_start_moving_body_entered(_body: Node2D) -> void:
-	chicken_2.state = "walk"
+	if _body.name == "Player":
+		chicken_2.state = "walk"

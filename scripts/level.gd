@@ -50,7 +50,7 @@ func _on_player_shoot(Bullet):
 #Chicken Signals
 func connect_chicken_signals(_chickens) -> void:
 	for chicken in _chickens:
-		chicken.connect("chicken_hit", _update_chicken_count)
+		chicken.connect("chicken_collected", _update_chicken_count)
 		chicken.connect("chicken_died", _update_chicken_count)
 
 #HUD Updates
@@ -61,3 +61,7 @@ func update_bullet_counts() -> void:
 func _update_chicken_count() -> void:
 	chickens_left -= 1
 	hud.update_chickens_remaining(chickens_left)
+
+func _update_chicken_count_death() -> void:
+	pass
+	#maybe add an identified in the arguments like a bool to say if it was collected vs death

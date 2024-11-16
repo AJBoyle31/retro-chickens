@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Chicken
 
-signal chicken_hit
+signal chicken_collected
 signal chicken_died
 
 @export_enum("idle", "walk") var state: String = "idle"
@@ -13,6 +13,7 @@ var direction := 1
 var is_hit: bool = false
 var signal_emitted: bool = false
 var showing_collection_label: bool = false
+
 
 
 @onready var animated_sprite := $AnimatedSprite
@@ -30,9 +31,7 @@ func _process(delta: float) -> void:
 	if is_hit:
 		animated_sprite.play("hit")
 		velocity.x = 0
-		if !signal_emitted:
-			emit_signal("chicken_hit")
-			signal_emitted = true
+		
 	else:
 		if not is_on_floor():
 			velocity.y += gravity * delta
@@ -57,7 +56,6 @@ func _process(delta: float) -> void:
 
 
 func kill_npc() -> void:
-	#emit_signal("chicken_died")
 	queue_free()
 
 func handle_facing_direction(_direction) -> void: 
@@ -68,6 +66,12 @@ func handle_facing_direction(_direction) -> void:
 		animated_sprite.flip_h = true
 		chicken_hurtbox.position.x = 2
 
+func chicken_has_died() -> void:
+	if !signal_emitted:
+			emit_signal("chicken_died")
+			signal_emitted = true
+			kill_npc()
+
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.has_method("destroy_bullet"):
 		area.destroy_bullet()
@@ -76,13 +80,18 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 func _on_hurt_box_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		collect_label.show()
+		showing_collection_label = true
 
 
 func _on_hurt_box_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		collect_label.hide()
+		showing_collection_label = false
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("collect_chicken"):
+	if event.is_action_pressed("collect_chicken") and showing_collection_label:
+		if !signal_emitted:
+			emit_signal("chicken_collected")
+			signal_emitted = true
 		kill_npc()
