@@ -14,5 +14,7 @@ func update_time_label(time_remaining: float) -> void:
 	var time_remaining_int = int(time_remaining)
 	time_label.text = "Time Remaining: " + str(time_remaining_int)
 
-func update_chickens_remaining(chickens_remaining: int) -> void:
+func update_chickens_remaining(chickens_remaining: int, label_red:bool) -> void:
 	chickens_label.text = "Chickens Left: " + str(chickens_remaining)
+	if label_red:
+		chickens_label.add_theme_color_override("font_color", Color.RED)

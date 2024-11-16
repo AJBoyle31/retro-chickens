@@ -6,6 +6,7 @@ class_name Level
 
 var total_chickens: int
 var chickens_left: int
+var has_chicken_died: bool = false
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player: Player = $Player
@@ -22,7 +23,7 @@ func _ready() -> void:
 	var chickens = get_tree().get_nodes_in_group("chickens")
 	total_chickens = chickens.size()
 	chickens_left = chickens.size()
-	hud.update_chickens_remaining(total_chickens)
+	hud.update_chickens_remaining(total_chickens, has_chicken_died)
 	connect_chicken_signals(chickens)
 	#Time Updates
 	hud.update_time_label(time_to_complete)
@@ -51,17 +52,15 @@ func _on_player_shoot(Bullet):
 func connect_chicken_signals(_chickens) -> void:
 	for chicken in _chickens:
 		chicken.connect("chicken_collected", _update_chicken_count)
-		chicken.connect("chicken_died", _update_chicken_count)
+
 
 #HUD Updates
 func update_bullet_counts() -> void:
 		hud.update_bullet_count(bullet_count)
 		player.set_bullet_count(bullet_count)
 
-func _update_chicken_count() -> void:
+func _update_chicken_count(_was_chicken_collected) -> void:
 	chickens_left -= 1
-	hud.update_chickens_remaining(chickens_left)
-
-func _update_chicken_count_death() -> void:
-	pass
-	#maybe add an identified in the arguments like a bool to say if it was collected vs death
+	if !_was_chicken_collected:
+		has_chicken_died = true
+	hud.update_chickens_remaining(chickens_left, has_chicken_died)
