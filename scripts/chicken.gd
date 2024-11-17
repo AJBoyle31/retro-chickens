@@ -14,8 +14,6 @@ var is_hit: bool = false
 var signal_emitted: bool = false
 var showing_collection_label: bool = false
 
-
-
 @onready var animated_sprite := $AnimatedSprite
 @onready var chicken_hurtbox := $HurtBox
 @onready var ray_cast_left: RayCast2D = $RayCastLeft

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbabyk668sgg1"]
+
+[ext_resource type="Script" path="res://scripts/npc_gravity.gd" id="1_pidbn"]
+[ext_resource type="PackedScene" uid="uid://72rkbcdhsyob" path="res://scenes/overlap/hitbox.tscn" id="1_qjvle"]
+
+[node name="NPCGravity" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_pidbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(8, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-8, 0)
+
+[node name="NPCHitbox" parent="." instance=ExtResource("1_qjvle")]
+collision_layer = 32
+collision_mask = 64
+
+[editable path="NPCHitbox"]

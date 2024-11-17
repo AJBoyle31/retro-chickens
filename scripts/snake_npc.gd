@@ -8,7 +8,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if state == "walk":
 		walking(_delta)
-	
+	elif state == "idle":
+		idle(_delta)
 
 
 func handle_facing_direction() -> void:

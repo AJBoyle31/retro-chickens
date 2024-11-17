@@ -3,6 +3,7 @@ extends Control
 @onready var bullet_label: Label = $HBoxContainer/BulletLabel
 @onready var time_label: Label = $HBoxContainer/TimeLabel
 @onready var chickens_label: Label = $HBoxContainer/ChickensLabel
+@onready var label_animation_player: AnimationPlayer = $LabelAnimationPlayer
 
 
 
@@ -18,3 +19,4 @@ func update_chickens_remaining(chickens_remaining: int, label_red:bool) -> void:
 	chickens_label.text = "Chickens Left: " + str(chickens_remaining)
 	if label_red:
 		chickens_label.add_theme_color_override("font_color", Color.RED)
+		label_animation_player.play("chickens_dying_label_blink")
