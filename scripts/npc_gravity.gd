@@ -1,5 +1,3 @@
-#working on setting this up, need to add movement and animations stuff
-
 extends CharacterBody2D
 class_name NPCGravity
 
@@ -15,20 +13,26 @@ var gravity := 100
 @onready var npc_hitbox: Area2D = $NPCHitbox
 
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	pass
+	if state == "walk" and is_on_floor():
+		walking(_delta)
+	if state == "idle" and is_on_floor():
+		idle(_delta)
+	
+	move_and_slide()
 
 func idle(_delta) -> void:
+	velocity.x = 0
+	animated_sprite.play("idle")
 	handle_facing_direction()
 
 func walking(_delta) -> void:
+	velocity.x = direction * speed
+	animated_sprite.play("walk")
 	if ray_cast_left.is_colliding():
 		direction = 1
 	if ray_cast_right.is_colliding():

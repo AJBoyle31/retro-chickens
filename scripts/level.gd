@@ -6,7 +6,7 @@ class_name Level
 
 var total_chickens: int
 var chickens_left: int
-var has_chicken_died: bool = false
+
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var player: Player = $Player
@@ -18,19 +18,21 @@ func _ready() -> void:
 	#Player Updates
 	player.set_bullet_count(bullet_count)
 	player.connect("shoot", _on_player_shoot)
+	player.connect("player_has_died", _on_player_death)
 	hud.update_bullet_count(bullet_count)
 	#Chicken Updates
 	var chickens = get_tree().get_nodes_in_group("chickens")
 	total_chickens = chickens.size()
 	chickens_left = chickens.size()
-	hud.update_chickens_remaining(total_chickens, has_chicken_died)
+	hud.update_chickens_remaining(total_chickens, false)
 	connect_chicken_signals(chickens)
 	#Time Updates
 	hud.update_time_label(time_to_complete)
 	time_left_to_complete.start(time_to_complete)
 
 func _process(_delta: float) -> void:
-	camera_2d.global_position = player.global_position
+	if player != null:
+		camera_2d.global_position = player.global_position
 	hud.update_time_label(time_left_to_complete.time_left)
 
 #Player shot the gun, handles bullets
@@ -60,7 +62,12 @@ func update_bullet_counts() -> void:
 		player.set_bullet_count(bullet_count)
 
 func _update_chicken_count(_was_chicken_collected) -> void:
+	var has_chicken_died: bool = false
 	chickens_left -= 1
 	if !_was_chicken_collected:
 		has_chicken_died = true
 	hud.update_chickens_remaining(chickens_left, has_chicken_died)
+
+func _on_player_death() -> void:
+	print("level death")
+	hud.player_is_dead()

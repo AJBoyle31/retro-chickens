@@ -20,3 +20,6 @@ func update_chickens_remaining(chickens_remaining: int, label_red:bool) -> void:
 	if label_red:
 		chickens_label.add_theme_color_override("font_color", Color.RED)
 		label_animation_player.play("chickens_dying_label_blink")
+
+func player_is_dead() -> void:
+	print("hud death")
