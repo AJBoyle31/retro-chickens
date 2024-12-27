@@ -88,17 +88,21 @@ position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_r4n6a")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_06rnd")
 animation = &"idle"
 autoplay = "idle"
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
+unique_name_in_owner = true
 target_position = Vector2(8, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
+unique_name_in_owner = true
 target_position = Vector2(-8, 0)
 
 [node name="HurtBox" parent="." instance=ExtResource("3_bhcaw")]
+unique_name_in_owner = true
 collision_layer = 16
 collision_mask = 10
 
@@ -116,6 +120,7 @@ offset_bottom = 17.0
 scale = Vector2(0.25, 0.25)
 
 [node name="CollectLabel" type="Label" parent="LabelContainer"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_right = 185.0
 offset_bottom = 57.0

@@ -100,36 +100,46 @@ theme = ExtResource("1_mdypo")
 script = ExtResource("2_vfhu0")
 metadata/_edit_vertical_guides_ = [1080.0, 72.0]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -504.0
-offset_right = 504.0
-offset_bottom = 50.0
-grow_horizontal = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="BulletLabel" type="Label" parent="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="BulletLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(336, 0)
 layout_mode = 2
 text = "Bullets Left: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimeLabel" type="Label" parent="HBoxContainer"]
+[node name="TimeLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(336, 0)
 layout_mode = 2
 text = "Time Remaining: 30"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ChickensLabel" type="Label" parent="HBoxContainer"]
+[node name="ChickensLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(336, 0)
 layout_mode = 2
 text = "Chickens Left: 3"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StateLabel" type="Label" parent="VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "State: "
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -158,6 +168,7 @@ layout_mode = 2
 text = "Start	"
 
 [node name="LabelAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_ubjr7")
 }

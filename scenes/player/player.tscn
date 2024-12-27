@@ -204,32 +204,39 @@ collision_layer = 2
 script = ExtResource("1_2dgcp")
 
 [node name="WorldCollisionShape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-1, 2)
 shape = SubResource("CapsuleShape2D_vtn8k")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("1_d7ix2")
 hframes = 7
 vframes = 14
 frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_uo8k5")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
 deterministic = false
+root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeStateMachine_aqser")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-1, 0)
 enabled = false
 zoom = Vector2(4, 4)
 limit_bottom = 200
 
 [node name="HurtBox" parent="." instance=ExtResource("3_0e54p")]
+unique_name_in_owner = true
 collision_layer = 64
 collision_mask = 32
 

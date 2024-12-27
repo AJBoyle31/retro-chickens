@@ -1,11 +1,10 @@
 extends Control
 
-@onready var bullet_label: Label = $HBoxContainer/BulletLabel
-@onready var time_label: Label = $HBoxContainer/TimeLabel
-@onready var chickens_label: Label = $HBoxContainer/ChickensLabel
-@onready var label_animation_player: AnimationPlayer = $LabelAnimationPlayer
-
-
+@onready var bullet_label: Label = %BulletLabel
+@onready var time_label: Label = %TimeLabel
+@onready var chickens_label: Label = %ChickensLabel
+@onready var label_animation_player: AnimationPlayer = %LabelAnimationPlayer
+@onready var state_label: Label = %StateLabel
 
 
 func update_bullet_count(bullets_remaining: int) -> void:
@@ -23,3 +22,19 @@ func update_chickens_remaining(chickens_remaining: int, label_red:bool) -> void:
 
 func player_is_dead() -> void:
 	print("hud death")
+
+func update_state_label(new_state) -> void:
+	
+	match new_state:
+		0: 
+			state_label.text = "Idle"
+		1: 
+			state_label.text = "Walk"
+		2: 
+			state_label.text = "Jump"
+		3: 
+			state_label.text = "Hit"
+		4: 
+			state_label.text = "Shoot"
+		5: 
+			state_label.text = "Dead"

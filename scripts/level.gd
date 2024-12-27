@@ -8,10 +8,11 @@ var total_chickens: int
 var chickens_left: int
 
 
-@onready var camera_2d: Camera2D = $Camera2D
-@onready var player: Player = $Player
-@onready var hud = $UI/HUD
-@onready var time_left_to_complete: Timer = $TimeLeftToComplete
+
+@onready var camera_2d: Camera2D = %Camera2D
+@onready var player: Player = %Player
+@onready var hud: Control = %HUD
+@onready var time_left_to_complete: Timer = %TimeLeftToComplete
 
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _ready() -> void:
 	player.set_bullet_count(bullet_count)
 	player.connect("shoot", _on_player_shoot)
 	player.connect("player_has_died", _on_player_death)
+	player.connect("state_changed", _on_player_state_change)
 	hud.update_bullet_count(bullet_count)
 	#Chicken Updates
 	var chickens = get_tree().get_nodes_in_group("chickens")
@@ -71,3 +73,6 @@ func _update_chicken_count(_was_chicken_collected) -> void:
 func _on_player_death() -> void:
 	print("level death")
 	hud.player_is_dead()
+
+func _on_player_state_change(new_state) -> void:
+	hud.update_state_label(new_state)

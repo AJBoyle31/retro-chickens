@@ -38,6 +38,7 @@ shape = SubResource("WorldBoundaryShape2D_mak5r")
 [node name="Tilemaps" parent="." instance=ExtResource("3_ogp0p")]
 
 [node name="Player" parent="." instance=ExtResource("4_hspsi")]
+unique_name_in_owner = true
 position = Vector2(85, 35)
 
 [node name="Chickens" type="Node" parent="."]
@@ -45,16 +46,19 @@ position = Vector2(85, 35)
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(-1, 0)
 zoom = Vector2(4, 4)
 limit_bottom = 200
 
 [node name="TimeLeftToComplete" type="Timer" parent="."]
+unique_name_in_owner = true
 one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource("7_6228y")]
+unique_name_in_owner = true
 metadata/_edit_use_anchors_ = true
 
 [editable path="Killzones/BottomKillzone"]

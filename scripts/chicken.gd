@@ -14,11 +14,12 @@ var is_hit: bool = false
 var signal_emitted: bool = false
 var showing_collection_label: bool = false
 
-@onready var animated_sprite := $AnimatedSprite
-@onready var chicken_hurtbox := $HurtBox
-@onready var ray_cast_left: RayCast2D = $RayCastLeft
-@onready var ray_cast_right: RayCast2D = $RayCastRight
-@onready var collect_label: Label = $LabelContainer/CollectLabel
+
+@onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite
+@onready var ray_cast_right: RayCast2D = %RayCastRight
+@onready var ray_cast_left: RayCast2D = %RayCastLeft
+@onready var chicken_hurtbox: HurtBox = %HurtBox
+@onready var collect_label: Label = %CollectLabel
 
 
 func _ready() -> void:

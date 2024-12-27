@@ -1,7 +1,8 @@
 extends Area2D
 class_name KillZone
 
-@onready var timer = $Timer
+
+@onready var timer: Timer = %Timer
 
 func _on_timer_timeout() -> void:
 	get_tree().reload_current_scene()

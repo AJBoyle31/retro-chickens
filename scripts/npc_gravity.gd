@@ -7,10 +7,11 @@ class_name NPCGravity
 var direction := 1
 var gravity := 100
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
-@onready var ray_cast_left: RayCast2D = $RayCastLeft
-@onready var ray_cast_right: RayCast2D = $RayCastRight
-@onready var npc_hitbox: Area2D = $NPCHitbox
+
+@onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite
+@onready var ray_cast_right: RayCast2D = %RayCastRight
+@onready var ray_cast_left: RayCast2D = %RayCastLeft
+@onready var npc_hitbox: Area2D = %NPCHitbox
 
 
 func _ready() -> void:
