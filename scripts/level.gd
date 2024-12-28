@@ -13,6 +13,7 @@ var chickens_left: int
 @onready var player: Player = %Player
 @onready var hud: Control = %HUD
 @onready var time_left_to_complete: Timer = %TimeLeftToComplete
+@onready var level_reset_timer: Timer = %LevelResetTimer
 
 
 func _ready() -> void:
@@ -73,6 +74,12 @@ func _update_chicken_count(_was_chicken_collected) -> void:
 func _on_player_death() -> void:
 	print("level death")
 	hud.player_is_dead()
+	level_reset_timer.start(0.5)
+	
 
 func _on_player_state_change(new_state) -> void:
 	hud.update_state_label(new_state)
+
+
+func _on_level_reset_timer_timeout() -> void:
+	get_tree().reload_current_scene()

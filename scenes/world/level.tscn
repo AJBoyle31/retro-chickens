@@ -55,11 +55,18 @@ limit_bottom = 200
 unique_name_in_owner = true
 one_shot = true
 
+[node name="LevelResetTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UI" instance=ExtResource("7_6228y")]
 unique_name_in_owner = true
 metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="LevelResetTimer" to="." method="_on_level_reset_timer_timeout"]
 
 [editable path="Killzones/BottomKillzone"]
 [editable path="Killzones/RightKillzone"]
