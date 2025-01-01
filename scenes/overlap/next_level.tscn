@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbgestx6w1ksa"]
+
+[ext_resource type="Script" path="res://scripts/next_level.gd" id="1_jq1od"]
+
+[node name="NextLevel" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_jq1od")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

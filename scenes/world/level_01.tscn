@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://btkbx5vynagj8"]
+[gd_scene load_steps=13 format=4 uid="uid://btkbx5vynagj8"]
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_f3rvo"]
 [ext_resource type="PackedScene" uid="uid://0gyf228iuxd8" path="res://scenes/npcs/chicken.tscn" id="2_ey86d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="3_jpt3s"]
 [ext_resource type="Script" path="res://scripts/intro_tips.gd" id="3_r2wgk"]
 [ext_resource type="PackedScene" uid="uid://bjaoimfoh8iu4" path="res://scenes/npcs/snake_npc.tscn" id="4_qxdvf"]
+[ext_resource type="PackedScene" uid="uid://h480y0cirair" path="res://scenes/world/level_02.tscn" id="7_fendy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjpcr"]
 size = Vector2(22, 27)
@@ -20,6 +21,9 @@ height = 218.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_byxua"]
 size = Vector2(20, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_61joj"]
+radius = 20.0
 
 [node name="Level01" instance=ExtResource("1_f3rvo")]
 script = ExtResource("2_yj07x")
@@ -147,6 +151,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TipAreaDetections/ShootTip" index="0"]
 shape = SubResource("RectangleShape2D_byxua")
 
+[node name="NextLevel" parent="." index="10"]
+position = Vector2(1236, 76)
+next_level = ExtResource("7_fendy")
+
+[node name="CollisionShape2D" parent="NextLevel" index="0"]
+shape = SubResource("CircleShape2D_61joj")
+
 [connection signal="body_entered" from="Chickens/Chicken2/ChickenStartMoving" to="." method="_on_chicken_start_moving_body_entered"]
 [connection signal="body_exited" from="TipAreaDetections/MovementTip" to="IntroTips" method="_on_movement_tip_body_exited"]
 [connection signal="body_entered" from="TipAreaDetections/JumpTip" to="IntroTips" method="_on_jump_tip_body_entered"]
@@ -157,3 +168,4 @@ shape = SubResource("RectangleShape2D_byxua")
 [editable path="Killzones/RightKillzone"]
 [editable path="Killzones/LeftKillzone"]
 [editable path="Tilemaps"]
+[editable path="NextLevel"]
