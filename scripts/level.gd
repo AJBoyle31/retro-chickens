@@ -14,7 +14,8 @@ var chickens_left: int
 @onready var hud: Control = %HUD
 @onready var time_left_to_complete: Timer = %TimeLeftToComplete
 @onready var level_reset_timer: Timer = %LevelResetTimer
-@onready var next_level: NextLevel = %NextLevel
+@onready var next_level_box: NextLevel = %NextLevel
+
 
 
 func _ready() -> void:
@@ -33,7 +34,7 @@ func _ready() -> void:
 	#Time Updates
 	hud.update_time_label(time_to_complete)
 	time_left_to_complete.start(time_to_complete)
-	next_level.connect("change_level", _change_level)
+	next_level_box.connect("can_level_change", _can_the_level_change)
 
 func _process(_delta: float) -> void:
 	if player != null:
@@ -86,6 +87,6 @@ func _on_player_state_change(new_state) -> void:
 func _on_level_reset_timer_timeout() -> void:
 	get_tree().reload_current_scene()
 
-func _change_level(next_level) -> void:
-	print("i need to change the level")
-	#need to call the game to switch the level?
+func _can_the_level_change() -> void:
+	if chickens_left == 0:
+		SignalManager.change_level.emit(next_level_box.next_level)

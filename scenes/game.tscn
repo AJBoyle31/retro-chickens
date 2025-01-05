@@ -9,5 +9,8 @@ script = ExtResource("1_68vpv")
 
 [node name="Level01" parent="." instance=ExtResource("2_h1qnb")]
 
-[node name="LevelTransition" parent="." instance=ExtResource("3_hmjk5")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="LevelTransition" parent="CanvasLayer" instance=ExtResource("3_hmjk5")]
 unique_name_in_owner = true

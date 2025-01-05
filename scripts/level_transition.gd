@@ -7,6 +7,7 @@ class_name LevelTransition
 
 func fade_level_out() -> void:
 	animation_player.play("fade_out")
+	print("fading out??")
 
 func fade_level_in() -> void: 
 	animation_player.play("fade_in")

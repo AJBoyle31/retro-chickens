@@ -23,7 +23,7 @@ height = 218.0
 size = Vector2(20, 26)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_61joj"]
-radius = 20.0
+radius = 12.0416
 
 [node name="Level01" instance=ExtResource("1_f3rvo")]
 script = ExtResource("2_yj07x")
