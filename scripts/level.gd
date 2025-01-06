@@ -23,6 +23,7 @@ func _ready() -> void:
 	player.set_bullet_count(bullet_count)
 	player.connect("shoot", _on_player_shoot)
 	player.connect("player_has_died", _on_player_death)
+	player.enable_player()
 	
 	hud.update_bullet_count(bullet_count)
 	#Chicken Updates
@@ -91,4 +92,5 @@ func _on_level_reset_timer_timeout() -> void:
 
 func _can_the_level_change() -> void:
 	if chickens_left == 0:
-		SignalManager.change_level.emit(next_level_box.next_level)
+		SignalManager.change_level.emit(next_level_box.next_level.instantiate())
+		player.disable_player()

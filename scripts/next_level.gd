@@ -9,6 +9,8 @@ func _ready() -> void:
 	if next_level == null:
 		var level_parent = get_parent()
 		print("Missing level on " + str(level_parent.name))
+	else:
+		load(next_level.resource_path)
 
 
 

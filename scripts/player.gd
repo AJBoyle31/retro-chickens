@@ -101,8 +101,13 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		player_state = States.HIT
 		
 
+func disable_player() -> void:
+	set_physics_process(false)
+	set_process_input(false)
 
-
+func enable_player() -> void:
+	set_physics_process(true)
+	set_process_input(true)
 
 func player_died() -> void:
 	player_state = States.DEAD
