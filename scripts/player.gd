@@ -3,7 +3,6 @@ class_name Player
 
 signal shoot(bullet)
 signal player_has_died
-signal state_changed(new_state)
 
 const BULLET = preload("res://scenes/player/bullet.tscn")
 
@@ -75,7 +74,7 @@ func _physics_process(delta) -> void:
 			player_state = States.JUMP
 		
 		move_and_slide()
-		state_changed.emit(player_state)
+		
 
 func shoot_gun() -> void:
 	shoot.emit(BULLET)
@@ -107,6 +106,5 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 
 func player_died() -> void:
 	player_state = States.DEAD
-	state_changed.emit(player_state)
 	emit_signal("player_has_died")
 	queue_free()

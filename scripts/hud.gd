@@ -5,6 +5,7 @@ extends Control
 @onready var chickens_label: Label = %ChickensLabel
 @onready var label_animation_player: AnimationPlayer = %LabelAnimationPlayer
 @onready var state_label: Label = %StateLabel
+@onready var velocity_label: Label = %VelocityLabel
 
 
 func update_bullet_count(bullets_remaining: int) -> void:
@@ -24,7 +25,6 @@ func player_is_dead() -> void:
 	print("hud death")
 
 func update_state_label(new_state) -> void:
-	
 	match new_state:
 		0: 
 			state_label.text = "Idle"
@@ -38,3 +38,6 @@ func update_state_label(new_state) -> void:
 			state_label.text = "Shoot"
 		5: 
 			state_label.text = "Dead"
+
+func update_velocity_label(new_velocity) -> void:
+	velocity_label.text = "Velocity: " + str(new_velocity)

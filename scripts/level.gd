@@ -23,7 +23,7 @@ func _ready() -> void:
 	player.set_bullet_count(bullet_count)
 	player.connect("shoot", _on_player_shoot)
 	player.connect("player_has_died", _on_player_death)
-	player.connect("state_changed", _on_player_state_change)
+	
 	hud.update_bullet_count(bullet_count)
 	#Chicken Updates
 	var chickens = get_tree().get_nodes_in_group("chickens")
@@ -39,7 +39,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if player != null:
 		camera_2d.global_position = player.global_position
+		#Debugging Player 
+		hud.update_velocity_label(player.velocity)
+		hud.update_state_label(player.player_state)
 	hud.update_time_label(time_left_to_complete.time_left)
+	
 
 #Player shot the gun, handles bullets
 func _on_player_shoot(Bullet):
@@ -80,8 +84,6 @@ func _on_player_death() -> void:
 	level_reset_timer.start(0.5)
 	
 
-func _on_player_state_change(new_state) -> void:
-	hud.update_state_label(new_state)
 
 
 func _on_level_reset_timer_timeout() -> void:
