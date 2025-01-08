@@ -23,6 +23,7 @@ position = Vector2(1, 1)
 shape = SubResource("WorldBoundaryShape2D_mak5r")
 
 [node name="RightKillzone" parent="Killzones" instance=ExtResource("2_5k7dm")]
+unique_name_in_owner = true
 position = Vector2(464, 53)
 
 [node name="CollisionShape2D" parent="Killzones/RightKillzone" index="0"]
@@ -30,6 +31,7 @@ rotation = -1.5708
 shape = SubResource("WorldBoundaryShape2D_mak5r")
 
 [node name="LeftKillzone" parent="Killzones" instance=ExtResource("2_5k7dm")]
+unique_name_in_owner = true
 position = Vector2(-219, 80)
 rotation = 1.5708
 

@@ -15,6 +15,8 @@ var chickens_left: int
 @onready var time_left_to_complete: Timer = %TimeLeftToComplete
 @onready var level_reset_timer: Timer = %LevelResetTimer
 @onready var next_level_box: NextLevel = %NextLevel
+@onready var right_killzone: KillZone = %RightKillzone
+@onready var left_killzone: KillZone = %LeftKillzone
 
 
 
@@ -36,6 +38,11 @@ func _ready() -> void:
 	hud.update_time_label(time_to_complete)
 	time_left_to_complete.start(time_to_complete)
 	next_level_box.connect("can_level_change", _can_the_level_change)
+	
+	#Keep camera from going past level ends
+	camera_2d.limit_left = left_killzone.position.x + 16
+	camera_2d.limit_right = right_killzone.position.x - 16
+	
 
 func _process(_delta: float) -> void:
 	if player != null:
