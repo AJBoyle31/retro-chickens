@@ -6,7 +6,9 @@ signal player_has_died
 
 const BULLET = preload("res://scenes/player/bullet.tscn")
 
-@export var speed: int = 100
+@export var speed: int = 80
+@export var acceleration: int = 150
+@export var friction: int = 400
 @export var jump_velocity: int = -225
 
 
@@ -18,6 +20,7 @@ var player_state: States = States.IDLE
 var bullet_count: int
 var player_hit_by_npc: bool = false
 var player_alive: bool = true
+var player_facing_direction: int = 1
 
 @onready var player_sprite: Sprite2D = %PlayerSprite
 @onready var player_hitbox: HurtBox = %HurtBox
@@ -43,12 +46,10 @@ func _physics_process(delta) -> void:
 		
 		var direction = Input.get_axis("move_left", "move_right")
 		if direction:
-			velocity.x = direction * speed
+			velocity.x = move_toward(velocity.x, direction * speed, acceleration * delta)
 			handle_facing_direction(direction)
-			
 		else:
-			velocity.x = move_toward(velocity.x, 0, speed)
-			
+			velocity.x = move_toward(velocity.x, 0, friction * delta)
 		
 		#Animations
 		if player_hit_by_npc:
@@ -85,10 +86,12 @@ func handle_facing_direction(_direction: int) -> void:
 		player_sprite.flip_h = false
 		player_hitbox.position.x = 0
 		player_world_collision_shape.position.x = -1
+		player_facing_direction = 1
 	elif _direction < 0:
 		player_sprite.flip_h = true
 		player_hitbox.position.x = 2
 		player_world_collision_shape.position.x = 1
+		player_facing_direction = -1
 
 func set_bullet_count(_bullet_count: int) -> void:
 	bullet_count = _bullet_count
