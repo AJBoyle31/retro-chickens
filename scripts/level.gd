@@ -101,3 +101,7 @@ func _can_the_level_change() -> void:
 	if chickens_left == 0:
 		SignalManager.change_level.emit(next_level_box.next_level.instantiate())
 		player.disable_player()
+
+
+func _on_time_left_to_complete_timeout() -> void:
+	pass # Replace with function body.

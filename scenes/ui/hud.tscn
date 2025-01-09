@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://byasfjf41fav5"]
+[gd_scene load_steps=7 format=3 uid="uid://byasfjf41fav5"]
 
 [ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="1_mdypo"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="2_vfhu0"]
@@ -40,6 +40,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CenterContainer/GORBVBoxContainer/GameOverLabel:visible_characters")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CenterContainer/GORBVBoxContainer/RestartButton:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_pf54r"]
@@ -83,10 +107,40 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_gwpfl"]
+resource_name = "game_over"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/GORBVBoxContainer/GameOverLabel:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/GORBVBoxContainer/RestartButton:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9, 1.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ubjr7"]
 _data = {
 "RESET": SubResource("Animation_jp467"),
-"chickens_dying_label_blink": SubResource("Animation_pf54r")
+"chickens_dying_label_blink": SubResource("Animation_pf54r"),
+"game_over": SubResource("Animation_gwpfl")
 }
 
 [node name="HUD" type="Control"]
@@ -177,6 +231,19 @@ horizontal_alignment = 1
 visible = false
 layout_mode = 2
 text = "Start	"
+
+[node name="GORBVBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="CenterContainer/GORBVBoxContainer"]
+layout_mode = 2
+text = "Game Over"
+visible_characters = 9
+
+[node name="RestartButton" type="Button" parent="CenterContainer/GORBVBoxContainer"]
+layout_mode = 2
+text = "Restart"
 
 [node name="LabelAnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
