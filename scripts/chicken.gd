@@ -6,10 +6,10 @@ signal chicken_collected(was_chicken_collected: bool)
 
 @export_enum("idle", "walk") var state: String = "idle"
 @export var speed: int = 30
+@export var direction := 1
 
 
 var gravity := 100
-var direction := 1
 var is_hit: bool = false
 var signal_emitted: bool = false
 var showing_collection_label: bool = false

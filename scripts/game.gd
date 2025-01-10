@@ -26,5 +26,6 @@ func _load_different_level(next_level) -> void:
 	await level_transition.animation_player.animation_finished
 	current_level.queue_free()
 	add_child(next_level)
+	current_level = next_level
 	level_transition.fade_level_in()
 	

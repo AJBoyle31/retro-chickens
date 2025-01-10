@@ -7,7 +7,7 @@ signal player_has_died
 const BULLET = preload("res://scenes/player/bullet.tscn")
 
 @export var speed: int = 80
-@export var acceleration: int = 150
+@export var acceleration: int = 300
 @export var friction: int = 400
 @export var jump_velocity: int = -225
 
