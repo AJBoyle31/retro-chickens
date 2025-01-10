@@ -96,6 +96,7 @@ func _on_player_death() -> void:
 
 func _on_level_reset_timer_timeout() -> void:
 	get_tree().reload_current_scene()
+	
 
 func _can_the_level_change() -> void:
 	if chickens_left == 0:
