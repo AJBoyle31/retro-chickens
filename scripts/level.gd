@@ -4,28 +4,26 @@ class_name Level
 @export var time_to_complete: float = 30.0
 @export var bullet_count: int = 5
 
+const PLAYER_SCENE := preload("res://scenes/player/player.tscn")
+
 var total_chickens: int
 var chickens_left: int
-
-
+var player: Player
 
 @onready var camera_2d: Camera2D = %Camera2D
-@onready var player: Player = %Player
+#@onready var player: Player = PLAYER_SCENE.instantiate()
 @onready var hud: Control = %HUD
 @onready var time_left_to_complete: Timer = %TimeLeftToComplete
 @onready var level_reset_timer: Timer = %LevelResetTimer
 @onready var next_level_box: NextLevel = %NextLevel
 @onready var right_killzone: KillZone = %RightKillzone
 @onready var left_killzone: KillZone = %LeftKillzone
+@onready var player_marker_2d: Marker2D = %PlayerMarker2D
 
 
 
 func _ready() -> void:
-	#Player Updates
-	player.set_bullet_count(bullet_count)
-	player.connect("shoot", _on_player_shoot)
-	player.connect("player_has_died", _on_player_death)
-	player.enable_player()
+	spawn_player()
 	
 	hud.update_bullet_count(bullet_count)
 	#Chicken Updates
@@ -51,6 +49,16 @@ func _process(_delta: float) -> void:
 		hud.update_velocity_label(player.velocity)
 		hud.update_state_label(player.player_state)
 	hud.update_time_label(time_left_to_complete.time_left)
+	
+
+func spawn_player() -> void:
+	player = PLAYER_SCENE.instantiate()
+	player.global_position = player_marker_2d.global_position
+	add_child(player)
+	player.set_bullet_count(bullet_count)
+	player.connect("shoot", _on_player_shoot)
+	player.connect("player_has_died", _on_player_death)
+	player.enable_player()
 	
 
 #Player shot the gun, handles bullets
@@ -93,10 +101,11 @@ func _on_player_death() -> void:
 	
 
 
-
+#Going to update this so that the player is respawned at new spawn point
 func _on_level_reset_timer_timeout() -> void:
-	get_tree().reload_current_scene()
-	
+	#SignalManager.restart_current_level.emit()
+	#get_tree().reload_current_scene()
+	spawn_player()
 
 func _can_the_level_change() -> void:
 	if chickens_left == 0:

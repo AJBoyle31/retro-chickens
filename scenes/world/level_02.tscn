@@ -22,8 +22,8 @@ tile_map_data = PackedByteArray("AAAHAAQAAAAEACcAAAAHAAYAAAAEACgAAAAHAAgAAAAEACg
 [node name="Decorations" parent="Tilemaps" index="1"]
 tile_map_data = PackedByteArray("AAAnABQAAAAGAC4AAAA+ABQAAAAFAC4AAAAvABIAAAAGACoAAAAfAA4AAAAEAC4AAABGABMAAAAVACgAAABYABMAAAAGADMAAABYABEAAAACADIAAABTABQAAAAEAD0AAABgABIAAAACAD0AAAAjABIAAAAHAD0AAABlABQAAAAAACcAAABlABYAAAAAACgAAABlABgAAAAAACgAAABlABoAAAAAACsAAABnABoAAAABACsAAABpABoAAAADACsAAABrABoAAAAEACsAAABrABYAAAAEACgAAABrABgAAAAEACoAAABrABQAAAAEACcAAABnABQAAAADACcAAABpABQAAAADACcAAAA=")
 
-[node name="Player" parent="." index="2"]
-position = Vector2(82, 64)
+[node name="PlayerMarker2D" parent="PlayerSpawn" index="0"]
+position = Vector2(91, 59)
 
 [node name="Chicken" parent="Chickens" index="0" instance=ExtResource("2_s12gx")]
 position = Vector2(356, 164)

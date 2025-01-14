@@ -10,7 +10,7 @@ func _on_timer_timeout() -> void:
 
 func _on_body_entered(_body: Node2D) -> void:
 	if _body.name == "Player":
-		timer.start()
+		_body.player_died()
 	if _body.name.contains("Chicken"):
 		_body.chicken_has_died()
 
