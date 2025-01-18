@@ -5,6 +5,7 @@ class_name Level
 @export var bullet_count: int = 5
 
 const PLAYER_SCENE := preload("res://scenes/player/player.tscn")
+const CHICKEN := preload("res://scenes/npcs/chicken.tscn")
 
 var total_chickens: int
 var chickens_left: int
@@ -19,19 +20,15 @@ var player: Player
 @onready var right_killzone: KillZone = %RightKillzone
 @onready var left_killzone: KillZone = %LeftKillzone
 @onready var player_marker_2d: Marker2D = %PlayerMarker2D
+@onready var chicken_spawner: ChickenSpawner = %ChickenSpawner
 
 
 
 func _ready() -> void:
 	spawn_player()
-	
+	spawn_chickens()
 	hud.update_bullet_count(bullet_count)
-	#Chicken Updates
-	var chickens = get_tree().get_nodes_in_group("chickens")
-	total_chickens = chickens.size()
-	chickens_left = chickens.size()
-	hud.update_chickens_remaining(total_chickens, false)
-	connect_chicken_signals(chickens)
+	
 	#Time Updates
 	hud.update_time_label(time_to_complete)
 	time_left_to_complete.start(time_to_complete)
@@ -54,12 +51,28 @@ func _process(_delta: float) -> void:
 func spawn_player() -> void:
 	player = PLAYER_SCENE.instantiate()
 	player.global_position = player_marker_2d.global_position
-	add_child(player)
+	get_node("PlayerSpawn").add_child(player)
 	player.set_bullet_count(bullet_count)
 	player.connect("shoot", _on_player_shoot)
 	player.connect("player_has_died", _on_player_death)
 	player.enable_player()
 	
+
+func spawn_chickens() -> void:
+	var chicken_spawn_points = chicken_spawner.get_children()
+	for chicken_point in chicken_spawn_points:
+		var new_chicken = CHICKEN.instantiate()
+		new_chicken.global_position = chicken_point.global_position
+		new_chicken.connect("chicken_collected", update_chicken_count)
+		get_node("Chickens").add_child(new_chicken)
+		new_chicken.add_to_group("chickens")
+		new_chicken.state = chicken_point.state
+		new_chicken.direction = chicken_point.direction
+		new_chicken.speed = chicken_point.speed
+	total_chickens = get_tree().get_nodes_in_group("chickens").size()
+	chickens_left = total_chickens
+	hud.update_chickens_remaining(total_chickens, false)
+
 
 #Player shot the gun, handles bullets
 func _on_player_shoot(Bullet):
@@ -76,10 +89,6 @@ func _on_player_shoot(Bullet):
 			bullet_instance.direction = -1
 			bullet_instance.global_position.x -= 2
 
-#Chicken Signals
-func connect_chicken_signals(_chickens) -> void:
-	for chicken in _chickens:
-		chicken.connect("chicken_collected", _update_chicken_count)
 
 
 #HUD Updates
@@ -87,7 +96,7 @@ func update_bullet_counts() -> void:
 		hud.update_bullet_count(bullet_count)
 		player.set_bullet_count(bullet_count)
 
-func _update_chicken_count(_was_chicken_collected) -> void:
+func update_chicken_count(_was_chicken_collected) -> void:
 	var has_chicken_died: bool = false
 	chickens_left -= 1
 	if !_was_chicken_collected:
@@ -108,6 +117,7 @@ func _on_level_reset_timer_timeout() -> void:
 	spawn_player()
 
 func _can_the_level_change() -> void:
+	print(chickens_left)
 	if chickens_left == 0:
 		SignalManager.change_level.emit(next_level_box.next_level.instantiate())
 		player.disable_player()

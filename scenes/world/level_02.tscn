@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://h480y0cirair"]
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_ehgq8"]
-[ext_resource type="PackedScene" uid="uid://0gyf228iuxd8" path="res://scenes/npcs/chicken.tscn" id="2_s12gx"]
+[ext_resource type="Script" path="res://scripts/chicken_spawn_point.gd" id="2_ym4xn"]
 [ext_resource type="PackedScene" uid="uid://bjaoimfoh8iu4" path="res://scenes/npcs/snake_npc.tscn" id="3_5rvyt"]
 [ext_resource type="PackedScene" uid="uid://c2yp1tdmem4nj" path="res://scenes/world/level_03.tscn" id="4_0ppl2"]
 
@@ -25,16 +25,18 @@ tile_map_data = PackedByteArray("AAAnABQAAAAGAC4AAAA+ABQAAAAFAC4AAAAvABIAAAAGACo
 [node name="PlayerMarker2D" parent="PlayerSpawn" index="0"]
 position = Vector2(91, 59)
 
-[node name="Chicken" parent="Chickens" index="0" instance=ExtResource("2_s12gx")]
-position = Vector2(356, 164)
+[node name="ChickenSpawnPoint" parent="ChickenSpawner" index="0"]
+position = Vector2(340, 158)
 state = "walk"
 speed = 45
 
-[node name="Chicken2" parent="Chickens" index="1" instance=ExtResource("2_s12gx")]
-position = Vector2(525, 164)
+[node name="ChickenSpawnPoint2" type="Marker2D" parent="ChickenSpawner" index="1"]
+position = Vector2(519, 158)
+script = ExtResource("2_ym4xn")
 
-[node name="Chicken3" parent="Chickens" index="2" instance=ExtResource("2_s12gx")]
-position = Vector2(655, 164)
+[node name="ChickenSpawnPoint3" type="Marker2D" parent="ChickenSpawner" index="2"]
+position = Vector2(654, 159)
+script = ExtResource("2_ym4xn")
 state = "walk"
 
 [node name="SnakeNPC" parent="Enemies" index="0" instance=ExtResource("3_5rvyt")]
@@ -42,7 +44,7 @@ position = Vector2(468, 164)
 state = "walk"
 speed = 5
 
-[node name="NextLevel" parent="." index="8"]
+[node name="NextLevel" parent="." index="9"]
 position = Vector2(848, 144)
 next_level = ExtResource("4_0ppl2")
 
@@ -54,4 +56,5 @@ shape = SubResource("RectangleShape2D_e8vde")
 [editable path="Killzones/RightKillzone"]
 [editable path="Killzones/LeftKillzone"]
 [editable path="Tilemaps"]
+[editable path="ChickenSpawner"]
 [editable path="NextLevel"]

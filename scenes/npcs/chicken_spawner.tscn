@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dakwckedur4ju"]
+
+[ext_resource type="Script" path="res://scripts/chicken_spawner.gd" id="1_hus8b"]
+[ext_resource type="Script" path="res://scripts/chicken_spawn_point.gd" id="2_inkiq"]
+
+[node name="ChickenSpawner" type="Node2D"]
+script = ExtResource("1_hus8b")
+
+[node name="ChickenSpawnPoint" type="Marker2D" parent="."]
+script = ExtResource("2_inkiq")

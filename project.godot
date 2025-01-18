@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 SignalManager="*res://scripts/signal_manager.gd"
 
+[global_group]
+
+chickens=""
+enemies=""
+
 [input]
 
 move_left={
