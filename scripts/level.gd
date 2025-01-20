@@ -73,6 +73,8 @@ func spawn_chickens() -> void:
 	chickens_left = total_chickens
 	hud.update_chickens_remaining(total_chickens, false)
 
+func spawn_enemies() -> void:
+	pass
 
 #Player shot the gun, handles bullets
 func _on_player_shoot(Bullet):
@@ -125,3 +127,9 @@ func _can_the_level_change() -> void:
 
 func _on_time_left_to_complete_timeout() -> void:
 	pass # Replace with function body.
+
+func restart_level() -> void:
+	get_tree().call_group("level_restart", "queue_free")
+	spawn_player()
+	spawn_chickens()
+	spawn_enemies()
