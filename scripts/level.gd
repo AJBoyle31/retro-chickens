@@ -9,10 +9,10 @@ const CHICKEN := preload("res://scenes/npcs/chicken.tscn")
 
 var total_chickens: int
 var chickens_left: int
+var bullets_left: int
 var player: Player
 
 @onready var camera_2d: Camera2D = %Camera2D
-#@onready var player: Player = PLAYER_SCENE.instantiate()
 @onready var hud: Control = %HUD
 @onready var time_left_to_complete: Timer = %TimeLeftToComplete
 @onready var level_reset_timer: Timer = %LevelResetTimer
@@ -27,7 +27,9 @@ var player: Player
 func _ready() -> void:
 	spawn_player()
 	spawn_chickens()
+	
 	hud.update_bullet_count(bullet_count)
+	bullets_left = bullet_count
 	
 	#Time Updates
 	hud.update_time_label(time_to_complete)
@@ -76,11 +78,18 @@ func spawn_chickens() -> void:
 func spawn_enemies() -> void:
 	pass
 
+func reset_hud() -> void:
+	bullets_left = bullet_count
+	update_bullet_counts(bullet_count)
+	hud.update_time_label(time_to_complete)
+	time_left_to_complete.start(time_to_complete)
+	hud.update_chickens_remaining(total_chickens, false)
+
 #Player shot the gun, handles bullets
 func _on_player_shoot(Bullet):
-	if bullet_count > 0: 
-		bullet_count -= 1
-		update_bullet_counts()
+	if bullets_left > 0: 
+		bullets_left -= 1
+		update_bullet_counts(bullets_left)
 		var bullet_instance = Bullet.instantiate()
 		add_child(bullet_instance)
 		bullet_instance.global_position = player.global_position
@@ -94,9 +103,9 @@ func _on_player_shoot(Bullet):
 
 
 #HUD Updates
-func update_bullet_counts() -> void:
-		hud.update_bullet_count(bullet_count)
-		player.set_bullet_count(bullet_count)
+func update_bullet_counts(_bullets_to_update) -> void:
+		hud.update_bullet_count(_bullets_to_update)
+		player.set_bullet_count(_bullets_to_update)
 
 func update_chicken_count(_was_chicken_collected) -> void:
 	var has_chicken_died: bool = false
@@ -116,20 +125,28 @@ func _on_player_death() -> void:
 func _on_level_reset_timer_timeout() -> void:
 	#SignalManager.restart_current_level.emit()
 	#get_tree().reload_current_scene()
-	spawn_player()
+	#spawn_player()
+	restart_level()
 
 func _can_the_level_change() -> void:
-	print(chickens_left)
 	if chickens_left == 0:
 		SignalManager.change_level.emit(next_level_box.next_level.instantiate())
 		player.disable_player()
 
-
+#What happens when the player doesn't finish collecting the chickens in time
 func _on_time_left_to_complete_timeout() -> void:
-	pass # Replace with function body.
+	if chickens_left > 0:
+		pass
+		#restart_level()
+		#need some sore of HUD message to let the player know they're shit
 
 func restart_level() -> void:
-	get_tree().call_group("level_restart", "queue_free")
+	#deletes remaining instances of chickens and enemies, however its not removing them
+	#get_tree().call_group("level_restart", "queue_free")
+	var to_be_deleted = get_tree().get_nodes_in_group("level_restart")
+	for thing in to_be_deleted:
+		thing.queue_free()
 	spawn_player()
 	spawn_chickens()
 	spawn_enemies()
+	reset_hud()
