@@ -141,11 +141,11 @@ func _on_time_left_to_complete_timeout() -> void:
 		#need some sore of HUD message to let the player know they're shit
 
 func restart_level() -> void:
-	#deletes remaining instances of chickens and enemies, however its not removing them
-	#get_tree().call_group("level_restart", "queue_free")
 	var to_be_deleted = get_tree().get_nodes_in_group("level_restart")
 	for thing in to_be_deleted:
+		thing.get_parent().remove_child(thing)
 		thing.queue_free()
+		
 	spawn_player()
 	spawn_chickens()
 	spawn_enemies()
