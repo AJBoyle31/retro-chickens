@@ -15,4 +15,3 @@ func spawn_chickens() -> void:
 		new_chicken.direction = chicken_point.direction
 		new_chicken.speed = chicken_point.speed
 		
-		

@@ -21,6 +21,7 @@ var player: Player
 @onready var left_killzone: KillZone = %LeftKillzone
 @onready var player_marker_2d: Marker2D = %PlayerMarker2D
 @onready var chicken_spawner: ChickenSpawner = %ChickenSpawner
+@onready var enemy_spawner: EnemySpawner = %EnemySpawner
 
 
 

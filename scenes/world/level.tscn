@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cku3k0nc0l6hh"]
+[gd_scene load_steps=9 format=3 uid="uid://cku3k0nc0l6hh"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_nvjs6"]
 [ext_resource type="PackedScene" uid="uid://dfte4f7t7fkrn" path="res://scenes/world/killzone.tscn" id="2_5k7dm"]
 [ext_resource type="PackedScene" uid="uid://o4x25sqrm5wy" path="res://scenes/world/tile_map.tscn" id="3_ogp0p"]
 [ext_resource type="PackedScene" uid="uid://dakwckedur4ju" path="res://scenes/npcs/chicken_spawner.tscn" id="4_6bjwd"]
+[ext_resource type="PackedScene" uid="uid://w377bn5rdvfu" path="res://scenes/npcs/enemy_spawner.tscn" id="5_4g5q7"]
 [ext_resource type="PackedScene" uid="uid://bbgestx6w1ksa" path="res://scenes/overlap/next_level.tscn" id="6_6eksy"]
 [ext_resource type="PackedScene" uid="uid://byasfjf41fav5" path="res://scenes/ui/hud.tscn" id="7_6228y"]
 
@@ -46,6 +47,9 @@ shape = SubResource("WorldBoundaryShape2D_mak5r")
 unique_name_in_owner = true
 
 [node name="ChickenSpawner" parent="." instance=ExtResource("4_6bjwd")]
+unique_name_in_owner = true
+
+[node name="EnemySpawner" parent="." instance=ExtResource("5_4g5q7")]
 unique_name_in_owner = true
 
 [node name="Chickens" type="Node" parent="."]
