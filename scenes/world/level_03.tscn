@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=4 uid="uid://c2yp1tdmem4nj"]
+[gd_scene load_steps=5 format=4 uid="uid://c2yp1tdmem4nj"]
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_cnndc"]
 [ext_resource type="Script" path="res://scripts/chicken_spawn_point.gd" id="2_kaoxl"]
+[ext_resource type="PackedScene" uid="uid://b66smnfakwmam" path="res://scenes/world/level_04.tscn" id="3_3iloc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmsrg"]
 size = Vector2(10, 27)
@@ -33,8 +34,9 @@ script = ExtResource("2_kaoxl")
 state = "walk"
 speed = 35
 
-[node name="NextLevel" parent="." index="9"]
+[node name="NextLevel" parent="." index="10"]
 position = Vector2(642, 95)
+next_level = ExtResource("3_3iloc")
 
 [node name="CollisionShape2D" parent="NextLevel" index="0"]
 position = Vector2(6, -2.5)

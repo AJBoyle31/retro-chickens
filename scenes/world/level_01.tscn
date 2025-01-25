@@ -163,7 +163,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TipAreaDetections/ShootTip" index="0"]
 shape = SubResource("RectangleShape2D_byxua")
 
-[node name="NextLevel" parent="." index="11"]
+[node name="NextLevel" parent="." index="12"]
 position = Vector2(1252, 94)
 next_level = ExtResource("7_fendy")
 

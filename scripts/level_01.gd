@@ -9,13 +9,13 @@ func _on_chicken_start_moving_body_entered(_body: Node2D) -> void:
 		chicken_2.state = "walk"
 
 
-func _on_chicken_chicken_collected(was_chicken_collected: bool) -> void:
+func _on_chicken_chicken_collected(_was_chicken_collected: bool) -> void:
 	update_chicken_count(true)
 
 
-func _on_chicken_3_chicken_collected(was_chicken_collected: bool) -> void:
+func _on_chicken_3_chicken_collected(_was_chicken_collected: bool) -> void:
 	update_chicken_count(true)
 
 
-func _on_chicken_2_chicken_collected(was_chicken_collected: bool) -> void:
+func _on_chicken_2_chicken_collected(_was_chicken_collected: bool) -> void:
 	update_chicken_count(true)

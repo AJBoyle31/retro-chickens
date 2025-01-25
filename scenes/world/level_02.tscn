@@ -44,7 +44,7 @@ position = Vector2(468, 164)
 state = "walk"
 speed = 5
 
-[node name="NextLevel" parent="." index="9"]
+[node name="NextLevel" parent="." index="10"]
 position = Vector2(848, 144)
 next_level = ExtResource("4_0ppl2")
 

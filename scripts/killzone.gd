@@ -11,7 +11,7 @@ func _on_timer_timeout() -> void:
 func _on_body_entered(_body: Node2D) -> void:
 	if _body.name == "Player":
 		_body.player_died()
-	if _body.name.contains("Chicken"):
+	if _body.has_method("chicken_has_died"):
 		_body.chicken_has_died()
 
 #Assuming for now the only area entering the killzone is a bullet

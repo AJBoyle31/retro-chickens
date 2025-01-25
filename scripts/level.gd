@@ -28,6 +28,7 @@ var player: Player
 func _ready() -> void:
 	spawn_player()
 	spawn_chickens()
+	spawn_enemies()
 	
 	hud.update_bullet_count(bullet_count)
 	bullets_left = bullet_count
@@ -77,7 +78,7 @@ func spawn_chickens() -> void:
 	hud.update_chickens_remaining(total_chickens, false)
 
 func spawn_enemies() -> void:
-	pass
+	enemy_spawner.spawn_enemies()
 
 func reset_hud() -> void:
 	bullets_left = bullet_count
