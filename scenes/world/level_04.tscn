@@ -32,9 +32,8 @@ speed = 65
 direction = -1
 
 [node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
-position = Vector2(332, 84)
+position = Vector2(330, 79)
 enemy_type = 1
-direction = -1
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="EnemySpawner" index="1"]
 position = Vector2(428, 68)
@@ -44,7 +43,6 @@ direction = -1
 [node name="EnemySpawnPoint3" type="Marker2D" parent="EnemySpawner" index="2"]
 position = Vector2(526, 52)
 script = ExtResource("2_uimdv")
-direction = -1
 
 [editable path="Killzones/BottomKillzone"]
 [editable path="Killzones/RightKillzone"]

@@ -5,16 +5,23 @@ class_name NPC
 @export var speed: int = 30
 
 var direction := 1
+var npc_state: String
 
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite
 @onready var ray_cast_right: RayCast2D = %RayCastRight
 @onready var ray_cast_left: RayCast2D = %RayCastLeft
 @onready var npc_hitbox: Area2D = %NPCHitbox
 
-
+#NEED TO FIX ANIMATION PLAYING FOR EXPORTED STATE
 func _ready() -> void:
-	pass
-	#animated_sprite.play(state)
+	match state:
+		# idle
+		0: 
+			npc_state = "idle"
+		1:
+			npc_state = "walk"
+	print("hello")
+	animated_sprite.play(npc_state)
 
 
 

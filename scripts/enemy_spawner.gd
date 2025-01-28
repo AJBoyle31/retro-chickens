@@ -16,6 +16,5 @@ func spawn_enemies() -> void:
 		get_parent().get_node("Enemies").add_child(new_enemy)
 		new_enemy.state = enemy_point.state
 		new_enemy.direction = enemy_point.direction
-		print(new_enemy.direction)
 		new_enemy.speed = enemy_point.speed
 		

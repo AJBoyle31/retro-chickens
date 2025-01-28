@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_ehgq8"]
 [ext_resource type="Script" path="res://scripts/chicken_spawn_point.gd" id="2_ym4xn"]
-[ext_resource type="PackedScene" uid="uid://bjaoimfoh8iu4" path="res://scenes/npcs/snake_npc.tscn" id="3_5rvyt"]
+[ext_resource type="Script" path="res://scripts/enemy_spawn_point.gd" id="3_ff3ha"]
 [ext_resource type="PackedScene" uid="uid://c2yp1tdmem4nj" path="res://scenes/world/level_03.tscn" id="4_0ppl2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8vde"]
@@ -39,8 +39,13 @@ position = Vector2(654, 159)
 script = ExtResource("2_ym4xn")
 state = "walk"
 
-[node name="SnakeNPC" parent="Enemies" index="0" instance=ExtResource("3_5rvyt")]
-position = Vector2(468, 164)
+[node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
+position = Vector2(309, 161)
+state = "walk"
+
+[node name="EnemySpawnPoint2" type="Marker2D" parent="EnemySpawner" index="1"]
+position = Vector2(467, 163)
+script = ExtResource("3_ff3ha")
 state = "walk"
 speed = 5
 
@@ -57,4 +62,5 @@ shape = SubResource("RectangleShape2D_e8vde")
 [editable path="Killzones/LeftKillzone"]
 [editable path="Tilemaps"]
 [editable path="ChickenSpawner"]
+[editable path="EnemySpawner"]
 [editable path="NextLevel"]

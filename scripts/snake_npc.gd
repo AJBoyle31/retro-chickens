@@ -3,7 +3,8 @@ extends NPC
 
 
 func _ready() -> void:
-	animated_sprite.play(state)
+	pass
+	#animated_sprite.play(state)
 
 func _process(_delta: float) -> void:
 	if state == "walk":

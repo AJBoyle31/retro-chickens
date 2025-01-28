@@ -2,7 +2,8 @@ extends NPC
 
 
 func _ready() -> void:
-	animated_sprite.play(state)
+	pass
+	#animated_sprite.play(state)
 
 func _process(_delta: float) -> void:
 	if state == "walk":
@@ -17,4 +18,4 @@ func handle_facing_direction() -> void:
 		npc_hitbox.position.x = 0
 	elif direction < 0:
 		animated_sprite.flip_h = true
-		npc_hitbox.position.x = 4
+		npc_hitbox.position.x = -1
