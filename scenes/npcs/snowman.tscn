@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://brqbsf23oyabu"]
+
+[ext_resource type="PackedScene" uid="uid://bbabyk668sgg1" path="res://scenes/npcs/npc_gravity.tscn" id="1_s66lb"]
+[ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="2_xwesh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwrm8"]
+size = Vector2(8, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy73w"]
+atlas = ExtResource("2_xwesh")
+region = Rect2(0, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yyhc"]
+atlas = ExtResource("2_xwesh")
+region = Rect2(16, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tq4j"]
+atlas = ExtResource("2_xwesh")
+region = Rect2(48, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8wgd"]
+atlas = ExtResource("2_xwesh")
+region = Rect2(64, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppn7c"]
+atlas = ExtResource("2_xwesh")
+region = Rect2(80, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2bskg"]
+atlas = ExtResource("2_xwesh")
+region = Rect2(96, 304, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1s0yw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uy73w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yyhc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tq4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8wgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppn7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2bskg")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Snowman" instance=ExtResource("1_s66lb")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_lwrm8")
+
+[node name="AnimatedSprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_1s0yw")
+animation = &"walk"
+
+[editable path="NPCHitbox"]

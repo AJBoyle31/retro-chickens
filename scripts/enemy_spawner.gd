@@ -1,8 +1,8 @@
 extends Node2D
 class_name EnemySpawner
 
-const SNAKE := preload("res://scenes/npcs/snake_npc.tscn")
-const SCORPION := preload("res://scenes/npcs/scorpion_npc.tscn")
+const SNAKE := preload("res://scenes/npcs/snake.tscn")
+const SCORPION := preload("res://scenes/npcs/scorpion.tscn")
 
 const ENEMY_OPTIONS: Array = [SNAKE, SCORPION]
 

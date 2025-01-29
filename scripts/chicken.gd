@@ -25,7 +25,7 @@ var showing_collection_label: bool = false
 func _ready() -> void:
 	collect_label.hide()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
 	if is_hit:
 		animated_sprite.play("hit")

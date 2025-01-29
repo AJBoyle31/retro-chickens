@@ -6,6 +6,7 @@ class_name NPCGravity
 
 var direction := 1
 var gravity := 100
+var spawn_state : String
 
 
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite
@@ -15,26 +16,26 @@ var gravity := 100
 
 
 func _ready() -> void:
-	pass 
+	spawn_state = state 
 
 
 func _physics_process(_delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * _delta
 		animated_sprite.play("walk")
-	if state == "walk" and is_on_floor():
+	elif state == "walk" and is_on_floor():
 		velocity.x = direction * speed
 		animated_sprite.play("walk")
 		
-		if state == "idle" and is_on_floor():
-			velocity.x = 0
-			animated_sprite.play("idle")
-		
-		if ray_cast_left.is_colliding():
-			direction = 1
-		
-		if ray_cast_right.is_colliding():
-			direction = -1
+	elif state == "idle" and is_on_floor():
+		velocity.x = 0
+		animated_sprite.play("idle")
+	
+	if ray_cast_left.is_colliding():
+		direction = 1
+	
+	if ray_cast_right.is_colliding():
+		direction = -1
 	
 	handle_facing_direction()
 	move_and_slide()
