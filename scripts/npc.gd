@@ -1,7 +1,8 @@
 extends Node2D
 class_name NPC
 
-@export_enum("idle", "walk") var state: String = "idle"
+#@export_enum("idle", "walk") var state: String = "idle"
+var state: String
 @export var speed: int = 30
 
 var direction := 1
@@ -14,15 +15,7 @@ var npc_state: String
 
 #NEED TO FIX ANIMATION PLAYING FOR EXPORTED STATE
 func _ready() -> void:
-	match state:
-		# idle
-		0: 
-			npc_state = "idle"
-		1:
-			npc_state = "walk"
-	print("hello")
-	animated_sprite.play(npc_state)
-
+	print(state)
 
 
 func _process(_delta: float) -> void:
@@ -30,8 +23,10 @@ func _process(_delta: float) -> void:
 
 func idle(_delta) -> void:
 	handle_facing_direction()
+	animated_sprite.play("idle")
 
 func walking(_delta) -> void:
+	animated_sprite.play("walk")
 	if ray_cast_left.is_colliding():
 		direction = 1
 	if ray_cast_right.is_colliding():

@@ -3,7 +3,7 @@ extends NPC
 
 
 func _ready() -> void:
-	pass
+	print(state)
 	#animated_sprite.play(state)
 
 func _process(_delta: float) -> void:

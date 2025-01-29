@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ptr3t7ipao4y"]
+[gd_scene load_steps=12 format=3 uid="uid://ptr3t7ipao4y"]
 
 [ext_resource type="PackedScene" uid="uid://bbabyk668sgg1" path="res://scenes/npcs/npc_gravity.tscn" id="1_s4xgo"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="2_m85ak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1fub"]
+size = Vector2(14, 13)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_026bx"]
 atlas = ExtResource("2_m85ak")
@@ -62,6 +65,10 @@ animations = [{
 size = Vector2(12, 10)
 
 [node name="Scorpion" instance=ExtResource("1_s4xgo")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_k1fub")
 
 [node name="AnimatedSprite" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_6ktj5")

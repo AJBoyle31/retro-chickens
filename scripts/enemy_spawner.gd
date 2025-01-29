@@ -14,7 +14,7 @@ func spawn_enemies() -> void:
 		var new_enemy = ENEMY_OPTIONS[enemy_point.enemy_type].instantiate()
 		new_enemy.global_position = enemy_point.global_position
 		get_parent().get_node("Enemies").add_child(new_enemy)
-		new_enemy.state = enemy_point.state
+		new_enemy.state = enemy_point.enemy_state
 		new_enemy.direction = enemy_point.direction
 		new_enemy.speed = enemy_point.speed
 		
