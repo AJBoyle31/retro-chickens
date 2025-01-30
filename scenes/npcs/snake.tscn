@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://8jh26syv0l10"]
+[gd_scene load_steps=12 format=3 uid="uid://8jh26syv0l10"]
 
 [ext_resource type="PackedScene" uid="uid://bbabyk668sgg1" path="res://scenes/npcs/npc_gravity.tscn" id="1_elyvs"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="2_2wko4"]
+[ext_resource type="Script" path="res://scripts/snake.gd" id="2_l1040"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1bny"]
 size = Vector2(10, 12)
@@ -57,7 +58,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_533g2"]
 size = Vector2(11, 12)
 
-[node name="Snake" instance=ExtResource("1_elyvs")]
+[node name="Snake" groups=["enemies", "level_restart"] instance=ExtResource("1_elyvs")]
+script = ExtResource("2_l1040")
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(-2, 2)

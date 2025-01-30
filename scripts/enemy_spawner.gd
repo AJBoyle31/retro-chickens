@@ -3,10 +3,11 @@ class_name EnemySpawner
 
 const SNAKE := preload("res://scenes/npcs/snake.tscn")
 const SCORPION := preload("res://scenes/npcs/scorpion.tscn")
+const SNOWMAN := preload("res://scenes/npcs/snowman.tscn")
 
-const ENEMY_OPTIONS: Array = [SNAKE, SCORPION]
+const ENEMY_OPTIONS: Array = [SNAKE, SCORPION, SNOWMAN]
 
-var enemies: Array = [SNAKE, SCORPION]
+var enemies: Array = [SNAKE, SCORPION, SNOWMAN]
 
 func spawn_enemies() -> void:
 	var enemy_spawn_points = get_children()

@@ -8,6 +8,7 @@ collision_layer = 4
 script = ExtResource("1_pidbn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

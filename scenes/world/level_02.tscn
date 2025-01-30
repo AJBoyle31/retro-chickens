@@ -41,11 +41,13 @@ state = "walk"
 
 [node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
 position = Vector2(309, 161)
+enemy_type = 2
 enemy_state = "walk"
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="EnemySpawner" index="1"]
 position = Vector2(467, 163)
 script = ExtResource("3_ff3ha")
+enemy_type = 2
 speed = 5
 
 [node name="NextLevel" parent="." index="10"]

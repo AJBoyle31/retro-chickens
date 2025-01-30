@@ -86,6 +86,7 @@ func reset_hud() -> void:
 	hud.update_time_label(time_to_complete)
 	time_left_to_complete.start(time_to_complete)
 	hud.update_chickens_remaining(total_chickens, false)
+	hud.reset_chicken_label()
 
 #Player shot the gun, handles bullets
 func _on_player_shoot(Bullet):

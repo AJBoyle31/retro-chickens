@@ -70,7 +70,7 @@ size = Vector2(12, 10)
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_k1fub")
 
-[node name="AnimatedSprite" parent="." index="1"]
+[node name="AnimatedSprite" parent="." index="1" groups=["enemies", "level_restart"]]
 sprite_frames = SubResource("SpriteFrames_6ktj5")
 animation = &"walk"
 

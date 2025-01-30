@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://brqbsf23oyabu"]
+[gd_scene load_steps=13 format=3 uid="uid://brqbsf23oyabu"]
 
 [ext_resource type="PackedScene" uid="uid://bbabyk668sgg1" path="res://scenes/npcs/npc_gravity.tscn" id="1_s66lb"]
+[ext_resource type="Script" path="res://scripts/snowman.gd" id="2_a1hnn"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="2_xwesh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lwrm8"]
@@ -61,7 +62,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyepu"]
+size = Vector2(8, 14)
+
 [node name="Snowman" instance=ExtResource("1_s66lb")]
+script = ExtResource("2_a1hnn")
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(1, 0)
@@ -70,5 +75,14 @@ shape = SubResource("RectangleShape2D_lwrm8")
 [node name="AnimatedSprite" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_1s0yw")
 animation = &"walk"
+
+[node name="RayCastRight" parent="." index="2"]
+target_position = Vector2(10, 0)
+
+[node name="RayCastLeft" parent="." index="3" groups=["enemies", "level_restart"]]
+
+[node name="CollisionShape2D" parent="NPCHitbox" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_uyepu")
 
 [editable path="NPCHitbox"]

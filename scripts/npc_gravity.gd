@@ -13,6 +13,7 @@ var spawn_state : String
 @onready var ray_cast_right: RayCast2D = %RayCastRight
 @onready var ray_cast_left: RayCast2D = %RayCastLeft
 @onready var npc_hitbox: Area2D = %NPCHitbox
+@onready var collision_shape: CollisionShape2D = %CollisionShape2D
 
 
 func _ready() -> void:
