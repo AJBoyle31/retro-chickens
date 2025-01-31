@@ -87,6 +87,7 @@ func reset_hud() -> void:
 	time_left_to_complete.start(time_to_complete)
 	hud.update_chickens_remaining(total_chickens, false)
 	hud.reset_chicken_label()
+	hud.hide_too_slow_label()
 
 #Player shot the gun, handles bullets
 func _on_player_shoot(Bullet):
@@ -139,9 +140,8 @@ func _can_the_level_change() -> void:
 #What happens when the player doesn't finish collecting the chickens in time
 func _on_time_left_to_complete_timeout() -> void:
 	if chickens_left > 0:
-		pass
-		#restart_level()
-		#need some sore of HUD message to let the player know they're shit
+		level_reset_timer.start(1.5)
+		hud.show_too_slow_label()
 
 func restart_level() -> void:
 	var to_be_deleted = get_tree().get_nodes_in_group("level_restart")

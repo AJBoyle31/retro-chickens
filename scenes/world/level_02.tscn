@@ -48,7 +48,8 @@ enemy_state = "walk"
 position = Vector2(467, 163)
 script = ExtResource("3_ff3ha")
 enemy_type = 2
-speed = 5
+enemy_state = "walk"
+speed = 10
 
 [node name="NextLevel" parent="." index="10"]
 position = Vector2(848, 144)

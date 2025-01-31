@@ -6,6 +6,7 @@ extends Control
 @onready var label_animation_player: AnimationPlayer = %LabelAnimationPlayer
 @onready var state_label: Label = %StateLabel
 @onready var velocity_label: Label = %VelocityLabel
+@onready var too_slow_label: Label = %TooSlowLabel
 
 
 func update_bullet_count(bullets_remaining: int) -> void:
@@ -21,12 +22,20 @@ func update_chickens_remaining(chickens_remaining: int, label_red:bool) -> void:
 		chickens_label.add_theme_color_override("font_color", Color.RED)
 		label_animation_player.play("chickens_dying_label_blink")
 
+func show_too_slow_label() -> void:
+	too_slow_label.show()
+
+func hide_too_slow_label() -> void:
+	too_slow_label.hide()
+
 func reset_chicken_label() -> void:
 	chickens_label.remove_theme_color_override("font_color")
 
 func player_is_dead() -> void:
 	print("hud death")
 
+
+#Debug labels
 func update_state_label(new_state) -> void:
 	match new_state:
 		0: 

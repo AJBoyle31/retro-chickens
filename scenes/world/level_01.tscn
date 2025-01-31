@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://btkbx5vynagj8"]
+[gd_scene load_steps=12 format=4 uid="uid://btkbx5vynagj8"]
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_f3rvo"]
 [ext_resource type="PackedScene" uid="uid://0gyf228iuxd8" path="res://scenes/npcs/chicken.tscn" id="2_ey86d"]
 [ext_resource type="Script" path="res://scripts/level_01.gd" id="2_yj07x"]
 [ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="3_jpt3s"]
 [ext_resource type="Script" path="res://scripts/intro_tips.gd" id="3_r2wgk"]
-[ext_resource type="PackedScene" uid="uid://bjaoimfoh8iu4" path="res://scenes/npcs/snake_npc.tscn" id="4_qxdvf"]
-[ext_resource type="PackedScene" uid="uid://ptr3t7ipao4y" path="res://scenes/npcs/scorpion.tscn" id="5_5apm7"]
 [ext_resource type="PackedScene" uid="uid://h480y0cirair" path="res://scenes/world/level_02.tscn" id="7_fendy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjpcr"]
@@ -28,7 +26,7 @@ size = Vector2(13, 45)
 
 [node name="Level01" instance=ExtResource("1_f3rvo")]
 script = ExtResource("2_yj07x")
-time_to_complete = 30.0
+time_to_complete = 5.0
 
 [node name="RightKillzone" parent="Killzones" index="1"]
 position = Vector2(1275, 128)
@@ -51,6 +49,10 @@ state = "walk"
 speed = 15
 direction = -1
 
+[node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
+position = Vector2(396, 67)
+direction = -1
+
 [node name="Chicken" parent="Chickens" index="0" instance=ExtResource("2_ey86d")]
 position = Vector2(588, 97)
 state = "walk"
@@ -68,13 +70,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chickens/Chicken2/ChickenStartMoving" index="0"]
 shape = SubResource("RectangleShape2D_qjpcr")
-
-[node name="SnakeNPC" parent="Enemies" index="0" instance=ExtResource("4_qxdvf")]
-position = Vector2(267, 100)
-
-[node name="Scorpion" parent="Enemies" index="1" instance=ExtResource("5_5apm7")]
-position = Vector2(200, 67)
-state = "walk"
 
 [node name="IntroTips" type="Control" parent="." index="8"]
 layout_mode = 3
@@ -189,4 +184,5 @@ shape = SubResource("RectangleShape2D_2v356")
 [editable path="Killzones/LeftKillzone"]
 [editable path="Tilemaps"]
 [editable path="ChickenSpawner"]
+[editable path="EnemySpawner"]
 [editable path="NextLevel"]

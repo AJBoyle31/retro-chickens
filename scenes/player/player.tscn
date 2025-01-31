@@ -198,7 +198,7 @@ graph_offset = Vector2(-155, -125.742)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v4rqr"]
 size = Vector2(8, 13)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["level_restart"]]
 position = Vector2(0, -8)
 collision_layer = 2
 script = ExtResource("1_2dgcp")

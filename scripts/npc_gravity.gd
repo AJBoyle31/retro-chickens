@@ -61,3 +61,6 @@ func handle_facing_direction() -> void:
 		animated_sprite.flip_h = false
 	elif direction < 0:
 		animated_sprite.flip_h = true
+
+func kill_npc() -> void:
+	queue_free()
