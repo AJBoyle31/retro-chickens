@@ -58,7 +58,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_533g2"]
 size = Vector2(11, 12)
 
-[node name="Snake" groups=["enemies", "level_restart"] instance=ExtResource("1_elyvs")]
+[node name="Snake" instance=ExtResource("1_elyvs")]
 script = ExtResource("2_l1040")
 
 [node name="CollisionShape2D" parent="." index="0"]

@@ -44,13 +44,13 @@ tile_map_data = PackedByteArray("AAAlAAwAAAAGAAIAAAAlAAoAAAAMAAIAAAAlAAcAAAAJAAE
 position = Vector2(90, 60)
 
 [node name="ChickenSpawnPoint" parent="ChickenSpawner" index="0"]
-position = Vector2(179, 55)
+position = Vector2(464, 99)
 state = "walk"
 speed = 15
 direction = -1
 
 [node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
-position = Vector2(396, 67)
+position = Vector2(73, 207)
 direction = -1
 
 [node name="Chicken" parent="Chickens" index="0" instance=ExtResource("2_ey86d")]

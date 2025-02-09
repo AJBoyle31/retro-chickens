@@ -10,7 +10,7 @@
 position = Vector2(294, 201)
 
 [node name="RightKillzone" parent="Killzones" index="1"]
-position = Vector2(799, 66)
+position = Vector2(777, 67)
 
 [node name="LeftKillzone" parent="Killzones" index="2"]
 position = Vector2(20, 50)
@@ -33,7 +33,6 @@ direction = -1
 
 [node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
 position = Vector2(330, 79)
-enemy_type = 1
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="EnemySpawner" index="1"]
 position = Vector2(428, 68)
