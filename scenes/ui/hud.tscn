@@ -254,5 +254,5 @@ text = "Restart"
 [node name="LabelAnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_ubjr7")
+&"": SubResource("AnimationLibrary_ubjr7")
 }

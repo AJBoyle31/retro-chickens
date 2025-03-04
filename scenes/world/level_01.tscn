@@ -26,7 +26,7 @@ size = Vector2(13, 45)
 
 [node name="Level01" instance=ExtResource("1_f3rvo")]
 script = ExtResource("2_yj07x")
-time_to_complete = 5.0
+time_to_complete = 20.0
 
 [node name="RightKillzone" parent="Killzones" index="1"]
 position = Vector2(1275, 128)

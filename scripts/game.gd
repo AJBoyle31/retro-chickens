@@ -7,10 +7,16 @@ var previous_level: Node2D
 var current_level: Node2D
 
 @onready var level_transition: LevelTransition = %LevelTransition
+@onready var menu: Menu = %Menu
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	menu.show_title_screen()
 	SignalManager.connect("change_level", _load_level)
+
+
+func start_new_game() -> void:
 	add_child(starting_level.instantiate())
 	var children = get_children()
 	for child in children:
@@ -18,8 +24,6 @@ func _ready() -> void:
 			print(child.name)
 			current_level = child 
 	SignalManager.connect("restart_current_level", _reload_current_level)
-	
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -38,3 +42,8 @@ func _load_level(level_to_load) -> void:
 	current_level = level_to_load
 	level_transition.fade_level_in()
 	
+
+
+func _on_menu_start_game() -> void:
+	start_new_game()
+	menu.hide_menu()

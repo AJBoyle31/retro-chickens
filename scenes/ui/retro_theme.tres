@@ -1,8 +1,18 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://7qvgjin0bd8a"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://7qvgjin0bd8a"]
 
 [ext_resource type="FontFile" uid="uid://cbackpg4g72aa" path="res://assets/fonts/Kenney Future.ttf" id="1_hpakm"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skfqi"]
+bg_color = Color(0.172203, 0.649672, 0.857584, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [resource]
+Button/font_sizes/font_size = 25
+Button/fonts/font = ExtResource("1_hpakm")
+Button/styles/hover = SubResource("StyleBoxFlat_skfqi")
 Label/colors/font_shadow_color = Color(0.662745, 0.662745, 0.662745, 0.588235)
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_hpakm")
