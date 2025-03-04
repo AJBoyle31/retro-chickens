@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=4 uid="uid://b66smnfakwmam"]
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_c841g"]
-[ext_resource type="Script" path="res://scripts/chicken_spawn_point.gd" id="2_oovab"]
-[ext_resource type="Script" path="res://scripts/enemy_spawn_point.gd" id="2_uimdv"]
+[ext_resource type="Script" uid="uid://mll4dce3t0h1" path="res://scripts/chicken_spawn_point.gd" id="2_oovab"]
+[ext_resource type="Script" uid="uid://c3xwmbbfecjc" path="res://scripts/enemy_spawn_point.gd" id="2_uimdv"]
 
 [node name="Level04" instance=ExtResource("1_c841g")]
 

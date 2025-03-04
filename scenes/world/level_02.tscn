@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=4 uid="uid://h480y0cirair"]
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_ehgq8"]
-[ext_resource type="Script" path="res://scripts/chicken_spawn_point.gd" id="2_ym4xn"]
-[ext_resource type="Script" path="res://scripts/enemy_spawn_point.gd" id="3_ff3ha"]
+[ext_resource type="Script" uid="uid://mll4dce3t0h1" path="res://scripts/chicken_spawn_point.gd" id="2_ym4xn"]
+[ext_resource type="Script" uid="uid://c3xwmbbfecjc" path="res://scripts/enemy_spawn_point.gd" id="3_ff3ha"]
 [ext_resource type="PackedScene" uid="uid://c2yp1tdmem4nj" path="res://scenes/world/level_03.tscn" id="4_0ppl2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8vde"]

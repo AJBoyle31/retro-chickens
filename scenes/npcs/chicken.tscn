@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://0gyf228iuxd8"]
 
-[ext_resource type="Script" path="res://scripts/chicken.gd" id="1_hu0ld"]
+[ext_resource type="Script" uid="uid://b4bg65s4yqxrj" path="res://scripts/chicken.gd" id="1_hu0ld"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="1_s8msv"]
 [ext_resource type="PackedScene" uid="uid://dfl6ylmcd8v13" path="res://scenes/overlap/hurt_box.tscn" id="3_bhcaw"]
 [ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="4_3d5i1"]

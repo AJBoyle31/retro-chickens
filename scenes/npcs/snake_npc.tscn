@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bjaoimfoh8iu4"]
 
 [ext_resource type="PackedScene" uid="uid://pgxlur2fj14b" path="res://scenes/npcs/npc.tscn" id="1_ylg13"]
-[ext_resource type="Script" path="res://scripts/snake_npc.gd" id="2_nnu7o"]
+[ext_resource type="Script" uid="uid://dn3axti4xfcpw" path="res://scripts/snake_npc.gd" id="2_nnu7o"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="2_okvrr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2pol"]

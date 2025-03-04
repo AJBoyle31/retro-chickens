@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://c2yp1tdmem4nj"]
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_cnndc"]
-[ext_resource type="Script" path="res://scripts/chicken_spawn_point.gd" id="2_kaoxl"]
+[ext_resource type="Script" uid="uid://mll4dce3t0h1" path="res://scripts/chicken_spawn_point.gd" id="2_kaoxl"]
 [ext_resource type="PackedScene" uid="uid://b66smnfakwmam" path="res://scenes/world/level_04.tscn" id="3_3iloc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmsrg"]

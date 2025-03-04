@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbabyk668sgg1"]
 
-[ext_resource type="Script" path="res://scripts/npc_gravity.gd" id="1_pidbn"]
+[ext_resource type="Script" uid="uid://vscgf1r2kqrc" path="res://scripts/npc_gravity.gd" id="1_pidbn"]
 [ext_resource type="PackedScene" uid="uid://72rkbcdhsyob" path="res://scenes/overlap/hitbox.tscn" id="1_qjvle"]
 
 [node name="NPCGravity" type="CharacterBody2D" groups=["enemies", "level_restart"]]

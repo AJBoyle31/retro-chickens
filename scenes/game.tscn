@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://brsabiffrg5t8"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_68vpv"]
+[ext_resource type="Script" uid="uid://ya5c6xof5r3c" path="res://scripts/game.gd" id="1_68vpv"]
 [ext_resource type="PackedScene" uid="uid://btkbx5vynagj8" path="res://scenes/world/level_01.tscn" id="2_h1qnb"]
 [ext_resource type="PackedScene" uid="uid://cxj6mbhadq6rb" path="res://scenes/world/level_transition.tscn" id="3_hmjk5"]
 

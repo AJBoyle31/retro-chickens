@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://cplw1ycrgq07u"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_2dgcp"]
+[ext_resource type="Script" uid="uid://db454sbi8hfpe" path="res://scripts/player.gd" id="1_2dgcp"]
 [ext_resource type="Texture2D" uid="uid://d3a04qijp10nm" path="res://assets/player.png" id="1_d7ix2"]
 [ext_resource type="PackedScene" uid="uid://dfl6ylmcd8v13" path="res://scenes/overlap/hurt_box.tscn" id="3_0e54p"]
 
@@ -136,12 +136,12 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uo8k5"]
 _data = {
-"RESET": SubResource("Animation_rt7jp"),
-"hit": SubResource("Animation_2l10c"),
-"idle": SubResource("Animation_f6j7w"),
-"jump": SubResource("Animation_l056o"),
-"shoot": SubResource("Animation_x6yqo"),
-"walk": SubResource("Animation_p1wdt")
+&"RESET": SubResource("Animation_rt7jp"),
+&"hit": SubResource("Animation_2l10c"),
+&"idle": SubResource("Animation_f6j7w"),
+&"jump": SubResource("Animation_l056o"),
+&"shoot": SubResource("Animation_x6yqo"),
+&"walk": SubResource("Animation_p1wdt")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_341t5"]

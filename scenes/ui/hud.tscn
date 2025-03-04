@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://byasfjf41fav5"]
 
 [ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="1_mdypo"]
-[ext_resource type="Script" path="res://scripts/hud.gd" id="2_vfhu0"]
+[ext_resource type="Script" uid="uid://dn0lw1e3tj885" path="res://scripts/hud.gd" id="2_vfhu0"]
 
 [sub_resource type="Animation" id="Animation_jp467"]
 length = 0.001
@@ -138,9 +138,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ubjr7"]
 _data = {
-"RESET": SubResource("Animation_jp467"),
-"chickens_dying_label_blink": SubResource("Animation_pf54r"),
-"game_over": SubResource("Animation_gwpfl")
+&"RESET": SubResource("Animation_jp467"),
+&"chickens_dying_label_blink": SubResource("Animation_pf54r"),
+&"game_over": SubResource("Animation_gwpfl")
 }
 
 [node name="HUD" type="Control"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pgxlur2fj14b"]
 
-[ext_resource type="Script" path="res://scripts/npc.gd" id="1_ypn2j"]
+[ext_resource type="Script" uid="uid://beoxdka65apen" path="res://scripts/npc.gd" id="1_ypn2j"]
 [ext_resource type="PackedScene" uid="uid://72rkbcdhsyob" path="res://scenes/overlap/hitbox.tscn" id="2_c34wn"]
 
 [node name="NPC" type="Node2D" groups=["enemies", "level_restart"]]

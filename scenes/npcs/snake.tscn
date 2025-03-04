@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bbabyk668sgg1" path="res://scenes/npcs/npc_gravity.tscn" id="1_elyvs"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="2_2wko4"]
-[ext_resource type="Script" path="res://scripts/snake.gd" id="2_l1040"]
+[ext_resource type="Script" uid="uid://cf1v37fpvukrg" path="res://scripts/snake.gd" id="2_l1040"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q1bny"]
 size = Vector2(10, 12)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cxj6mbhadq6rb"]
 
-[ext_resource type="Script" path="res://scripts/level_transition.gd" id="1_krm0b"]
+[ext_resource type="Script" uid="uid://qe0tliromvmc" path="res://scripts/level_transition.gd" id="1_krm0b"]
 
 [sub_resource type="Animation" id="Animation_sh6on"]
 length = 0.001
@@ -49,9 +49,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_trtfy"]
 _data = {
-"RESET": SubResource("Animation_sh6on"),
-"fade_in": SubResource("Animation_vcqp6"),
-"fade_out": SubResource("Animation_a84yf")
+&"RESET": SubResource("Animation_sh6on"),
+&"fade_in": SubResource("Animation_vcqp6"),
+&"fade_out": SubResource("Animation_a84yf")
 }
 
 [node name="LevelTransition" type="Control"]
