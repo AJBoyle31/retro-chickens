@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bfmfni5vxu4ts" path="res://scenes/ui/menu.tscn" id="4_lbhrr"]
 
 [node name="Game" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_68vpv")
 starting_level = ExtResource("2_h1qnb")
 

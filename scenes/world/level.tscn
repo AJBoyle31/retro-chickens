@@ -11,6 +11,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mak5r"]
 
 [node name="Level" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_nvjs6")
 time_to_complete = 25.0
 

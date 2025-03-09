@@ -5,6 +5,7 @@ class_name Game
 
 var previous_level: Node2D
 var current_level: Node2D
+var paused: bool = false
 
 @onready var level_transition: LevelTransition = %LevelTransition
 @onready var menu: Menu = %Menu
@@ -25,9 +26,12 @@ func start_new_game() -> void:
 			current_level = child 
 	SignalManager.connect("restart_current_level", _reload_current_level)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("pause"):
+		paused = !paused
+		get_tree().paused = paused
+		menu.paused_screen(paused)
 
 #This isn't working at all currently. 
 func _reload_current_level() -> void:
