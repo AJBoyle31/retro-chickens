@@ -1,7 +1,92 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfmfni5vxu4ts"]
+[gd_scene load_steps=10 format=4 uid="uid://bfmfni5vxu4ts"]
 
 [ext_resource type="Theme" uid="uid://7qvgjin0bd8a" path="res://scenes/ui/retro_theme.tres" id="1_7w7rl"]
 [ext_resource type="Script" uid="uid://t0teygvjnjg" path="res://scripts/menu.gd" id="2_wedc3"]
+[ext_resource type="Texture2D" uid="uid://d3a04qijp10nm" path="res://assets/player.png" id="3_w6y0u"]
+[ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="4_cx0sj"]
+[ext_resource type="PackedScene" uid="uid://o4x25sqrm5wy" path="res://scenes/world/tile_map.tscn" id="5_cx0sj"]
+
+[sub_resource type="Animation" id="Animation_w6y0u"]
+resource_name = "player_walking"
+length = 0.8
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/StartVBoxContainer/HBoxContainer/PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_cx0sj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/StartVBoxContainer/HBoxContainer/PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/StartVBoxContainer/HBoxContainer/ChickenSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+
+[sub_resource type="Animation" id="Animation_ntye7"]
+resource_name = "chicken_walking"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/StartVBoxContainer/HBoxContainer/ChickenSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [19, 18, 17, 20]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterContainer/StartVBoxContainer/HBoxContainer/PlayerSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ntye7"]
+_data = {
+&"RESET": SubResource("Animation_cx0sj"),
+&"chicken_walking": SubResource("Animation_ntye7"),
+&"player_walking": SubResource("Animation_w6y0u")
+}
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -27,8 +112,30 @@ size_flags_horizontal = 3
 
 [node name="StartVBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/StartVBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerSprite" type="Sprite2D" parent="CenterContainer/StartVBoxContainer/HBoxContainer"]
+scale = Vector2(5, 5)
+texture = ExtResource("3_w6y0u")
+centered = false
+offset = Vector2(0, -16)
+hframes = 7
+vframes = 14
+frame = 8
+
+[node name="ChickenSprite" type="Sprite2D" parent="CenterContainer/StartVBoxContainer/HBoxContainer"]
+position = Vector2(351, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("4_cx0sj")
+centered = false
+offset = Vector2(0, -24)
+flip_h = true
+hframes = 14
+vframes = 14
+frame = 19
 
 [node name="TitleLabel" type="Label" parent="CenterContainer/StartVBoxContainer"]
 unique_name_in_owner = true
@@ -47,6 +154,7 @@ size_flags_horizontal = 4
 text = "Start"
 
 [node name="PausePanelContainer" type="PanelContainer" parent="CenterContainer"]
+visible = false
 custom_minimum_size = Vector2(400, 225)
 layout_mode = 2
 
@@ -69,4 +177,22 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Restart Level"
 
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ntye7")
+}
+autoplay = "chicken_walking"
+
+[node name="Tilemaps" parent="." instance=ExtResource("5_cx0sj")]
+
+[node name="World" parent="Tilemaps" index="0"]
+scale = Vector2(3.5, 3.5)
+tile_map_data = PackedByteArray("AAADAAEAAAAUAAYAAAAFAAEAAAAWAAYAAAAHAAEAAAAUAAYAAAAJAAEAAAAWAAYAAAALAAEAAAAUAAYAAAANAAEAAAAWAAYAAAAPAAEAAAAUAAYAAAARAAEAAAAWAAYAAAATAAEAAAAUAAYAAAAVAAEAAAAWAAYAAAAXAAEAAAAUAAYAAAAZAAEAAAAWAAYAAAABAAEAAAATAAYAAAABAAMAAAATAAcAAAABAAUAAAATAAkAAAABAAcAAAATAAcAAAABAAkAAAATAAkAAAABAAsAAAATAAcAAAAbAAEAAAAUAAYAAAAdAAEAAAAWAAYAAAAfAAEAAAAUAAYAAAAhAAEAAAAWAAYAAAAjAAEAAAAUAAYAAAAlAAEAAAAWAAYAAAAnAAEAAAAXAAYAAAABAA0AAAATAAgAAAABABUAAAATAAoAAAAnABUAAAAXAAoAAAAnAAMAAAAXAAcAAAAnAAUAAAAXAAkAAAAnAAcAAAAXAAcAAAAnAAkAAAAXAAkAAAAnAAoAAAAXAAcAAAAnAAwAAAAXAAkAAAAnAA0AAAAXAAcAAAAnAA8AAAAXAAkAAAAnABEAAAAXAAcAAAAnABMAAAAXAAkAAAABAA8AAAATAAcAAAABABEAAAATAAkAAAABABMAAAATAAcAAAADABUAAAAUAAoAAAAFABUAAAAWAAoAAAAHABUAAAAUAAoAAAAJABUAAAAWAAoAAAALABUAAAAUAAoAAAANABUAAAAWAAoAAAAPABUAAAAUAAoAAAARABUAAAAWAAoAAAATABUAAAAUAAoAAAAVABUAAAAWAAoAAAAXABUAAAAUAAoAAAAZABUAAAAWAAoAAAAbABUAAAAUAAoAAAAdABUAAAAWAAoAAAAfABUAAAAUAAoAAAAhABUAAAAWAAoAAAAjABUAAAAUAAoAAAAlABUAAAAWAAoAAAA=")
+
+[node name="Decorations" parent="Tilemaps" index="1"]
+scale = Vector2(1.5, 1.5)
+tile_map_data = PackedByteArray("AAAeABYAAAAUADwAAAAgABYAAAAWADwAAAAiABYAAAAUADwAAAAkABYAAAAWADwAAAAmABYAAAAUADwAAAAoABYAAAAWADwAAAAqABYAAAAUADwAAAAsABYAAAAWADwAAAAuABYAAAAUADwAAAAwABYAAAAWADwAAAAyABYAAAAUADwAAAA0ABYAAAAWADwAAAA2ABYAAAAUADwAAAA4ABYAAAAWADwAAAA6ABYAAAAUADwAAAA8ABYAAAAWADwAAAA+ABYAAAAUADwAAABAABYAAAAWADwAAABCABYAAAAXADwAAAAcABYAAAATADwAAAAcABgAAAATAD0AAAAcABoAAAATAD8AAAAcABwAAAATAD0AAAAcAB4AAAATAD8AAAAcACAAAAATAD4AAAAcACIAAAATAEAAAAAeACIAAAAUAEAAAAAgACIAAAAWAEAAAAAiACIAAAAUAEAAAAAkACIAAAAWAEAAAAAmACIAAAAUAEAAAAAoACIAAAAWAEAAAAAqACIAAAAUAEAAAAAsACIAAAAWAEAAAAAuACIAAAAUAEAAAAAwACIAAAAWAEAAAAAyACIAAAAUAEAAAAA0ACIAAAAWAEAAAAA2ACIAAAAUAEAAAAA4ACIAAAAWAEAAAAA6ACIAAAAUAEAAAAA8ACIAAAAWAEAAAAA+ACIAAAAUAEAAAABAACIAAAAWAEAAAABCACIAAAAXAEAAAABCABgAAAAXAD0AAABCABoAAAAXAD8AAABCABwAAAAXAD0AAABCAB4AAAAXAD8AAABCACAAAAAXAD4AAAA=")
+
 [connection signal="pressed" from="CenterContainer/StartVBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+
+[editable path="Tilemaps"]

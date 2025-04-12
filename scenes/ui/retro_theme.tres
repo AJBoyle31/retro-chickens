@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://cbackpg4g72aa" path="res://assets/fonts/Kenney Future.ttf" id="1_hpakm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skfqi"]
-bg_color = Color(0.172203, 0.649672, 0.857584, 1)
+bg_color = Color(0.160784, 0.678431, 1, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
