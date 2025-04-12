@@ -15,7 +15,8 @@ var npc_state: String
 
 #NEED TO FIX ANIMATION PLAYING FOR EXPORTED STATE
 func _ready() -> void:
-	print(state)
+	pass
+	#print(state)
 
 
 func _process(_delta: float) -> void:
