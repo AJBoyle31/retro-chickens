@@ -1,35 +1,102 @@
 extends NPC
 
+#emerges and shoots a bullet
+#no hit box while in ground
+#waits for player to get close or walk past to emerge and shoot
+#adjust the emerging speed to make it more difficult
+
+var in_cooldown: bool = false
+var cooldown_time: float = 0.5
+
+@onready var player_detection_collision_shape: CollisionShape2D = %PlayerDetectionCollisionShape
+@onready var cooldown_timer: Timer = %CooldownTimer
+
 
 func _ready() -> void:
 	npc_hitbox.hide()
+	state = "idle"
 	#print(state)
 	#animated_sprite.play(state)
 
 func _process(_delta: float) -> void:
-	if state == "walk":
-		#walking(_delta)
-		state = "idle"
-	elif state == "idle":
-		idle(_delta)
+	match state:
+		"walk":
+			idle(_delta)
+		"idle":
+			idle(_delta)
+		"emerge":
+			_emerging_state()
+		"emerged":
+			_emerged_state()
+		"submerge":
+			_submerging_state()
+		"attack":
+			if !in_cooldown:
+				_attack_state()
+			else:
+				_emerged_state()
+
+	if Input.is_key_pressed(KEY_0):
+		state = "attack"
+	if Input.is_key_pressed(KEY_1):
+		state = "emerge"
 
 
+#mushroom is shooting his shot
+func _attack_state() -> void:
+	animated_sprite.play("attack")
+
+
+
+#mushroom is rising from idle
 func _emerging_state() -> void: 
-	pass
+	animated_sprite.play("emerge")
 
+#mushroom is at full attention
 func _emerged_state() -> void:
+	animated_sprite.play("emerged")
 	npc_hitbox.show()
+	state = "attack"
 
+#mushroom is returning to idle
 func _submerging_state() -> void:
 	npc_hitbox.hide()
+	animated_sprite.play("submerge")
 
-func _shooting_state() -> void:
-	pass
 
 func handle_facing_direction() -> void:
 	if direction > 0:
 		animated_sprite.flip_h = false
 		npc_hitbox.position.x = 0
+		player_detection_collision_shape.position = Vector2(33,2)
 	elif direction < 0:
 		animated_sprite.flip_h = true
 		npc_hitbox.position.x = -1
+		player_detection_collision_shape.position = Vector2(-33,2)
+
+
+func _on_animated_sprite_animation_finished() -> void:
+	#this is temporary for testing, mushroom doesn't need to always drop down before next shot
+	if animated_sprite.animation == "attack":
+		state = "emerged"
+		cooldown_timer.start(cooldown_time)
+		in_cooldown = true
+	
+	if animated_sprite.animation == "submerge":
+		state = "idle"
+	if animated_sprite.animation == "emerge":
+		state = "emerged"
+
+
+func _on_cooldown_timer_timeout() -> void:
+	in_cooldown = false
+
+
+func _on_player_detection_area_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		if state == "emerged":
+			state = "attack"
+		elif state == "idle":
+			state = "emerge"
+	else:
+		pass

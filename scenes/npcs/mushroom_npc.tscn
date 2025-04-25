@@ -1,8 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://tsygrhao5qe7"]
+[gd_scene load_steps=19 format=3 uid="uid://tsygrhao5qe7"]
 
 [ext_resource type="PackedScene" uid="uid://pgxlur2fj14b" path="res://scenes/npcs/npc.tscn" id="1_peqfk"]
 [ext_resource type="Script" uid="uid://dpv764210rlt8" path="res://scripts/mushroom_npc.gd" id="2_b2pha"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="3_tdg2m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peqfk"]
+atlas = ExtResource("3_tdg2m")
+region = Rect2(128, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2pha"]
+atlas = ExtResource("3_tdg2m")
+region = Rect2(144, 112, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h8agr"]
 atlas = ExtResource("3_tdg2m")
@@ -17,6 +25,10 @@ atlas = ExtResource("3_tdg2m")
 region = Rect2(80, 112, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5dk7"]
+atlas = ExtResource("3_tdg2m")
+region = Rect2(96, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdg2m"]
 atlas = ExtResource("3_tdg2m")
 region = Rect2(96, 112, 16, 16)
 
@@ -44,6 +56,17 @@ region = Rect2(48, 112, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_peqfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2pha")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_h8agr")
 }, {
 "duration": 1.0,
@@ -57,6 +80,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"emerge",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdg2m")
+}],
+"loop": true,
+"name": &"emerged",
 "speed": 5.0
 }, {
 "frames": [{
@@ -85,6 +116,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2pha"]
+size = Vector2(39, 12)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peqfk"]
 size = Vector2(13, 12)
 
@@ -94,11 +128,26 @@ script = ExtResource("2_b2pha")
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_vfw42")
 animation = &"emerge"
-frame = 3
-frame_progress = 1.0
+
+[node name="PlayerDetectionArea" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="PlayerDetectionCollisionShape" type="CollisionShape2D" parent="PlayerDetectionArea" index="0"]
+unique_name_in_owner = true
+position = Vector2(33, 2)
+shape = SubResource("RectangleShape2D_b2pha")
 
 [node name="CollisionShape2D" parent="NPCHitbox" index="0"]
 position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_peqfk")
+
+[node name="CooldownTimer" type="Timer" parent="." index="5"]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_animated_sprite_animation_finished"]
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 
 [editable path="NPCHitbox"]
