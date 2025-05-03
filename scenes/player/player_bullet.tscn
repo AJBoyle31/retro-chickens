@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqqa16gm6o5cs"]
+
+[ext_resource type="PackedScene" uid="uid://d4elucrfeg6ea" path="res://scenes/player/bullet.tscn" id="1_2kcj1"]
+[ext_resource type="Texture2D" uid="uid://d3a04qijp10nm" path="res://assets/player.png" id="2_fgkn0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gswxk"]
+size = Vector2(3, 3)
+
+[node name="PlayerBullet" instance=ExtResource("1_2kcj1")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-4.5, 1.5)
+shape = SubResource("RectangleShape2D_gswxk")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_fgkn0")
+hframes = 7
+vframes = 14
+frame = 23

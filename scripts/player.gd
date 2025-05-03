@@ -1,10 +1,10 @@
 extends CharacterBody2D
 class_name Player
 
-signal shoot(bullet)
+signal player_shoot(bullet)
 signal player_has_died
 
-const BULLET = preload("res://scenes/player/bullet.tscn")
+const BULLET = preload("res://scenes/player/player_bullet.tscn")
 
 @export var speed: int = 80
 @export var acceleration: int = 300
@@ -78,7 +78,7 @@ func _physics_process(delta) -> void:
 		
 
 func shoot_gun() -> void:
-	shoot.emit(BULLET)
+	player_shoot.emit(BULLET)
 
 
 func handle_facing_direction(_direction: int) -> void: 

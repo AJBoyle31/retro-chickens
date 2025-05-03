@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://2preaxldwvyq"]
+
+[ext_resource type="PackedScene" uid="uid://d4elucrfeg6ea" path="res://scenes/player/bullet.tscn" id="1_mxtj2"]
+[ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="2_mihet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ri6i7"]
+size = Vector2(3, 3)
+
+[node name="NPCBullet" instance=ExtResource("1_mxtj2")]
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(4.5, 6.5)
+shape = SubResource("RectangleShape2D_ri6i7")
+debug_color = Color(0.779409, 0.641648, 0, 0.42)
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_mihet")
+hframes = 14
+vframes = 21
+frame = 108

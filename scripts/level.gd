@@ -22,6 +22,7 @@ var player: Player
 @onready var player_marker_2d: Marker2D = %PlayerMarker2D
 @onready var chicken_spawner: ChickenSpawner = %ChickenSpawner
 @onready var enemy_spawner: EnemySpawner = %EnemySpawner
+@onready var enemies: Node = %Enemies
 
 
 
@@ -57,7 +58,7 @@ func spawn_player() -> void:
 	player.global_position = player_marker_2d.global_position
 	get_node("PlayerSpawn").add_child(player)
 	player.set_bullet_count(bullet_count)
-	player.connect("shoot", _on_player_shoot)
+	player.connect("player_shoot", _on_player_shoot)
 	player.connect("player_has_died", _on_player_death)
 	player.enable_player()
 	
@@ -79,6 +80,11 @@ func spawn_chickens() -> void:
 
 func spawn_enemies() -> void:
 	enemy_spawner.spawn_enemies()
+	var level_enemies = enemies.get_children()
+	for enemy in level_enemies:
+		if enemy.has_method("shoot_bullet"):
+			enemy.connect("npc_shoot", add_bullet_to_level)
+			
 
 func reset_hud() -> void:
 	bullets_left = bullet_count
@@ -94,16 +100,29 @@ func _on_player_shoot(Bullet):
 	if bullets_left > 0: 
 		bullets_left -= 1
 		update_bullet_counts(bullets_left)
-		var bullet_instance = Bullet.instantiate()
-		add_child(bullet_instance)
-		bullet_instance.global_position = player.global_position
+		
+		var player_bullet_instance = Bullet.instantiate()
+		add_child(player_bullet_instance)
+		player_bullet_instance.global_position = player.global_position
 		if !player.player_sprite.flip_h:
-			bullet_instance.direction = 1
-			bullet_instance.global_position.x += 10
+			player_bullet_instance.direction = 1
+			player_bullet_instance.global_position.x += 10
 		else:
-			bullet_instance.direction = -1
-			bullet_instance.global_position.x -= 2
+			player_bullet_instance.direction = -1
+			player_bullet_instance.global_position.x -= 2
 
+func add_bullet_to_level(Bullet, _position: Vector2, _direction: int) -> void:
+	var npc_bullet_instance = Bullet.instantiate()
+	add_child(npc_bullet_instance)
+	npc_bullet_instance.global_position = _position
+	npc_bullet_instance.global_position.y -= 0.5
+	npc_bullet_instance.speed = 50
+	if _direction >= 0:
+		npc_bullet_instance.direction = 1
+		npc_bullet_instance.global_position.x += 20
+	else:
+		npc_bullet_instance.direction = -1
+		npc_bullet_instance.global_position.x -= 10
 
 
 #HUD Updates

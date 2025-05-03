@@ -22,7 +22,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func idle(_delta) -> void:
+func idle(_delta: float) -> void:
 	handle_facing_direction()
 	animated_sprite.play("idle")
 
