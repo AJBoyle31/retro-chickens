@@ -41,12 +41,21 @@ func _process(_delta: float) -> void:
 				_attack_state()
 			else:
 				_emerged_state()
+		"hit":
+			hit()
 
 	if Input.is_key_pressed(KEY_0):
 		state = "attack"
 	if Input.is_key_pressed(KEY_1):
 		state = "emerge"
 
+
+func hit():
+	animated_sprite.play("hit")
+	if direction >= 0:
+		animated_sprite.flip_h = true
+	elif direction < 0:
+		animated_sprite.flip_h = false
 
 #mushroom is shooting his shot
 func _attack_state() -> void:
@@ -111,14 +120,15 @@ func _on_cooldown_timer_timeout() -> void:
 
 
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		player_detected = true
-		if state == "emerged":
-			state = "attack"
-		elif state == "idle":
-			state = "emerge"
-	else:
-		pass
+	if !is_frozen:
+		if body.name == "Player":
+			player_detected = true
+			if state == "emerged":
+				state = "attack"
+			elif state == "idle":
+				state = "emerge"
+		else:
+			pass
 
 
 func _on_player_detection_area_body_exited(body: Node2D) -> void:

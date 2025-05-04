@@ -64,3 +64,10 @@ func handle_facing_direction() -> void:
 
 func kill_npc() -> void:
 	queue_free()
+
+
+func _on_npc_hitbox_area_entered(area: Area2D) -> void:
+	if area.name.contains("PlayerBullet"):
+		print("PLAYER BULLET HIT!")
+		if area.has_method("destroy_bullet"):
+			area.destroy_bullet()

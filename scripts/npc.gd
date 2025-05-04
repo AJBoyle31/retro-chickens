@@ -8,6 +8,7 @@ var npc_bullet_speed: int = 0
 
 var direction := 1
 var npc_state: String
+var is_frozen: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite
 @onready var ray_cast_right: RayCast2D = %RayCastRight
@@ -38,6 +39,8 @@ func walking(_delta) -> void:
 	
 	position.x += speed * direction * _delta
 
+
+
 func handle_facing_direction() -> void: 
 	if direction > 0:
 		animated_sprite.flip_h = false
@@ -45,5 +48,15 @@ func handle_facing_direction() -> void:
 		animated_sprite.flip_h = true
 
 
+
 func kill_npc() -> void:
 	queue_free()
+
+
+func _on_npc_hitbox_area_entered(area: Area2D) -> void:
+	if area.name.contains("PlayerBullet"):
+		print("PLAYER BULLET HIT!")
+		state = "hit"
+		is_frozen = true
+		if area.has_method("destroy_bullet"):
+			area.destroy_bullet()
