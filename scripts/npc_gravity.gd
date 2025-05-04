@@ -7,7 +7,7 @@ class_name NPCGravity
 var direction := 1
 var gravity := 100
 var spawn_state : String
-
+var npc_bullet_speed: int = 0
 
 @onready var animated_sprite: AnimatedSprite2D = %AnimatedSprite
 @onready var ray_cast_right: RayCast2D = %RayCastRight

@@ -13,5 +13,5 @@ func destroy_bullet() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "World":
-		print(body.name)
+		#print(body.name)
 		destroy_bullet()

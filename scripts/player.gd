@@ -22,6 +22,7 @@ var player_hit_by_npc: bool = false
 var player_alive: bool = true
 var player_facing_direction: int = 1
 
+
 @onready var player_sprite: Sprite2D = %PlayerSprite
 @onready var player_hitbox: HurtBox = %HurtBox
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -99,9 +100,11 @@ func set_bullet_count(_bullet_count: int) -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	print(area.name)
 	if area.name.contains("NPC"):
-		print("You've been snake bit")
 		player_hit_by_npc = true
 		player_state = States.HIT
+		if area.has_method("destroy_bullet"):
+			area.destroy_bullet()
+		
 		
 
 func disable_player() -> void:

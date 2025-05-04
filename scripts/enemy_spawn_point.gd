@@ -5,3 +5,4 @@ class_name EnemyMarker
 @export_enum("idle", "walk", "emerged") var enemy_state: String = "idle"
 @export var speed: int = 30
 @export var direction := 1
+@export var npc_bullet_speed: int = 75

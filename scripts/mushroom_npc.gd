@@ -5,7 +5,7 @@ extends NPC
 #waits for player to get close or walk past to emerge and shoot
 #adjust the emerging speed to make it more difficult
 
-signal npc_shoot(bullet, position, direction)
+signal npc_shoot(bullet, position, direction, speed)
 
 const BULLET = preload("res://scenes/npcs/npc_bullet.tscn")
 
@@ -61,6 +61,8 @@ func _attack_state() -> void:
 #mushroom is rising from idle
 func _emerging_state() -> void: 
 	animated_sprite.play("emerge")
+	in_cooldown = false
+	npc_shot = false
 
 #mushroom is at full attention
 func _emerged_state() -> void:
@@ -74,7 +76,7 @@ func _submerging_state() -> void:
 	animated_sprite.play("submerge")
 
 func shoot_bullet():
-	npc_shoot.emit(BULLET, global_position, direction)
+	npc_shoot.emit(BULLET, global_position, direction, npc_bullet_speed)
 
 func handle_facing_direction() -> void:
 	if direction > 0:

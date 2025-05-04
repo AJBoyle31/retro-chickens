@@ -3,6 +3,7 @@ class_name Level
 
 @export var time_to_complete: float = 30.0
 @export var bullet_count: int = 5
+@export var player_bullet_speed: int = 100
 
 const PLAYER_SCENE := preload("res://scenes/player/player.tscn")
 const CHICKEN := preload("res://scenes/npcs/chicken.tscn")
@@ -104,6 +105,7 @@ func _on_player_shoot(Bullet):
 		var player_bullet_instance = Bullet.instantiate()
 		add_child(player_bullet_instance)
 		player_bullet_instance.global_position = player.global_position
+		player_bullet_instance.speed = player_bullet_speed
 		if !player.player_sprite.flip_h:
 			player_bullet_instance.direction = 1
 			player_bullet_instance.global_position.x += 10
@@ -111,12 +113,12 @@ func _on_player_shoot(Bullet):
 			player_bullet_instance.direction = -1
 			player_bullet_instance.global_position.x -= 2
 
-func add_bullet_to_level(Bullet, _position: Vector2, _direction: int) -> void:
+func add_bullet_to_level(Bullet, _position: Vector2, _direction: int, _bullet_speed: int) -> void:
 	var npc_bullet_instance = Bullet.instantiate()
 	add_child(npc_bullet_instance)
 	npc_bullet_instance.global_position = _position
 	npc_bullet_instance.global_position.y -= 0.5
-	npc_bullet_instance.speed = 50
+	npc_bullet_instance.speed = _bullet_speed
 	if _direction >= 0:
 		npc_bullet_instance.direction = 1
 		npc_bullet_instance.global_position.x += 20

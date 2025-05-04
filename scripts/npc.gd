@@ -4,6 +4,7 @@ class_name NPC
 #@export_enum("idle", "walk") var state: String = "idle"
 var state: String
 @export var speed: int = 30
+var npc_bullet_speed: int = 0
 
 var direction := 1
 var npc_state: String

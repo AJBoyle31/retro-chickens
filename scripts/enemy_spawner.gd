@@ -19,4 +19,4 @@ func spawn_enemies() -> void:
 		new_enemy.state = enemy_point.enemy_state
 		new_enemy.direction = enemy_point.direction
 		new_enemy.speed = enemy_point.speed
-		
+		new_enemy.npc_bullet_speed = enemy_point.npc_bullet_speed

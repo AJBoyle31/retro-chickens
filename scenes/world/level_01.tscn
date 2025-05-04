@@ -59,6 +59,7 @@ position = Vector2(336, 100)
 script = ExtResource("3_bfhml")
 enemy_type = 3
 direction = -1
+npc_bullet_speed = 25
 
 [node name="Chicken" parent="Chickens" index="0" instance=ExtResource("2_ey86d")]
 position = Vector2(588, 97)
