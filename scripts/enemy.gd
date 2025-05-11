@@ -5,10 +5,11 @@ signal npc_shoot(bullet, position, direction, speed)
 
 enum Enemy_state {IDLE, WALK, ATTACK, HIT}
 
-@export var state: Enemy_state
+@export var state: Enemy_state = Enemy_state.IDLE
 @export var apply_gravity: bool = true
 @export var can_attack: bool = false
 @export var can_shoot: bool = false
+@export var npc_bullet_speed: int = 75
 @export var attack_cooldown_time: float = 0.5
 @export var speed: int = 30
 
@@ -20,7 +21,6 @@ var gravity := 100
 
 #ATTACK/BULLET 
 var player_detected: bool = false
-var npc_bullet_speed: int = 0
 var in_cooldown: bool = false
 var npc_shot: bool = false
 var cooldown_time: float = 0.5

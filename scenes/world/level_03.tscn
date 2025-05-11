@@ -36,8 +36,8 @@ speed = 35
 
 [node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
 position = Vector2(121, 72)
-enemy_state = "walk"
 direction = -1
+state = 1
 
 [node name="NextLevel" parent="." index="10"]
 position = Vector2(642, 95)

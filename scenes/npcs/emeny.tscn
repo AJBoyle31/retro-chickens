@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://daw0cyehp6dtw" path="res://scripts/enemy.gd" id="1_rdyb7"]
 [ext_resource type="PackedScene" uid="uid://72rkbcdhsyob" path="res://scenes/overlap/hitbox.tscn" id="1_x8u5w"]
 
-[node name="Emeny" type="CharacterBody2D"]
+[node name="Emeny" type="CharacterBody2D" groups=["enemies", "level_restart"]]
 script = ExtResource("1_rdyb7")
 
 [node name="BodyCollisionShape2D" type="CollisionShape2D" parent="."]
