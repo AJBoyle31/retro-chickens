@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dcoxt0ywt54x4"]
+[gd_scene load_steps=18 format=3 uid="uid://dcoxt0ywt54x4"]
 
 [ext_resource type="PackedScene" uid="uid://uffiacfa5a7c" path="res://scenes/npcs/emeny.tscn" id="1_4i55m"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="2_44xja"]
@@ -14,6 +14,18 @@ region = Rect2(0, 80, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_44xja"]
 atlas = ExtResource("2_44xja")
 region = Rect2(208, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4gia"]
+atlas = ExtResource("2_44xja")
+region = Rect2(192, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78eip"]
+atlas = ExtResource("2_44xja")
+region = Rect2(208, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6y7j"]
+atlas = ExtResource("2_44xja")
+region = Rect2(192, 80, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7ufr"]
 atlas = ExtResource("2_44xja")
@@ -52,6 +64,15 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_44xja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4gia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78eip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6y7j")
 }],
 "loop": true,
 "name": &"hit",
@@ -90,7 +111,6 @@ animations = [{
 size = Vector2(10, 9)
 
 [node name="SnakeEmeny" instance=ExtResource("1_4i55m")]
-collision_layer = 4
 script = ExtResource("2_l7ufr")
 
 [node name="BodyCollisionShape2D" parent="." index="0"]
@@ -100,8 +120,16 @@ debug_color = Color(0.591677, 0.543931, 0.165504, 0.42)
 
 [node name="AnimatedSprite" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_a4gia")
-animation = &"idle"
+animation = &"hit"
 autoplay = "idle"
+frame_progress = 0.208136
+
+[node name="RayCastRight" parent="." index="2"]
+position = Vector2(0, 3)
+
+[node name="RayCastLeft" parent="." index="3"]
+position = Vector2(0, 3)
+target_position = Vector2(-10, 0)
 
 [node name="CollisionShape2D" parent="NPCHitbox" index="0"]
 position = Vector2(-1, 3.5)

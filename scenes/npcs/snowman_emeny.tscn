@@ -1,0 +1,125 @@
+[gd_scene load_steps=17 format=3 uid="uid://cs1sli02678vi"]
+
+[ext_resource type="PackedScene" uid="uid://uffiacfa5a7c" path="res://scenes/npcs/emeny.tscn" id="1_xccgr"]
+[ext_resource type="Script" uid="uid://b01mw8hre7jv1" path="res://scripts/snowman_emeny.gd" id="2_ksvo6"]
+[ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="3_ksvo6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksvo6"]
+size = Vector2(10, 15.75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbiep"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(208, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kv0s"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(192, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r47ti"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(208, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls62w"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(192, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykk8r"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(0, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjvsi"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(16, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy2lf"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(48, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqs5q"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(64, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4cjm"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(80, 304, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twi7p"]
+atlas = ExtResource("3_ksvo6")
+region = Rect2(96, 304, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gg11x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbiep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kv0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r47ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls62w")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykk8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjvsi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy2lf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqs5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4cjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twi7p")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bbiep"]
+size = Vector2(8, 15.5)
+
+[node name="SnowmanEmeny" instance=ExtResource("1_xccgr")]
+script = ExtResource("2_ksvo6")
+
+[node name="BodyCollisionShape2D" parent="." index="0"]
+position = Vector2(-1, 0.125)
+shape = SubResource("RectangleShape2D_ksvo6")
+
+[node name="AnimatedSprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_gg11x")
+animation = &"idle"
+frame_progress = 0.429231
+
+[node name="RayCastRight" parent="." index="2"]
+target_position = Vector2(9, 0)
+
+[node name="RayCastLeft" parent="." index="3"]
+target_position = Vector2(-9, 0)
+
+[node name="NPCHitbox" parent="." index="4"]
+position = Vector2(-1, 0)
+
+[node name="CollisionShape2D" parent="NPCHitbox" index="0"]
+shape = SubResource("RectangleShape2D_bbiep")
+
+[editable path="NPCHitbox"]

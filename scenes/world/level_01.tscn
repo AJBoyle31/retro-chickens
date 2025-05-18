@@ -57,7 +57,6 @@ direction = -1
 [node name="EnemySpawnPoint2" type="Marker2D" parent="EnemySpawner" index="1"]
 position = Vector2(336, 100)
 script = ExtResource("3_bfhml")
-enemy_type = 3
 direction = -1
 npc_bullet_speed = 25
 

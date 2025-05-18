@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://c2yp1tdmem4nj"]
+[gd_scene load_steps=6 format=4 uid="uid://c2yp1tdmem4nj"]
 
 [ext_resource type="PackedScene" uid="uid://cku3k0nc0l6hh" path="res://scenes/world/level.tscn" id="1_cnndc"]
 [ext_resource type="Script" uid="uid://mll4dce3t0h1" path="res://scripts/chicken_spawn_point.gd" id="2_kaoxl"]
 [ext_resource type="PackedScene" uid="uid://b66smnfakwmam" path="res://scenes/world/level_04.tscn" id="3_3iloc"]
+[ext_resource type="Script" uid="uid://c3xwmbbfecjc" path="res://scripts/enemy_spawn_point.gd" id="3_twgus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmsrg"]
 size = Vector2(10, 27)
@@ -36,8 +37,19 @@ speed = 35
 
 [node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
 position = Vector2(121, 72)
-direction = -1
+enemy_option = 2
+
+[node name="EnemySpawnPoint3" type="Marker2D" parent="EnemySpawner" index="1"]
+position = Vector2(94, 72)
+script = ExtResource("3_twgus")
+enemy_option = 2
 state = 1
+direction = -1
+
+[node name="EnemySpawnPoint2" type="Marker2D" parent="EnemySpawner" index="2"]
+position = Vector2(332, 128)
+script = ExtResource("3_twgus")
+direction = -1
 
 [node name="NextLevel" parent="." index="10"]
 position = Vector2(642, 95)

@@ -57,6 +57,7 @@ func walking(_delta) -> void:
 	handle_facing_direction()
 
 func handle_facing_direction() -> void: 
+	print("npc class")
 	if direction > 0:
 		animated_sprite.flip_h = false
 	elif direction < 0:
@@ -68,6 +69,6 @@ func kill_npc() -> void:
 
 func _on_npc_hitbox_area_entered(area: Area2D) -> void:
 	if area.name.contains("PlayerBullet"):
-		print("PLAYER BULLET HIT!")
+		#print("PLAYER BULLET HIT!")
 		if area.has_method("destroy_bullet"):
 			area.destroy_bullet()

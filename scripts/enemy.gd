@@ -6,17 +6,18 @@ signal npc_shoot(bullet, position, direction, speed)
 enum Enemy_state {IDLE, WALK, ATTACK, HIT}
 
 @export var state: Enemy_state = Enemy_state.IDLE
+@export var speed: int = 30
+@export var direction: int = 1
 @export var apply_gravity: bool = true
 @export var can_attack: bool = false
 @export var can_shoot: bool = false
 @export var npc_bullet_speed: int = 75
 @export var attack_cooldown_time: float = 0.5
-@export var speed: int = 30
+
 
 const BULLET = preload("res://scenes/npcs/npc_bullet.tscn")
 
 #MOVEMENT
-var direction := 1
 var gravity := 100
 
 #ATTACK/BULLET 
@@ -36,13 +37,6 @@ func _ready() -> void:
 	pass
 
 func _physics_process(_delta: float) -> void:
-	#MOVEMENT
-	#if not is_on_floor() and apply_gravity:
-		#velocity.y += gravity * _delta
-	#elif state == Enemy_state.WALK and is_on_floor():
-		#velocity.x = direction * speed
-	#elif state == Enemy_state.IDLE and is_on_floor():
-		#velocity.x = 0
 	
 	match state:
 		Enemy_state.IDLE:
@@ -120,6 +114,7 @@ func handle_facing_direction() -> void:
 #ENEMY IS DEAD
 func kill_npc() -> void:
 	queue_free()
+
 
 #ENEMY IS HIT BY A PLAYER BULLET
 func _on_npc_hitbox_area_entered(area: Area2D) -> void:

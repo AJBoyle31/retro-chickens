@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://72rkbcdhsyob" path="res://scenes/overlap/hitbox.tscn" id="1_x8u5w"]
 
 [node name="Emeny" type="CharacterBody2D" groups=["enemies", "level_restart"]]
+collision_layer = 4
 script = ExtResource("1_rdyb7")
 
 [node name="BodyCollisionShape2D" type="CollisionShape2D" parent="."]
@@ -15,10 +16,12 @@ unique_name_in_owner = true
 [node name="RayCastRight" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(8, 0)
+collision_mask = 5
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 unique_name_in_owner = true
 target_position = Vector2(-8, 0)
+collision_mask = 5
 
 [node name="NPCHitbox" parent="." instance=ExtResource("1_x8u5w")]
 unique_name_in_owner = true
