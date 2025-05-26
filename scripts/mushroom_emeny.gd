@@ -1,35 +1,32 @@
 extends Enemy
 
-enum Mushroom_states {IDLE, EMERGE, SUBMERGE, ATTACK, HIT}
+enum Mushroom_states {IDLE, EMERGE, EMERGED, SUBMERGE, ATTACK, HIT}
 #if idle, then need to emerge and attack/shoot
 #if player leaves detection area, then mushroom submerges and then goes to idle
 var mushroom_state: Mushroom_states
 
 
-
+#
 func _ready() -> void:
-	pass
+	state = Enemy_state.IDLE
+	mushroom_state = Mushroom_states.IDLE
 
 func _physics_process(delta: float) -> void:
 	pass
-	#match state:
-		#"walk":
-			#idle(_delta)
-		#"idle":
-			#idle(_delta)
-		#"emerge":
-			#_emerging_state()
-		#"emerged":
-			#_emerged_state()
-		#"submerge":
-			#_submerging_state()
-		#"attack":
-			#if !in_cooldown:
-				#_attack_state()
-			#else:
-				#_emerged_state()
-		#"hit":
-			#hit()
+	match mushroom_state:
+		Mushroom_states.IDLE:
+			idle_state()
+		Mushroom_states.EMERGE:
+			_emerging_state()
+		Mushroom_states.EMERGED:
+			_emerged_state()
+		Mushroom_states.SUBMERGE:
+			_submerging_state()
+		Mushroom_states.ATTACK:
+			attack_state()
+		Mushroom_states.HIT:
+			hit_state()
+
 #
 	#if Input.is_key_pressed(KEY_0):
 		#state = "attack"
@@ -39,9 +36,9 @@ func _physics_process(delta: float) -> void:
 
 func hit():
 	animated_sprite.play("hit")
-	if direction >= 0:
+	if direction == 1:
 		animated_sprite.flip_h = true
-	elif direction < 0:
+	elif direction == -1:
 		animated_sprite.flip_h = false
 
 func idle_state() -> void:
@@ -49,7 +46,7 @@ func idle_state() -> void:
 
 
 func walking_state(_delta) -> void: 
-	state = Enemy_state.IDLE
+	mushroom_state = Mushroom_states.IDLE
 
 func attack_state() -> void:
 	if can_attack:
@@ -61,7 +58,7 @@ func attack_state() -> void:
 			else:
 				pass
 	else:
-		state = Enemy_state.IDLE
+		mushroom_state = Mushroom_states.IDLE
 
 #mushroom is rising from idle
 func _emerging_state() -> void: 

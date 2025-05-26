@@ -31,7 +31,8 @@ var cooldown_time: float = 0.5
 @onready var ray_cast_right: RayCast2D = %RayCastRight
 @onready var ray_cast_left: RayCast2D = %RayCastLeft
 @onready var npc_hitbox: Area2D = %NPCHitbox
-@onready var attack_cooldown_timer: Timer = %CooldownTimer
+@onready var attack_cooldown_timer: Timer = %AttackCooldownTimer
+
 
 func _ready() -> void:
 	pass
