@@ -4,7 +4,7 @@ class_name EnemySpawner
 const SNAKE := preload("res://scenes/npcs/snake_emeny.tscn")
 const SCORPION := preload("res://scenes/npcs/scorpion_emeny.tscn")
 const SNOWMAN := preload("res://scenes/npcs/snowman_emeny.tscn")
-const MUSHROOM := preload("res://scenes/npcs/mushroom_npc.tscn")
+const MUSHROOM := preload("res://scenes/npcs/mushroom_emeny.tscn")
 
 const ENEMY_OPTIONS: Array = [SNAKE, SCORPION, SNOWMAN, MUSHROOM]
 

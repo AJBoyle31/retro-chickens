@@ -8,7 +8,7 @@ func _ready() -> void:
 	#npc_bullet_speed = 0
 	#attack_cooldown_time = 0.5
 
-#specific to snake, general is covered under the super
+#specific to snowman, general is covered under the super
 func handle_facing_direction() -> void:
 	super()
 	if direction > 0:

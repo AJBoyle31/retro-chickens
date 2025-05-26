@@ -28,27 +28,28 @@ position = Vector2(17, 59)
 [node name="ChickenSpawnPoint" parent="ChickenSpawner" index="0"]
 position = Vector2(213, 133)
 state = "walk"
+speed = 0
 
 [node name="ChickenSpawnPoint2" type="Marker2D" parent="ChickenSpawner" index="1"]
 position = Vector2(488, 117)
 script = ExtResource("2_kaoxl")
 state = "walk"
-speed = 35
+speed = 0
 
 [node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
 position = Vector2(121, 72)
-enemy_option = 2
+enemy_option = 3
 
 [node name="EnemySpawnPoint3" type="Marker2D" parent="EnemySpawner" index="1"]
 position = Vector2(94, 72)
 script = ExtResource("3_twgus")
-enemy_option = 2
-state = 1
+enemy_option = 3
 direction = -1
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="EnemySpawner" index="2"]
 position = Vector2(332, 128)
 script = ExtResource("3_twgus")
+enemy_option = 3
 direction = -1
 
 [node name="NextLevel" parent="." index="10"]

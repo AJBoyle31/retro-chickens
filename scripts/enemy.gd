@@ -31,7 +31,7 @@ var cooldown_time: float = 0.5
 @onready var ray_cast_right: RayCast2D = %RayCastRight
 @onready var ray_cast_left: RayCast2D = %RayCastLeft
 @onready var npc_hitbox: Area2D = %NPCHitbox
-@onready var cooldown_timer: Timer = %CooldownTimer
+@onready var attack_cooldown_timer: Timer = %CooldownTimer
 
 func _ready() -> void:
 	pass
@@ -84,21 +84,24 @@ func walking_state(_delta) -> void:
 	handle_facing_direction()
 
 #ENEMY ATTACK STATE
+#Should be set up in specific Enemy classes
 func attack_state() -> void:
-	if can_attack:
-		animated_sprite.play("attack")
-		if can_shoot:
-			if !npc_shot:
-				shoot_bullet()
-				npc_shot = true
-			else:
-				pass
-	else:
-		state = Enemy_state.IDLE
+	pass
+	#if can_attack:
+		#animated_sprite.play("attack")
+		#if can_shoot:
+			#if !npc_shot:
+				#shoot_bullet()
+				#npc_shot = true
+			#else:
+				#pass
+	#else:
+		#state = Enemy_state.IDLE
 
 #ENEMYS THAT CAN SHOOT BULLETS
 func shoot_bullet():
 	npc_shoot.emit(BULLET, global_position, direction, npc_bullet_speed)
+	attack_cooldown_timer.start(attack_cooldown_time)
 
 #ENEMIES THAT ARE HIT BY PLAYER BULLETS
 func hit_state() -> void:
@@ -122,3 +125,7 @@ func _on_npc_hitbox_area_entered(area: Area2D) -> void:
 		print("PLAYER BULLET HIT!")
 		if area.has_method("destroy_bullet"):
 			area.destroy_bullet()
+
+
+func _on_attack_cooldown_timer_timeout() -> void:
+	npc_shot = false
