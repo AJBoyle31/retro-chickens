@@ -6,7 +6,6 @@ enum Mushroom_states {IDLE, EMERGE, EMERGED, SUBMERGE, ATTACK, HIT}
 var mushroom_state: Mushroom_states
 
 
-#
 func _ready() -> void:
 	state = Enemy_state.IDLE
 	mushroom_state = Mushroom_states.IDLE
@@ -27,7 +26,6 @@ func _physics_process(delta: float) -> void:
 		Mushroom_states.HIT:
 			hit_state()
 
-#
 	#if Input.is_key_pressed(KEY_0):
 		#state = "attack"
 	#if Input.is_key_pressed(KEY_1):
@@ -106,8 +104,16 @@ func handle_facing_direction() -> void:
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		state = Enemy_state.ATTACK
-		
+
+func _on_player_detection_area_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		mushroom_state = Mushroom_states.IDLE
 
 
 func _on_animated_sprite_animation_finished() -> void:
-	pass # Replace with function body.
+	if animated_sprite.animation == "attack":
+		pass
+	elif animated_sprite.animation == "submerge":
+		mushroom_state = Mushroom_states.IDLE
+	elif animated_sprite.animation == "emerge":
+		mushroom_state = Mushroom_states.EMERGED
