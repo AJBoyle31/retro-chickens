@@ -45,12 +45,15 @@ position = Vector2(94, 72)
 script = ExtResource("3_twgus")
 enemy_option = 3
 direction = -1
+can_attack = true
+can_shoot = true
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="EnemySpawner" index="2"]
 position = Vector2(332, 128)
 script = ExtResource("3_twgus")
 enemy_option = 3
-direction = -1
+can_attack = true
+can_shoot = true
 
 [node name="NextLevel" parent="." index="10"]
 position = Vector2(642, 95)

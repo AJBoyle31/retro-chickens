@@ -125,6 +125,7 @@ func add_bullet_to_level(Bullet, _position: Vector2, _direction: int, _bullet_sp
 	else:
 		npc_bullet_instance.direction = -1
 		npc_bullet_instance.global_position.x -= 10
+	
 
 
 #HUD Updates

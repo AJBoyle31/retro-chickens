@@ -2,10 +2,11 @@ extends Area2D
 class_name Bullets
 
 var speed: int = 100
-var direction: int = 1
+var direction: int
 
 func _process(delta: float) -> void:
 	position.x += speed * delta * direction
+	
 
 func destroy_bullet() -> void:
 	queue_free()

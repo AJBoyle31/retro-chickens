@@ -6,12 +6,17 @@ enum Mushroom_states {IDLE, EMERGE, EMERGED, SUBMERGE, ATTACK, HIT}
 var mushroom_state: Mushroom_states
 
 
+
+
 func _ready() -> void:
 	state = Enemy_state.IDLE
 	mushroom_state = Mushroom_states.IDLE
 
+
 func _physics_process(delta: float) -> void:
-	pass
+	if !is_on_floor(): 
+		velocity.y += 10
+		move_and_slide()
 	match mushroom_state:
 		Mushroom_states.IDLE:
 			idle_state()
@@ -26,10 +31,14 @@ func _physics_process(delta: float) -> void:
 		Mushroom_states.HIT:
 			hit_state()
 
-	#if Input.is_key_pressed(KEY_0):
-		#state = "attack"
-	#if Input.is_key_pressed(KEY_1):
-		#state = "emerge"
+	if Input.is_key_pressed(KEY_0) and mushroom_state != Mushroom_states.EMERGED:
+		mushroom_state = Mushroom_states.EMERGE
+	if Input.is_key_pressed(KEY_1) and mushroom_state == Mushroom_states.EMERGED:
+		mushroom_state = Mushroom_states.SUBMERGE
+	if Input.is_key_pressed(KEY_2) and mushroom_state == Mushroom_states.EMERGED:
+		mushroom_state = Mushroom_states.ATTACK
+	
+	handle_facing_direction()
 
 
 func hit():
@@ -55,8 +64,7 @@ func attack_state() -> void:
 				shoot_bullet()
 			else:
 				pass
-	else:
-		mushroom_state = Mushroom_states.IDLE
+
 
 #mushroom is rising from idle
 func _emerging_state() -> void: 
@@ -84,8 +92,6 @@ func handle_facing_direction() -> void:
 	elif direction < 0:
 		pass
 
-
-
 #func _on_animated_sprite_animation_finished() -> void:
 	##this is temporary for testing, mushroom doesn't need to always drop down before next shot
 	#if animated_sprite.animation == "attack":
@@ -112,7 +118,7 @@ func _on_player_detection_area_body_exited(body: Node2D) -> void:
 
 func _on_animated_sprite_animation_finished() -> void:
 	if animated_sprite.animation == "attack":
-		pass
+		mushroom_state = Mushroom_states.EMERGED
 	elif animated_sprite.animation == "submerge":
 		mushroom_state = Mushroom_states.IDLE
 	elif animated_sprite.animation == "emerge":

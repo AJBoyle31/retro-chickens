@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dfyubvpr8rlrt"]
+[gd_scene load_steps=23 format=3 uid="uid://dfyubvpr8rlrt"]
 
 [ext_resource type="PackedScene" uid="uid://uffiacfa5a7c" path="res://scenes/npcs/emeny.tscn" id="1_vw76u"]
 [ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="2_mgl1v"]
@@ -34,6 +34,10 @@ region = Rect2(80, 112, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lsevn"]
 atlas = ExtResource("2_mgl1v")
 region = Rect2(96, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiigh"]
+atlas = ExtResource("2_mgl1v")
+region = Rect2(128, 112, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x6q45"]
 atlas = ExtResource("2_mgl1v")
@@ -98,6 +102,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_hiigh")
+}],
+"loop": true,
+"name": &"emerged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_x6q45")
 }],
 "loop": true,
@@ -138,7 +150,7 @@ size = Vector2(9, 11)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vrf8f"]
 radius = 6.0
-height = 96.0
+height = 152.0
 
 [node name="MushroomEmeny" instance=ExtResource("1_vw76u")]
 script = ExtResource("2_vrf8f")
@@ -151,7 +163,7 @@ shape = SubResource("RectangleShape2D_mgl1v")
 
 [node name="AnimatedSprite" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_mgl1v")
-animation = &"emerge"
+animation = &"emerged"
 
 [node name="RayCastLeft" parent="." index="3"]
 target_position = Vector2(-9, 0)
@@ -165,7 +177,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" index="0"]
-position = Vector2(-57, 2)
+position = Vector2(-83, 2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vrf8f")
 
