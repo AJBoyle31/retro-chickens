@@ -39,6 +39,9 @@ speed = 0
 [node name="EnemySpawnPoint" parent="EnemySpawner" index="0"]
 position = Vector2(121, 72)
 enemy_option = 3
+can_attack = true
+can_shoot = true
+npc_bullet_speed = 30
 
 [node name="EnemySpawnPoint3" type="Marker2D" parent="EnemySpawner" index="1"]
 position = Vector2(94, 72)

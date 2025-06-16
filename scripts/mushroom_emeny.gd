@@ -13,7 +13,7 @@ func _ready() -> void:
 	mushroom_state = Mushroom_states.IDLE
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !is_on_floor(): 
 		velocity.y += 10
 		move_and_slide()
@@ -109,7 +109,7 @@ func handle_facing_direction() -> void:
 
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		state = Enemy_state.ATTACK
+		mushroom_state = Mushroom_states.ATTACK
 
 func _on_player_detection_area_body_exited(body: Node2D) -> void:
 	if body.name == "Player":

@@ -98,8 +98,8 @@ func set_bullet_count(_bullet_count: int) -> void:
 	bullet_count = _bullet_count
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	print(area.name)
-	if area.name.contains("NPC"):
+	print("hit by " + str(area.name))
+	if area.name.contains("NPC"):# or area.has_method("destroy_bullet"):
 		player_hit_by_npc = true
 		player_state = States.HIT
 		if area.has_method("destroy_bullet"):
