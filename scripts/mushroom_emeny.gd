@@ -6,11 +6,14 @@ enum Mushroom_states {IDLE, EMERGE, EMERGED, SUBMERGE, ATTACK, HIT}
 var mushroom_state: Mushroom_states
 
 
+@onready var player_detection_area: Area2D = %PlayerDetectionArea
+
 
 
 func _ready() -> void:
 	state = Enemy_state.IDLE
 	mushroom_state = Mushroom_states.IDLE
+	npc_hitbox.hide()
 
 
 func _physics_process(_delta: float) -> void:
@@ -41,6 +44,7 @@ func _physics_process(_delta: float) -> void:
 	handle_facing_direction()
 
 
+
 func hit():
 	animated_sprite.play("hit")
 	if direction == 1:
@@ -49,7 +53,14 @@ func hit():
 		animated_sprite.flip_h = false
 
 func idle_state() -> void:
-	animated_sprite.play("idle")
+	if player_detected:
+		if animated_sprite.animation == "idle" or animated_sprite.animation == "submerge":
+			mushroom_state = Mushroom_states.EMERGE
+	else:
+		if animated_sprite.animation == "emerged":
+			mushroom_state = Mushroom_states.SUBMERGE
+		else:
+			animated_sprite.play("idle")
 
 
 func walking_state(_delta) -> void: 
@@ -75,12 +86,16 @@ func _emerging_state() -> void:
 #mushroom is at full attention
 func _emerged_state() -> void:
 	animated_sprite.play("emerged")
-	npc_hitbox.show()
-	#state = "attack"
+	#npc_hitbox.show()
+	if player_detected:
+		mushroom_state = Mushroom_states.ATTACK
+	else:
+		mushroom_state = Mushroom_states.SUBMERGE
+
 
 #mushroom is returning to idle
 func _submerging_state() -> void:
-	npc_hitbox.hide()
+	#npc_hitbox.hide()
 	animated_sprite.play("submerge")
 
 
@@ -88,32 +103,24 @@ func _submerging_state() -> void:
 func handle_facing_direction() -> void:
 	super()
 	if direction > 0:
-		pass
+		player_detection_area.rotation_degrees = 180.0
 	elif direction < 0:
-		pass
+		player_detection_area.rotation_degrees = 0
 
-#func _on_animated_sprite_animation_finished() -> void:
-	##this is temporary for testing, mushroom doesn't need to always drop down before next shot
-	#if animated_sprite.animation == "attack":
-		#if player_detected:
-			#state = "emerged"
-			#cooldown_timer.start(cooldown_time)
-			#in_cooldown = true
-		#else:
-			#state = "submerge"
-	#
-	#if animated_sprite.animation == "submerge":
-		#state = "idle"
-	#if animated_sprite.animation == "emerge":
-		#state = "emerged"
 
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		mushroom_state = Mushroom_states.ATTACK
+		player_detected = true
+		if animated_sprite.animation == "idle":
+			mushroom_state = Mushroom_states.EMERGE
+		elif animated_sprite.animation == "emerged":
+			mushroom_state = Mushroom_states.ATTACK
 
 func _on_player_detection_area_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		mushroom_state = Mushroom_states.IDLE
+		player_detected = false
+		if animated_sprite.animation == "emerged":
+			mushroom_state = Mushroom_states.SUBMERGE
 
 
 func _on_animated_sprite_animation_finished() -> void:

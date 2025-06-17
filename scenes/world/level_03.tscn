@@ -42,14 +42,16 @@ enemy_option = 3
 can_attack = true
 can_shoot = true
 npc_bullet_speed = 30
+attack_cooldown_time = 2.0
 
 [node name="EnemySpawnPoint3" type="Marker2D" parent="EnemySpawner" index="1"]
-position = Vector2(94, 72)
+position = Vector2(68, 72)
 script = ExtResource("3_twgus")
 enemy_option = 3
 direction = -1
 can_attack = true
 can_shoot = true
+attack_cooldown_time = 1.0
 
 [node name="EnemySpawnPoint2" type="Marker2D" parent="EnemySpawner" index="2"]
 position = Vector2(332, 128)

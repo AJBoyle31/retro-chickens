@@ -49,5 +49,5 @@ func _load_level(level_to_load) -> void:
 
 
 func _on_menu_start_game() -> void:
-	start_new_game()
 	menu.hide_menu()
+	start_new_game()

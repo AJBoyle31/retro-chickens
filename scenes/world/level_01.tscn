@@ -42,7 +42,7 @@ tile_map_data = PackedByteArray("AAAKAAoAAAABAAAAAAAMAAoAAAADAAAAAAAOAAoAAAABAAA
 tile_map_data = PackedByteArray("AAAlAAwAAAAGAAIAAAAlAAoAAAAMAAIAAAAlAAcAAAAJAAEAAAAnAAwAAAAGAAcAAAAjAAwAAAAFAAcAAAARAAcAAAAUAA8AAAA=")
 
 [node name="PlayerMarker2D" parent="PlayerSpawn" index="0"]
-position = Vector2(90, 60)
+position = Vector2(80, 59)
 
 [node name="ChickenSpawnPoint" parent="ChickenSpawner" index="0"]
 position = Vector2(464, 99)

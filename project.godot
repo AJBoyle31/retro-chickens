@@ -24,6 +24,7 @@ SignalManager="*res://scripts/signal_manager.gd"
 chickens=""
 enemies=""
 level_restart=""
+bullets=""
 
 [input]
 

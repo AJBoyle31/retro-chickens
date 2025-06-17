@@ -8,6 +8,7 @@ signal start_game
 @onready var start_v_box_container: VBoxContainer = %StartVBoxContainer
 @onready var pause_v_box_container: VBoxContainer = %PauseVBoxContainer
 @onready var pause_panel_container: PanelContainer = $CenterContainer/PausePanelContainer
+@onready var tilemaps: Node2D = $CenterContainer/StartVBoxContainer/Tilemaps
 
 
 
@@ -22,6 +23,9 @@ func show_title_screen() -> void:
 
 
 func hide_menu() -> void:
+	var tiles = tilemaps.get_children()
+	for tile in tiles:
+		tile.collision_enabled = false
 	start_v_box_container.hide()
 
 func paused_screen(show_menu:bool) -> void:

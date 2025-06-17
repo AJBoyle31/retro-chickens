@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=4 uid="uid://cw7lyj4725vrp"]
+
+[ext_resource type="PackedScene" uid="uid://o4x25sqrm5wy" path="res://scenes/world/tile_map.tscn" id="1_3iq1w"]
+[ext_resource type="Texture2D" uid="uid://d3a04qijp10nm" path="res://assets/player.png" id="2_gyhje"]
+[ext_resource type="Texture2D" uid="uid://tuydsothg2ba" path="res://assets/enemies.png" id="3_55wgi"]
+
+[node name="StartScreen" type="Node2D"]
+position = Vector2(363, 259)
+
+[node name="Tilemaps" parent="." instance=ExtResource("1_3iq1w")]
+position = Vector2(-357, -257)
+
+[node name="World" parent="Tilemaps" index="0"]
+scale = Vector2(3.5, 3.5)
+tile_map_data = PackedByteArray("AAADAAEAAAAUAAYAAAAFAAEAAAAWAAYAAAAHAAEAAAAUAAYAAAAJAAEAAAAWAAYAAAALAAEAAAAUAAYAAAANAAEAAAAWAAYAAAAPAAEAAAAUAAYAAAARAAEAAAAWAAYAAAATAAEAAAAUAAYAAAAVAAEAAAAWAAYAAAAXAAEAAAAUAAYAAAAZAAEAAAAWAAYAAAABAAEAAAATAAYAAAABAAMAAAATAAcAAAABAAUAAAATAAkAAAABAAcAAAATAAcAAAABAAkAAAATAAkAAAABAAsAAAATAAcAAAAbAAEAAAAUAAYAAAAdAAEAAAAWAAYAAAAfAAEAAAAUAAYAAAAhAAEAAAAWAAYAAAAjAAEAAAAUAAYAAAAlAAEAAAAWAAYAAAAnAAEAAAAXAAYAAAABAA0AAAATAAgAAAABABUAAAATAAoAAAAnABUAAAAXAAoAAAAnAAMAAAAXAAcAAAAnAAUAAAAXAAkAAAAnAAcAAAAXAAcAAAAnAAkAAAAXAAkAAAAnAAoAAAAXAAcAAAAnAAwAAAAXAAkAAAAnAA0AAAAXAAcAAAAnAA8AAAAXAAkAAAAnABEAAAAXAAcAAAAnABMAAAAXAAkAAAABAA8AAAATAAcAAAABABEAAAATAAkAAAABABMAAAATAAcAAAADABUAAAAUAAoAAAAFABUAAAAWAAoAAAAHABUAAAAUAAoAAAAJABUAAAAWAAoAAAALABUAAAAUAAoAAAANABUAAAAWAAoAAAAPABUAAAAUAAoAAAARABUAAAAWAAoAAAATABUAAAAUAAoAAAAVABUAAAAWAAoAAAAXABUAAAAUAAoAAAAZABUAAAAWAAoAAAAbABUAAAAUAAoAAAAdABUAAAAWAAoAAAAfABUAAAAUAAoAAAAhABUAAAAWAAoAAAAjABUAAAAUAAoAAAAlABUAAAAWAAoAAAA=")
+
+[node name="Decorations" parent="Tilemaps" index="1"]
+scale = Vector2(1.5, 1.5)
+tile_map_data = PackedByteArray("AAAeABYAAAAUADwAAAAgABYAAAAWADwAAAAiABYAAAAUADwAAAAkABYAAAAWADwAAAAmABYAAAAUADwAAAAoABYAAAAWADwAAAAqABYAAAAUADwAAAAsABYAAAAWADwAAAAuABYAAAAUADwAAAAwABYAAAAWADwAAAAyABYAAAAUADwAAAA0ABYAAAAWADwAAAA2ABYAAAAUADwAAAA4ABYAAAAWADwAAAA6ABYAAAAUADwAAAA8ABYAAAAWADwAAAA+ABYAAAAUADwAAABAABYAAAAWADwAAABCABYAAAAXADwAAAAcABYAAAATADwAAAAcABgAAAATAD0AAAAcABoAAAATAD8AAAAcABwAAAATAD0AAAAcAB4AAAATAD8AAAAcACAAAAATAD4AAAAcACIAAAATAEAAAAAeACIAAAAUAEAAAAAgACIAAAAWAEAAAAAiACIAAAAUAEAAAAAkACIAAAAWAEAAAAAmACIAAAAUAEAAAAAoACIAAAAWAEAAAAAqACIAAAAUAEAAAAAsACIAAAAWAEAAAAAuACIAAAAUAEAAAAAwACIAAAAWAEAAAAAyACIAAAAUAEAAAAA0ACIAAAAWAEAAAAA2ACIAAAAUAEAAAAA4ACIAAAAWAEAAAAA6ACIAAAAUAEAAAAA8ACIAAAAWAEAAAAA+ACIAAAAUAEAAAABAACIAAAAWAEAAAABCACIAAAAXAEAAAABCABgAAAAXAD0AAABCABoAAAAXAD8AAABCABwAAAAXAD0AAABCAB4AAAAXAD8AAABCACAAAAAXAD4AAAA=")
+
+[node name="StartVBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartVBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerSprite" type="Sprite2D" parent="StartVBoxContainer/HBoxContainer"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_gyhje")
+centered = false
+offset = Vector2(0, -16)
+hframes = 7
+vframes = 14
+frame = 8
+
+[node name="ChickenSprite" type="Sprite2D" parent="StartVBoxContainer/HBoxContainer"]
+position = Vector2(351, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("3_55wgi")
+centered = false
+offset = Vector2(0, -24)
+flip_h = true
+hframes = 14
+vframes = 14
+frame = 19
+
+[node name="TitleLabel" type="Label" parent="StartVBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Retro Chicken"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="StartVBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(175, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start"
+
+[editable path="Tilemaps"]

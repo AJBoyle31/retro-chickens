@@ -150,7 +150,7 @@ size = Vector2(9, 11)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vrf8f"]
 radius = 6.0
-height = 152.0
+height = 76.0
 
 [node name="MushroomEmeny" instance=ExtResource("1_vw76u")]
 script = ExtResource("2_vrf8f")
@@ -163,21 +163,26 @@ shape = SubResource("RectangleShape2D_mgl1v")
 
 [node name="AnimatedSprite" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_mgl1v")
-animation = &"emerged"
+animation = &"idle"
 
 [node name="RayCastLeft" parent="." index="3"]
 target_position = Vector2(-9, 0)
+
+[node name="NPCHitbox" parent="." index="4"]
+monitorable = false
 
 [node name="CollisionShape2D" parent="NPCHitbox" index="0"]
 position = Vector2(-0.5, 2.5)
 shape = SubResource("RectangleShape2D_vrf8f")
 
 [node name="PlayerDetectionArea" type="Area2D" parent="." index="6"]
+unique_name_in_owner = true
+position = Vector2(0, 2)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" index="0"]
-position = Vector2(-83, 2)
+position = Vector2(-46, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_vrf8f")
 
