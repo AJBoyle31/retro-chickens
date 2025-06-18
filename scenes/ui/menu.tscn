@@ -112,6 +112,7 @@ size_flags_horizontal = 3
 
 [node name="StartVBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/StartVBoxContainer"]
@@ -165,7 +166,6 @@ scale = Vector2(1.5, 1.5)
 tile_map_data = PackedByteArray("AAAeABYAAAAUADwAAAAgABYAAAAWADwAAAAiABYAAAAUADwAAAAkABYAAAAWADwAAAAmABYAAAAUADwAAAAoABYAAAAWADwAAAAqABYAAAAUADwAAAAsABYAAAAWADwAAAAuABYAAAAUADwAAAAwABYAAAAWADwAAAAyABYAAAAUADwAAAA0ABYAAAAWADwAAAA2ABYAAAAUADwAAAA4ABYAAAAWADwAAAA6ABYAAAAUADwAAAA8ABYAAAAWADwAAAA+ABYAAAAUADwAAABAABYAAAAWADwAAABCABYAAAAXADwAAAAcABYAAAATADwAAAAcABgAAAATAD0AAAAcABoAAAATAD8AAAAcABwAAAATAD0AAAAcAB4AAAATAD8AAAAcACAAAAATAD4AAAAcACIAAAATAEAAAAAeACIAAAAUAEAAAAAgACIAAAAWAEAAAAAiACIAAAAUAEAAAAAkACIAAAAWAEAAAAAmACIAAAAUAEAAAAAoACIAAAAWAEAAAAAqACIAAAAUAEAAAAAsACIAAAAWAEAAAAAuACIAAAAUAEAAAAAwACIAAAAWAEAAAAAyACIAAAAUAEAAAAA0ACIAAAAWAEAAAAA2ACIAAAAUAEAAAAA4ACIAAAAWAEAAAAA6ACIAAAAUAEAAAAA8ACIAAAAWAEAAAAA+ACIAAAAUAEAAAABAACIAAAAWAEAAAABCACIAAAAXAEAAAABCABgAAAAXAD0AAABCABoAAAAXAD8AAABCABwAAAAXAD0AAABCAB4AAAAXAD8AAABCACAAAAAXAD4AAAA=")
 
 [node name="PausePanelContainer" type="PanelContainer" parent="CenterContainer"]
-visible = false
 custom_minimum_size = Vector2(400, 225)
 layout_mode = 2
 
@@ -195,5 +195,6 @@ libraries = {
 autoplay = "chicken_walking"
 
 [connection signal="pressed" from="CenterContainer/StartVBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PausePanelContainer/PauseVBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 
 [editable path="CenterContainer/StartVBoxContainer/Tilemaps"]

@@ -238,7 +238,7 @@ limit_bottom = 200
 [node name="HurtBox" parent="." instance=ExtResource("3_0e54p")]
 unique_name_in_owner = true
 collision_layer = 64
-collision_mask = 40
+collision_mask = 32
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-1, 1.5)

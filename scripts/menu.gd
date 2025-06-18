@@ -36,3 +36,7 @@ func paused_screen(show_menu:bool) -> void:
 
 func _on_start_button_pressed() -> void:
 	emit_signal("start_game")
+
+
+func _on_restart_button_pressed() -> void:
+	SignalManager.emit_signal("reload_level")

@@ -44,6 +44,8 @@ func _ready() -> void:
 	camera_2d.limit_left = left_killzone.position.x + 16
 	camera_2d.limit_right = right_killzone.position.x - 16
 	
+	SignalManager.connect("reload_level", restart_level)
+	
 
 func _process(_delta: float) -> void:
 	if player != null:

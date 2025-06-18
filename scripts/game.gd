@@ -6,6 +6,7 @@ class_name Game
 var previous_level: Node2D
 var current_level: Node2D
 var paused: bool = false
+var start_menu: bool
 
 @onready var level_transition: LevelTransition = %LevelTransition
 @onready var menu: Menu = %Menu
@@ -14,7 +15,9 @@ var paused: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	menu.show_title_screen()
+	start_menu = true
 	SignalManager.connect("change_level", _load_level)
+	SignalManager.connect("reload_level", pause_menu)
 
 
 func start_new_game() -> void:
@@ -25,13 +28,17 @@ func start_new_game() -> void:
 			print(child.name)
 			current_level = child 
 	SignalManager.connect("restart_current_level", _reload_current_level)
+	start_menu = false
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
-		paused = !paused
-		get_tree().paused = paused
-		menu.paused_screen(paused)
+	if Input.is_action_just_pressed("pause") and !start_menu:
+		pause_menu()
+
+func pause_menu() -> void:
+	paused = !paused
+	get_tree().paused = paused
+	menu.paused_screen(paused)
 
 #This isn't working at all currently. 
 func _reload_current_level() -> void:
