@@ -166,6 +166,7 @@ func _on_time_left_to_complete_timeout() -> void:
 		hud.show_too_slow_label()
 
 func restart_level() -> void:
+	print("restart level")
 	var to_be_deleted = get_tree().get_nodes_in_group("level_restart")
 	for thing in to_be_deleted:
 		thing.get_parent().remove_child(thing)
